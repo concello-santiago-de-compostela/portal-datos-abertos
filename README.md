@@ -22,9 +22,9 @@ Requiere CKAN versión 2.8.2 y las siguientes extensiones:
 
 * [ckanext-dcat](https://github.com/ckan/ckanext-dcat/releases/tag/v0.0.9)
 * [ckanext-scheming](https://github.com/ckan/ckanext-scheming/tree/3bd3f0d25ce544144edd84ee9cb38addccbb6cfd)
-* [ckanext-fluent] (https://github.com/ckan/ckanext-fluent/tree/07f061e0c98c53fffed8d1f7a1617e89d0b3a08d)
-* [ckanext-disqus] (https://github.com/ckan/ckanext-disqus/tree/709566b439df6a9cf45708c773c18a71b141f3ef)
-* [ckanext-spatial] (https://github.com/ckan/ckanext-spatial/tree/2acf66b110ba534750cab754a50566505ba88d83)
+* [ckanext-fluent](https://github.com/ckan/ckanext-fluent/tree/07f061e0c98c53fffed8d1f7a1617e89d0b3a08d)
+* [ckanext-disqus](https://github.com/ckan/ckanext-disqus/tree/709566b439df6a9cf45708c773c18a71b141f3ef)
+* [ckanext-spatial](https://github.com/ckan/ckanext-spatial/tree/2acf66b110ba534750cab754a50566505ba88d83)
 
 ###  Instalación
 
