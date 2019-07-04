@@ -1,0 +1,15 @@
+{%- set values = data[field.field_name] -%}
+{% if values %}
+
+{%- set dataset_extent = h.dump_json(values) | replace("'", "\"") -%}
+
+
+<p>{{ h.dump_json(values) }}</p>
+
+<section class="module module-narrow dataset-map">
+        <h2 class="module-heading"><i class="icon-medium icon-globe"></i> {{ _('Dataset extent') }} </h2>
+          {% snippet "spatial/snippets/dataset_map_base.html", extent=dataset_extent %}
+        </section>
+
+{% endif %}
+

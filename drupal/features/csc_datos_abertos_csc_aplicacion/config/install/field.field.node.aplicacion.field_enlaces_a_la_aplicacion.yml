@@ -1,0 +1,22 @@
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_enlaces_a_la_aplicacion
+    - node.type.aplicacion
+  module:
+    - link
+id: node.aplicacion.field_enlaces_a_la_aplicacion
+field_name: field_enlaces_a_la_aplicacion
+entity_type: node
+bundle: aplicacion
+label: 'Enlaces a la aplicación'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

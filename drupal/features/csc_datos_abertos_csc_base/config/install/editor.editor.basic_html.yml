@@ -1,0 +1,59 @@
+langcode: es
+status: true
+dependencies:
+  config:
+    - filter.format.basic_html
+  module:
+    - ckeditor
+format: basic_html
+editor: ckeditor
+settings:
+  toolbar:
+    rows:
+      -
+        -
+          name: 'Block Formatting'
+          items:
+            - Format
+        -
+          name: Paste
+          items:
+            - Cut
+            - Paste
+            - Copy
+            - PasteText
+            - PasteFromWord
+        -
+          name: Formatting
+          items:
+            - Bold
+            - Italic
+            - Underline
+        -
+          name: Lists
+          items:
+            - BulletedList
+            - NumberedList
+        -
+          name: Linking
+          items:
+            - DrupalLink
+            - DrupalUnlink
+        -
+          name: Media
+          items:
+            - Blockquote
+            - DrupalImage
+  plugins:
+    language:
+      language_list: un
+    stylescombo:
+      styles: ''
+image_upload:
+  status: false
+  scheme: public
+  directory: inline-images
+  max_size: ''
+  max_dimensions:
+    width: null
+    height: null

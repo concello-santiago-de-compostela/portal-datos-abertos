@@ -1,0 +1,11 @@
+name: CSC Search
+description: A module to define the search block of CSC website.
+package: 'CSC Datos abertos development' 
+type: module
+core: 8.x
+version: 8.x-1.0
+
+dependencies:
+- block
+- csc_ckan
+- csc_ckan_blocks

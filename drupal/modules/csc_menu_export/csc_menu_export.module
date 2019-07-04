@@ -1,0 +1,169 @@
+<?php
+
+/**
+* Copyright 2018 Ayuntamiento de Santiago de Compostela, Entidad Pública Empresarial Red.es
+*
+* This file is part of the "Open Data Portal of Santiago de Compostela", developed within the "Ciudades Abiertas" project.
+*
+* Licensed under the EUPL, Version 1.2 or - as soon they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence");
+* You may not use this work except in compliance with the Licence.
+* You may obtain a copy of the Licence at:
+*
+* https://joinup.ec.europa.eu/software/page/eupl
+*
+* Unless required by applicable law or agreed to in writing, software distributed under the Licence is distributed on an "AS IS" basis,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the Licence for the specific language governing permissions and limitations under the Licence.
+*/
+
+use Drupal\Core\Form\FormStateInterface;
+use function GuzzleHttp\json_encode;
+use Drupal\Core\Messenger\Messenger;
+;
+
+/**
+ * Convert the array values for required menus to JSON format, and generates a file in the config form directory.
+ */
+function convertToJSON()
+{
+    $config = \Drupal::config('menuexport.config');
+    $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+    
+    $mainMenuObject = \Drupal::menuTree()->load('main', new \Drupal\Core\Menu\MenuTreeParameters());
+    $mainMenuArray = array(
+        'menu' => array(
+            'es' => menuTreeToArrayEsLang($mainMenuObject),
+            'gl' => menuTreeToArrayGlLang($mainMenuObject)
+        )
+    );
+    
+    $footerMenuObject = \Drupal::menuTree()->load('footer', new \Drupal\Core\Menu\MenuTreeParameters());
+    $footerMenuArray = array(
+        'menu' => array(
+            'es' => menuTreeToArrayEsLang($footerMenuObject),
+            'gl' => menuTreeToArrayGlLang($footerMenuObject)
+        )
+    );
+    
+    $mainMenuJSON = json_encode($mainMenuArray, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    $footerMenuJSON = json_encode($footerMenuArray, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    
+    $path = $config->get('export_directory');
+
+    file_put_contents($path . "/menu_main.json", $mainMenuJSON);
+    file_put_contents($path . "/menu_footer.json", $footerMenuJSON);
+    
+    if(file_exists($path. '/menu_main.json') && file_exists($path. '/menu_footer.json')){
+        \Drupal::messenger()->addStatus(t('Menus have been exported successfully'));
+    }else{
+        \Drupal::messenger()->addError(t('Something went wrong, please contact with User Support.'));
+    }
+    
+}
+
+/**
+ * Return the menu tree received with 'es' langcode as an array.
+ *
+ * @param \Drupal\Core\Menu\MenuLinkTreeInterface $menutree
+ * @return array
+ */
+function menuTreeToArrayEsLang($menutree)
+{
+    $menuArray = [];
+    $oldtags = array(
+        '/%5Blang%5D/',
+        '/gl/',
+        '/gl'
+    );
+    $newtags = array(
+        '/es/',
+        '/es/',
+        '/es'
+    );
+    usort($menutree, "cmpMenuItems");
+    foreach ($menutree as $item) {
+        if ($item->link->isEnabled()) {
+            $title = $item->link->getTitle();
+            $url_obj = str_replace($oldtags, $newtags, $item->link->getUrlObject()->toString());
+            $has_children = $item->hasChildren;
+            if ($has_children) {
+                array_push($menuArray, array(
+                    'name' => $title,
+                    'link' => $url_obj,
+                    'sub' => menuTreeToArrayEsLang($item->subtree)
+                ));
+            } else {
+                array_push($menuArray, array(
+                    'name' => $title,
+                    'link' => $url_obj,
+                    'sub' => null
+                ));
+            }
+        }
+    }
+    return $menuArray;
+}
+
+/**
+ * Return the menu tree received with 'gl' langcode as an array.
+ *
+ * @param \Drupal\Core\Menu\MenuLinkTreeInterface $menutree
+ * @return array
+ */
+function menuTreeToArrayGlLang($menutree)
+{
+    $menuArray = [];
+    $oldtags = array(
+        '/%5Blang%5D/',
+        '/es/',
+        '/es'
+    );
+    $newtags = array(
+        '/gl/',
+        '/gl/',
+        '/gl'
+    );
+    usort($menutree, "cmpMenuItems");
+    foreach ($menutree as $item) {
+        if ($item->link->isEnabled()) {
+            $title = $item->link->getTitle();
+            $url_obj = str_replace($oldtags, $newtags, $item->link->getUrlObject()->toString());
+            $has_children = $item->hasChildren;
+            if ($has_children) {
+                array_push($menuArray, array(
+                    'name' => $title,
+                    'link' => $url_obj,
+                    'sub' => menuTreeToArrayGlLang($item->subtree)
+                ));
+            } else {
+                array_push($menuArray, array(
+                    'name' => $title,
+                    'link' => $url_obj,
+                    'sub' => null
+                ));
+            }
+        }
+    }    
+    return $menuArray;
+}
+
+/**
+ * Validation function for Export submit.
+ *
+ * @param array $form
+ * @param FormStateInterface $form_state
+ */
+function validateExport(array &$form, FormStateInterface $form_state)
+{
+    $path = $form_state->getValue('export_directory');
+    
+    if (! file_exists($path)) {
+        $form_state->setErrorByName('export_directory', t('The directory is not valid, please submit a valid one.'));
+    }
+}
+
+
+function cmpMenuItems($a, $b)
+{
+    return ($a->link->getWeight() < $b->link->getWeight())? -1: 1;
+}

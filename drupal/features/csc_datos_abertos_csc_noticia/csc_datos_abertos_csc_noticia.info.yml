@@ -1,0 +1,26 @@
+name: 'CSC Noticia'
+type: module
+core: 8.x
+dependencies:
+  - block
+  - colorbox
+  - content_translation
+  - csc_datos_abertos_csc_listados_y_busqueda
+  - ctools
+  - datetime
+  - disqus
+  - facets
+  - field
+  - file
+  - image
+  - language
+  - menu_ui
+  - node
+  - path
+  - pathauto
+  - system
+  - text
+  - user
+  - views
+version: 8.x-1.0-beta3
+package: 'CSC Datos abertos'

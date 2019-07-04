@@ -1,0 +1,220 @@
+<?php
+
+/**
+* Copyright 2018 Ayuntamiento de Santiago de Compostela, Entidad Pública Empresarial Red.es
+*
+* This file is part of the "Open Data Portal of Santiago de Compostela", developed within the "Ciudades Abiertas" project.
+*
+* Licensed under the EUPL, Version 1.2 or - as soon they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence");
+* You may not use this work except in compliance with the Licence.
+* You may obtain a copy of the Licence at:
+*
+* https://joinup.ec.europa.eu/software/page/eupl
+*
+* Unless required by applicable law or agreed to in writing, software distributed under the Licence is distributed on an "AS IS" basis,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the Licence for the specific language governing permissions and limitations under the Licence.
+*/
+
+use Drupal\Component\Utility\UrlHelper;
+use Drupal\Core\Url;
+
+include_once (DRUPAL_ROOT . "/modules/custom/csc_ckan_blocks/libraries/Parsedown/Parsedown.php");
+
+define('CSC_NTI_CATEGORIES', 'categorias_nti');
+
+/**
+ * Get list of nti categories
+ *
+ * @return array
+ */
+function _csc_ckan_blocks_load_nti_categories()
+{
+    $taxonomy = \Drupal\taxonomy\Entity\Vocabulary::load(CSC_NTI_CATEGORIES);
+    $levels = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree($taxonomy->vid);
+    $options = array();
+    foreach ($levels as $i => $level) {
+        if ($level->language == 'es' || $level->language == 'und') {
+            $options[$level->tid] = $level->name;
+        }
+    }
+    return $options;
+}
+
+/**
+ * Return the value of a dataset field multilanguage and the value language.
+ */
+function csc_ckan_get_translated_dataset_field($value)
+{
+    if (is_array($value)) {
+        $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+        
+        if (array_key_exists($language, $value) && ! empty($value[$language])) {
+            return array(
+                'value' => $value[$language],
+                'language' => $language
+            );
+        } else {
+            \Drupal\Core\Messenger\MessengerInterface::addMessage(t('Dataset is empty or incorrect'));
+        }
+    }
+}
+
+function csc_ckan_get_dataset_resouce_formats($dataset, $nti_csc_dataset_label)
+{
+    $resources = array();
+    
+    if (is_array($dataset)) {
+        foreach ($dataset['resources'] as $resource) {
+            $resources[] = csc_ckan_blocks_get_format_label($resource['format'], $nti_csc_dataset_label);
+        }
+    }
+    return array_unique($resources);
+}
+
+function csc_ckan_blocks_get_format_label($format, $definition)
+{
+    $label = $format;
+    if (isset($definition->json_data['resource_fields'])) {
+        foreach ($definition->json_data['resource_fields'] as $field) {
+            if ($field['field_name'] == 'format') {
+                foreach ($field['choices'] as $file_format) {
+                    if ($file_format['value'] == $format) {
+                        $label = $file_format['label'];
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    return $label;
+}
+
+function csc_ckan_blocks_package_search($q = '', $fq = '', $rows, $start, $sort)
+{
+    $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+    $ckan = csc_ckan_init_class();
+    $ckanConfig = \Drupal::config('ckan.config');
+    
+    $response = $ckan->request('package_search', $q, $fq, $rows, $start, $sort);
+    
+    $packages = array();
+    if ($response['success']) {
+        module_load_include('inc', 'csc_ckan', 'csc_ckan_json_label');
+        $nti_csc_dataset_label = new csc_ckan_json_label('nti_csc_dataset.json');
+        
+        foreach ($response['result']['results'] as $result) {
+            $date = DateTime::createFromFormat('Y-m-d\TH:i:s.u', $result['metadata_created'], new DateTimeZone('UTC'));
+            $date->setTimeZone(new DateTimeZone('Europe/Madrid'));
+            $formattedDate = $date->format('d-m-Y');
+            if (array_key_exists('modified_date', $result)) {
+                $modifiedDate = DateTime::createFromFormat('Y-m-d\TH:i:s', $result['modified_date'], new DateTimeZone('UTC'));
+                $modifiedDate->setTimeZone(new DateTimeZone('Europe/Madrid'));
+                $formattedModifiedDate = $modifiedDate->format('d-m-Y');
+            }else{
+                $formattedModifiedDate = "";
+            }
+            
+            if (strlen($result['description'][$language]) > 200) {
+                $truncatedDesc = substr(strip_tags($result['description'][$language]), 0, strrpos(substr(strip_tags($result['description'][$language]), 0, 200), ' ')) . "...";
+            } else {
+                $truncatedDesc = strip_tags($result['description'][$language]);
+            }
+            $Parsedown = new Parsedown(); //Parsedown library call to parse Markdown format
+            $packages[$result['id']] = array(
+                'date' => $formattedDate,
+                'modifiedDate' => $formattedModifiedDate,
+                'title' => csc_ckan_get_translated_dataset_field($result['title_translated']),
+                'organization' => $result['organization']['title'],
+                'description' => $result['description'], // csc_ckan_get_translated_dataset_field($result['description']),
+                'truncatedDescription' => strip_tags($Parsedown->text($truncatedDesc)),
+                'url' => $ckanConfig->get('ckan_url') . '/' . $language . '/' . $ckanConfig->get('ckan_pagina_dataset') . '/' . $result['name'],
+                'formats' => csc_ckan_get_dataset_resouce_formats($result, $nti_csc_dataset_label)
+            );
+        }
+    }
+    
+    return $packages;
+}
+
+function csc_ckan_blocks_theme($existing, $type, $theme, $path)
+{
+    return array(
+        'searchblock_template' => array(
+            'variables' => array(
+                'packages' => NULL,
+                'ckan_url' => NULL
+            ),
+            'template' => 'searchblocktemplate' // TWIG File
+        ),
+        'categoriesblock_template' => array(
+            'variables' => array(
+                'categories' => NULL
+            ),
+            'template' => 'categoriesblocktemplate' // TWIG File
+        
+        ),
+        'packagesnumberblock_template' => array(
+            'variables' => array(
+                'packagesnumber' => NULL
+            ),
+            'template' => 'packagesnumberblocktemplate' // TWIG File
+        
+        )
+    
+    );
+}
+
+function csc_ckan_blocks_categories_retrieve($language)
+{
+    $ckanConfig = \Drupal::config('ckan.config');
+    
+    // Result var
+    $categories = array();
+    
+    // Get CKAN Path
+    $path = $ckanConfig->get('ckan_url');
+    if (UrlHelper::isValid($path, $absolute = TRUE)) {
+        $path .= '/' . $language . '/dataset';
+    }
+    
+    // Get NTI Categories
+    $taxonomy = \Drupal\taxonomy\Entity\Vocabulary::load(CSC_NTI_CATEGORIES);
+    
+    $categories_nti = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree($taxonomy->get('vid'));
+    
+    foreach ($categories_nti as $category_unload) {
+        $category = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($category_unload->tid);
+        
+        if ($category->hasTranslation($language)) {
+            
+            $nti_reference_key = $category->getTranslation($language)
+                ->get('field_categoria_ckan')
+                ->getValue();
+        } else {
+            $nti_reference_key = $category->getTranslation('es')
+                ->
+            // Set 'es' translated content by default if it dont have translation in the selected language.
+            get('field_categoria_ckan')
+                ->getValue();
+        }
+        if (! empty($nti_reference_key) && ! empty($nti_reference_key[0]['value'])) {
+            $data_category = array();
+            $data_category['key'] = $nti_reference_key[0]['value'];
+            $data_category['link'] = $ckanConfig->get('ckan_url') . '/' . $language . '/' . $ckanConfig->get('ckan_pagina_dataset') . '?theme_id=' . $nti_reference_key[0]['value'];
+            $data_category['label'] = $category->getTranslation($language)->get('name')->value;
+            
+            $ckan = csc_ckan_init_class();
+            $response = $ckan->request('package_search', '', 'theme_id:' . $nti_reference_key[0]['value'], 0, 0);
+            if (isset($response['success']) && $response['success']) {
+                $data_category['total'] = $response['result']['count'];
+            } else {
+                $data_category['total'] = 0;
+            }
+            
+            $categories[] = $data_category;
+        }
+    }
+    
+    return $categories;
+}

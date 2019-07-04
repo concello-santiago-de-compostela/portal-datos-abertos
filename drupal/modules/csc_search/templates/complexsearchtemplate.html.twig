@@ -1,0 +1,73 @@
+{#
+/**
+* Copyright 2018 Ayuntamiento de Santiago de Compostela, Entidad Pública Empresarial Red.es
+*
+* This file is part of the "Open Data Portal of Santiago de Compostela", developed within the "Ciudades Abiertas" project.
+*
+* Licensed under the EUPL, Version 1.2 or - as soon they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence");
+* You may not use this work except in compliance with the Licence.
+* You may obtain a copy of the Licence at:
+*
+* https://joinup.ec.europa.eu/software/page/eupl
+*
+* Unless required by applicable law or agreed to in writing, software distributed under the Licence is distributed on an "AS IS" basis,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the Licence for the specific language governing permissions and limitations under the Licence.
+*/
+#}
+<div class="csc-search-keyword">
+	{{ keywordtext }}
+</div>
+
+<div class="csc-search-container csc-search-ckan">
+	<div class="csc-search-title">
+		<strong>{% trans %}Datasets{% endtrans %}</strong>
+	</div>
+
+	{% if packages is empty %}
+	<div class="csc-empty-message">{% trans %}No results for the keyword used.{% endtrans %}</div>
+	{% else %}
+	<ul class="csc-search-list csc-search-datasets">
+		{% for package in packages %}
+
+		<li class="csc-search-item csc-search-item-dataset">
+			<div class="csc-search-item-title"><a class="csc-search-label" href={{ package.url }}>{{ package.title.value }}</a></div>
+			<div class="csc-search-item-type">{% trans %}Dataset{% endtrans %}</div>
+			<div class="csc-search-item-description">{{ package.truncatedDescription}}</div>
+		</li>
+
+		{% endfor %}
+	</ul>
+	{% endif %}
+
+	<div class="csc-search-more">
+		<a href={{ ckan_url }}> {% trans %}Search more in the catalogue{% endtrans %}</a>
+	</div>
+
+</div>
+
+<div class="csc-search-container csc-search-drupal">
+	<div class="csc-search-title">
+		<strong>{% trans %}Portal Contents{% endtrans %}</strong>
+	</div>
+
+	{% if contents is empty %}
+	<div class="csc-empty-message">{% trans %}No results for the keyword used.{% endtrans %}</div>
+	{% else %}
+	<ul class="csc-search-list csc-search-contents">
+
+		{% for content in contents %}
+		<li class="csc-search-item csc-search-item-content">
+		  <div class="csc-search-item-title"><a class="csc-search-label" href={{ content.url }}>{{ content.title }}</a></div>
+			<div class="csc-search-item-type">{{ content.type }}</div>
+			<div class="csc-search-item-description">{{ content.description }}</div>
+		</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+
+	<div class="datasets-search-more">
+		<a href={{ solr_url }}> {% trans %}Search more in the website{% endtrans %}</a>
+	</div>
+</div>
+

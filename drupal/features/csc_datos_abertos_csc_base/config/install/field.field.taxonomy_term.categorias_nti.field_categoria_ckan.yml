@@ -1,0 +1,18 @@
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_categoria_ckan
+    - taxonomy.vocabulary.categorias_nti
+id: taxonomy_term.categorias_nti.field_categoria_ckan
+field_name: field_categoria_ckan
+entity_type: taxonomy_term
+bundle: categorias_nti
+label: 'Categoría CKAN'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

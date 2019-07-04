@@ -1,0 +1,61 @@
+{% ckan_extends %}
+
+{% block page_heading %}
+    {% set language, value = h.csc_dataset_field_value(pkg.title_translated) %}
+    {% if (language and value) %}
+      <div lang='{{language}}' xml:lang='{{language}}'>{{ value }}</div>
+    {% elif value %}
+      {{ value }}
+    {% endif %}
+    {% if pkg.state.startswith('draft') %}
+        [{{ _('Draft') }}]
+    {% endif %}
+    {% if pkg.state == 'deleted' %}
+        [{{ _('Deleted') }}]
+    {% endif %}
+ 
+{% endblock %}
+{% block page_title %}{% endblock %}
+{% block content_action_wrapper_class %}content_action_pkg{% endblock %}
+{% block catalog_downloads %}
+  {% snippet 'snippets/csc_dataset_downloads.html', pkg_name=pkg.name %}
+{% endblock %}
+
+{% block package_notes %}
+  {% snippet "package/snippets/csc_owner.html", pkg_dict=pkg, dataset_type=dataset_type, schema=schema %}
+  {% snippet "package/snippets/csc_theme.html", pkg_dict=pkg, dataset_type=dataset_type, schema=schema %}
+  {% snippet "package/snippets/csc_license.html", pkg_dict=pkg %}
+  {% snippet "package/snippets/csc_description.html", pkg=pkg %}
+  {% snippet "package/snippets/csc_spatial.html", pkg=pkg %}
+{% endblock %}
+
+{% block package_resources %}
+    {% snippet "package/snippets/resources_list.html", pkg=pkg, 
+        resources=pkg.resources, dataset_type=dataset_type, schema=schema %}
+ {% endblock %}
+
+{% block package_additional_info %}
+  {% snippet "package/snippets/additional_info.html",
+    pkg_dict=pkg, dataset_type=dataset_type, schema=schema %}
+  {% block share %}
+    {% snippet 'package/snippets/csc_social.html' %}
+  {% endblock %}
+  {% block comments %}
+  {% if disqus in g.plugins %}
+  <section class="disqus">
+    <h2 class="section-title">{{ _('Comments') }}</h2>
+    <div>
+      {{h.disqus_comments()}}
+    </div>
+  </section>
+  {% endif %}
+{% endblock %}
+
+{% endblock %}
+
+
+
+{% block content_primary_nav %}
+  {{ super() }}
+  {# snippet "package/snippets/csc_export_links.html", pkg=pkg #}
+{% endblock %}

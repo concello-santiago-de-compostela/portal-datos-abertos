@@ -1,0 +1,20 @@
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_respuesta_pregunta
+    - paragraphs.paragraphs_type.pregunta_y_respuesta_faq
+  module:
+    - text
+id: paragraph.pregunta_y_respuesta_faq.field_respuesta_pregunta
+field_name: field_respuesta_pregunta
+entity_type: paragraph
+bundle: pregunta_y_respuesta_faq
+label: 'Respuesta Pregunta'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

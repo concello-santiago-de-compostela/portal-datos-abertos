@@ -1,0 +1,110 @@
+{% set footer_menu_items = h.csc_footer_menu_items() %}
+
+<footer>
+  {% block footer_content %}
+  <div class="content">
+    {% block footer_logos %}
+    <div class="logos">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="region region-logos">
+            <div id="block-logospiedepagina" class="block block-block-content block-block-contentbbbb41f4-6550-4c9f-aba5-4caa05675e7d">
+              <div class="content">
+                <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item">
+                  <div class="footer__logos-box">
+                    <ul class="footer__logos-top">
+                      <li class="footer__logos footer__logoGobEspana"><a href="http://www.mineco.gob.es/portal/site/mineco/" target="_b"><img alt="{{ _('Government of Spain logo') }}. {{ _('Opens a new window') }}" src="{{ h.url_for_static_or_external('images/gobEsp-logo.png') }}" title="{{ _('Government of Spain logo') }}. {{ _('Opens a new window') }}" /></a></li>
+                      <li class="footer__logos footer__logoRed"><a href="https://www.red.es/redes/" target="_b"><img alt="{{ _('Red.es logo') }}. {{ _('Opens a new window') }}" src="{{ h.url_for_static_or_external('images/red-logo.svg') }}" title="{{ _('Red.es logo') }}. {{ _('Opens a new window') }}" /></a></li>
+                      <li class="footer__logos footer__logoCiudadesInteligentes"><a href="http://www.red.es/redes/es/que-hacemos/ciudades-inteligentes" target="_blank"><img alt="{{ _('Intelligent Cities and Islands portal logo') }}. {{ _('Opens a new window') }}" src="{{ h.url_for_static_or_external('images/ciudadesInteligentes-logo.svg') }}" title="{{ _('Intelligent Cities and Islands portal logo') }}. {{ _('Opens a new window') }}" /></a></li>
+                      <li class="footer__logos footer__logoUnionEuropea"><a href="http://ec.europa.eu/regional_policy/es/funding/erdf/" target="_blank"><img alt="Logo de la Unión Europea. {{ _('Opens a new window') }}" src="{{ h.url_for_static_or_external('images/unionEuropea-logo.svg') }}" title="{{ _('European Union logo') }}. {{ _('Opens a new window') }}" /></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+  
+    {% block footer_region %}
+    <div class="footer-space">
+      <div id="left-side-block">
+        <div class="container">
+          <header><h2>Concello de Santiago</h2><hr /></header>
+          <div class="row">
+            <div class="contact-details" id="address">
+              <p>Pazo de Raxoi. Praza do Obradoiro</p>
+              <p>15705 Santiago de Compostela (A Coruña)</p>
+            </div>
+            <div class="contact-details" id="contact-numbers">
+              <ul>
+                <li><a href="tel:+34981542300">(+34) 981 542 300 (Centro de Atención Telefónica)</a></li>
+                <li><a href="tel:+34981542357">(+34) 981 542 357 (Alcaldía)</a></li>
+              </ul>
+            </div>
+            <div class="contact-details" id="contact-email">
+              <ul>
+                <li><a href="mailto:datosabertos@santiagodecompostela.gal" title="#">datosabertos@santiagodecompostela.gal</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+  
+    {% block footer_ribbon%}
+    <div class="footer-ribbon">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="region region-footer-menu">
+              <nav role="navigation" aria-labelledby="block-piedepagina-menu" id="block-piedepagina" class="footer-links block block-menu navigation menu--footer">
+                <h2 class="visually-hidden" id="block-piedepagina-menu">{{ _('Footer') }}</h2>
+                {% if footer_menu_items %}
+                  <ul class="menu">
+                    {% for item in footer_menu_items %}
+                      {% if item.get('name') and item.get('link') %}
+                      <li class="menu-item"><a href="{{ item.get('link') }}" data-drupal-link-system-path="&lt;front&gt;" class="is-active">{{ item.get('name') }}</a></li>
+                      {% endif %}
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+    
+    {% block footer_bottom %}
+    <div id="footer-bottom">
+      <div class="container">
+        <div class="row">
+          <hr class="style-mint">
+          <div id="toTop" class="col-md-12">
+            <a class="scrollUp"><i class="fa fa-angle-up"></i></a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 copy_credit">
+            <p class="copyright">Copyright &copy; 2018. All rights reserved</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+
+  </div>
+  {% endblock %}
+
+  {% block footer_debug %}
+    {% if g.debug %}
+      <div class="debug">Controller : {{ c.controller }}<br/>Action : {{ c.action }}</div>
+      {% include 'snippets/debug.html' %}
+    {% endif %}
+  {% endblock %}
+</footer>

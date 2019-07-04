@@ -1,0 +1,9 @@
+langcode: es
+status: true
+dependencies: {  }
+id: front
+label: 'Front page'
+tags:
+  title: '[site:name]'
+  canonical_url: '[site:url]'
+  shortlink: '[site:url]'

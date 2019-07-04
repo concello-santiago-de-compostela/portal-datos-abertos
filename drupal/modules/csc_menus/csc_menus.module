@@ -1,0 +1,71 @@
+<?php
+
+/**
+* Copyright 2018 Ayuntamiento de Santiago de Compostela, Entidad Pública Empresarial Red.es
+*
+* This file is part of the "Open Data Portal of Santiago de Compostela", developed within the "Ciudades Abiertas" project.
+*
+* Licensed under the EUPL, Version 1.2 or - as soon they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence");
+* You may not use this work except in compliance with the Licence.
+* You may obtain a copy of the Licence at:
+*
+* https://joinup.ec.europa.eu/software/page/eupl
+*
+* Unless required by applicable law or agreed to in writing, software distributed under the Licence is distributed on an "AS IS" basis,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the Licence for the specific language governing permissions and limitations under the Licence.
+*/
+
+use Drupal\Core\Url;
+use Drupal\menu_link_content\Plugin\Menu\MenuLinkContent;
+
+/**
+* Implements hook_preprocess_menu().
+*/
+function csc_menus_preprocess_menu(&$variables) {
+    
+    if ($variables['menu_name'] == 'main') {
+        $language = Drupal::languageManager()->getCurrentLanguage()->getId();
+  
+        foreach ($variables['items'] as $key => &$item) {
+            if ($item['original_link'] instanceof MenuLinkContent) {
+                list($entity_type, $uuid) = explode(':', $item['original_link']->getPluginId(), 2);
+                $entity = \Drupal::entityManager()->loadEntityByUuid($entity_type, $uuid);
+                if (! empty($entity->link->uri) && strpos($entity->link->uri, '[lang]') !== false) {
+                    $item['url'] = Url::fromUri(str_replace('[lang]', $language, $entity->link->uri));
+                }
+                // Only two levels are processed, recursivity is not needed
+                foreach ($item['below'] as $key_below => &$item_below) {
+                    if ($item_below['original_link'] instanceof MenuLinkContent) {
+                        list($entity_type_below, $uuid_below) = explode(':', $item_below['original_link']->getPluginId(), 2);
+                        $entity_below = \Drupal::entityManager()->loadEntityByUuid($entity_type_below, $uuid_below);
+                        if (! empty($entity_below->link->uri) && strpos($entity_below->link->uri, '[lang]') !== false) {
+                            $item_below['url'] = Url::fromUri(str_replace('[lang]', $language, $entity_below->link->uri));
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/**
+ * Implements hook_simple_sitemap_links_alter()
+ */
+function csc_menus_simple_sitemap_links_alter(array &$links) {
+
+    // Regenerate [lang] items
+    foreach ($links as $key => &$link) {
+        
+        if (strpos($link['meta']['path'], '[lang]') !== false) {
+            $link['meta']['path'] = str_replace('[lang]', $link['langcode'], $link['meta']['path']);
+            $original_url = urldecode($link['url']);
+            $link['url'] = str_replace('[lang]', $link['langcode'], $original_url);
+
+            $languages = Drupal::languageManager()->getLanguages();
+            foreach ($languages as $lang => &$language) {
+                $link['alternate_urls'][$lang] = str_replace('[lang]', $lang, $original_url);
+            }
+        }
+    }
+}

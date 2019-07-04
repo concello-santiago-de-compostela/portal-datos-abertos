@@ -1,0 +1,6 @@
+<ul class="catalog">
+  {% set rdf_file = h.csc_exported_catalog_files() %}
+  {% if rdf_file %}
+  <li class="catalog-rdf"><a href="{{ rdf_file }}" target="_blank" title="{{ _('RDF Data Catalog') }}. {{ _('Opens a new window') }}"><img src="{{ h.url_for_static('/images/catalog-rdf.png') }}" alt="{{ _('RDF Data Catalog') }}. {{ _('Opens a new window') }}"></a></li>
+  {% endif %}
+</ul>

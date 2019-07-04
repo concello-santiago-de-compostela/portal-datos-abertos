@@ -1,0 +1,952 @@
+{
+    "scheming_version": 1,
+    "dataset_type": "dataset",
+    "about": "CSC dataset schema based on Spanish NTI dataset schema",
+    "about_url": "http://datos.santiagodecompostela.gal",
+    "dataset_fields": [
+      {
+        "field_name": "title_translated",
+        "label": {
+            "es": "Nombre",
+            "gl": "Nome"},
+        "preset": "fluent_core_translated",
+        "form_snippet": "csc_multiple_required_language_text.html",
+        "validators": "csc_fluent_text fluent_text",
+        "required": true,
+        "fluent_form_placeholder": {
+            "es": {
+                "es": "Nombre o t\u00EDtulo del conjunto de datos en espa\u00F1ol.",
+                "gl": "Nome ou título do conxunto de datos en espa\u00F1ol."},
+            "gl": {
+                "es": "Nombre o t\u00EDtulo del conjunto de datos en gallego.",
+                "gl": "Nome ou título do conxunto de datos en galego."}},
+        "fluent_help_text": {
+            "es": {
+                "es": "Requiere un nombre en espa\u00F1ol.",
+                "gl": "Require un nome en espa\u00F1ol."},
+            "gl": {
+                "es": "Requiere un nombre en gallego.",
+                "gl": "Require un nome en galego."}}
+      },
+      {
+        "field_name": "name",
+        "label": "URL",
+        "required": true,
+        "preset": "dataset_slug",
+        "validators": "csc_multilanguage_url unicode name_validator package_name_validator",
+        "autogeneration_field": "title_translated",
+        "autogeneration_locale": "gl",
+        "form_snippet": "csc_slug.html",
+        "form_placeholder": {
+            "es": "Sin URL el valor del campo se autogenera.",
+            "gl": "Sin URL el valor del campo se autogenera."},
+        "help_text": {
+            "es": "Se recomienda no editar.",
+            "gl": "Se recomienda no editar."}
+      },
+      {
+        "field_name": "description",
+        "label": {
+            "es": "Descripci\u00F3n",
+            "gl": "Descripci\u00F3n"},
+        "preset": "fluent_markdown",
+        "form_snippet": "csc_multiple_required_language_markdown.html",
+        "validators": "csc_fluent_text fluent_text",
+        "required": true,
+        "fluent_form_placeholder": {
+            "es": {
+                "es": "Descripci\u00F3n detallada del conjunto de datos en espa\u00F1ol.",
+                "gl": "Descripci\u00F3n detalladao del conjunto de datos en espa\u00F1ol."},
+            "gl": {
+                "es": "Descripci\u00F3n detallada del conjunto de datos en gallego.",
+                "gl": "Descripci\u00F3n detallada del conjunto de datos en gallego."}},
+        "fluent_help_text": {
+            "es": {
+                "es": "Requiere una descripci\u00F3n en espa\u00F1ol. Puede abrir o cerrar la ayuda para dar el formato al texto pulsando sobre el enlace \u0022formato Markdown\u0022.",
+                "gl": "Requiere una descripci\u00F3n en espa\u00F1ol. Puede abrir o cerrar la ayuda para dar el formato al texto pulsando sobre el enlace \u0022formato Markdown\u0022."},
+            "gl": {
+                "es": "Requiere una descripci\u00F3n en gallego. Puede abrir o cerrar la ayuda para dar el formato al texto pulsando sobre el enlace \u0022formato Markdown\u0022.",
+                "gl": "Requiere una descripci\u00F3n en galego. Puede abrir o cerrar la ayuda para dar el formato al texto pulsando sobre el enlace \u0022formato Markdown\u0022."}}
+      },
+      {
+        "field_name": "theme",
+        "label": {
+            "es": "Categor\u00EDas",
+            "gl": "Categor\u00EDas"},
+        "help_text":  {
+            "es": "Tem\u00E1tica o materia primaria del conjunto de datos. Puede ser m\u00FAltiple.",
+            "gl": "Tem\u00E1tica o materia primaria del conjunto de datos. Puede ser m\u00FAltiple."},
+        "required": true,
+        "preset": "multiple_select",
+        "choices": [
+           {
+             "value": "http://datos.gob.es/kos/sector-publico/sector/ciencia-tecnologia",
+             "notation": "ciencia-tecnologia",
+             "label": {
+                 "es": "Ciencia y tecnolog\u00EDa",
+                 "gl": "Ciencia e tecnolox\u00EDa"},
+             "description": {
+                 "es": "Incluye: Innovaci\u00F3n, Investigaci\u00F3n, I/u002BD/u002BI, Telecomunicaciones, Inernet y Sociedad de la Informaci\u00F3n.",
+                 "gl": ""},
+             "dcat_ap": "http://publications.europa.eu/resource/authority/data-theme/TECH"
+           },
+           {
+             "value": "http://datos.gob.es/kos/sector-publico/sector/comercio",
+             "notation": "comercio",
+             "label": {
+                 "es": "Comercio",
+                 "gl": "Comercio"},
+             "description": {
+                 "es": "Incluye: Consumo.",
+                 "gl": ""},
+             "dcat_ap": "http://publications.europa.eu/resource/authority/data-theme/ECON"
+           },
+           {
+             "value": "http://datos.gob.es/kos/sector-publico/sector/cultura-ocio",
+             "notation": "cultura-ocio",
+             "label": {
+                 "es": "Cultura y ocio",
+                 "gl": "Cultura e lecer"},
+             "description": {
+                 "es": "Incluye: Tiempo libre.",
+                 "gl": ""},
+             "dcat_ap": "http://publications.europa.eu/resource/authority/data-theme/EDUC"
+           },
+           {
+             "value": "http://datos.gob.es/kos/sector-publico/sector/demografia",
+             "notation": "demografia",
+             "label": {
+                 "es": "Demograf\u00EDa",
+                 "gl": "Demograf\u00EDa"},
+             "description": {
+                 "es": "Incluye: Inmigraci\u00F3n y Emigraci\u00F3n, Familia, Mujeres, Infancia, Mayores, Padr\u00F3n.",
+                 "gl": ""},
+             "dcat_ap": "http://publications.europa.eu/resource/authority/data-theme/SOCI"
+           },
+           {
+             "value": "http://datos.gob.es/kos/sector-publico/sector/deporte",
+             "notation": "deporte",
+             "label": {
+                 "es": "Deporte",
+                 "gl": "Deporte"},
+             "description": {
+                 "es": "Incluye: Instalaciones deportivas, Federaciones, Competiciones.",
+                 "gl": ""},
+             "dcat_ap": "http://publications.europa.eu/resource/authority/data-theme/EDUC"
+           },
+           {
+             "value": "http://datos.gob.es/kos/sector-publico/sector/economia",
+             "notation": "economia",
+             "label": {
+                 "es": "Econom\u00EDa",
+                 "gl": "Econom\u00EDa"},
+             "description": {
+                 "es": "Incluye: Deuda, Moneda y Banca y finanzas.",
+                 "gl": ""},
+             "dcat_ap": "http://publications.europa.eu/resource/authority/data-theme/ECON"
+           },
+           {
+             "value": "http://datos.gob.es/kos/sector-publico/sector/educacion",
+             "notation": "educacion",
+             "label": {
+                 "es": "Educaci\u00F3n",
+                 "gl": "Educaci\u00F3n"},
+             "description": {
+                 "es": "Incluye: Formaci\u00F3n.",
+                 "gl": ""},
+             "dcat_ap": "http://publications.europa.eu/resource/authority/data-theme/EDUC"
+           },
+           {
+             "value": "http://datos.gob.es/kos/sector-publico/sector/empleo",
+             "notation": "empleo",
+             "label": {
+                 "es": "Empleo",
+                 "gl": "Emprego"},
+             "description": {
+                 "es": "Incluye: Trabajo, Mercado laboral.",
+                 "gl": ""},
+             "dcat_ap": "http://publications.europa.eu/resource/authority/data-theme/ECON"
+           },
+           {
+             "value": "http://datos.gob.es/kos/sector-publico/sector/energia",
+             "notation": "energia",
+             "label": {
+                 "es": "Energ\u00EDa",
+                 "gl": "Enerx\u00EDa"},
+             "description": {
+                 "es": "Incluye: Fuentes renovables.",
+                 "gl": ""},
+             "dcat_ap": "http://publications.europa.eu/resource/authority/data-theme/ENER"
+           },
+           {
+             "value": "http://datos.gob.es/kos/sector-publico/sector/hacienda",
+             "notation": "hacienda",
+             "label": {
+                 "es": "Hacienda",
+                 "gl": "Facenda"},
+             "description": {
+                 "es": "Incluye: Impuestos.",
+                 "gl": ""},
+             "dcat_ap": "http://publications.europa.eu/resource/authority/data-theme/GOVE"
+           },
+           {
+             "value": "http://datos.gob.es/kos/sector-publico/sector/industria",
+             "notation": "industria",
+             "label": {
+                 "es": "Industria",
+                 "gl": "Industria"},
+             "description": {
+                 "es": "Incluye: Miner\u00EDa.",
+                 "gl": ""},
+             "dcat_ap": "http://publications.europa.eu/resource/authority/data-theme/ECON"
+           },
+           {
+             "value": "http://datos.gob.es/kos/sector-publico/sector/legislacion-justicia",
+             "notation": "legislacion-justicia",
+             "label": {
+                 "es": "Legislaci\u00F3n y justicia",
+                 "gl": "Lexislaci\u00F3n e xustiza"},
+             "description": {
+                 "es": "Incluye: Registros.",
+                 "gl": ""},
+             "dcat_ap": "http://publications.europa.eu/resource/authority/data-theme/JUST"
+           },
+           {
+             "value": "http://datos.gob.es/kos/sector-publico/sector/medio-ambiente",
+             "notation": "medio-ambiente",
+             "label": {
+                 "es": "Medio ambiente",
+                 "gl": "Medio ambiente"},
+             "description": {
+                 "es": "Incluye: Meteorolog\u00EDa, Geograf\u00EDa, Conservaci\u00F3n fauna y flora.",
+                 "gl": ""},
+             "dcat_ap": "http://publications.europa.eu/resource/authority/data-theme/ENVI"
+           },
+           {
+             "value": "http://datos.gob.es/kos/sector-publico/sector/medio-rural-pesca",
+             "notation": "medio-rural-pesca",
+             "label": {
+                 "es": "Medio Rural",
+                 "gl": "Medio rural"},
+             "description": {
+                 "es": "Incluye: Agricultura, Ganader\u00EDa, Pesca y Silvicultura.",
+                 "gl": ""},
+             "dcat_ap": "http://publications.europa.eu/resource/authority/data-theme/AGRI"
+           },
+           {
+             "value": "http://datos.gob.es/kos/sector-publico/sector/salud",
+             "notation": "salud",
+             "label": {
+                 "es": "Salud",
+                 "gl": "Sa\u00FAde"},
+             "description": {
+                 "es": "Incluye: Sanidad.",
+                 "gl": ""},
+             "dcat_ap": "http://publications.europa.eu/resource/authority/data-theme/HEAL"
+           },
+           {
+             "value": "http://datos.gob.es/kos/sector-publico/sector/sector-publico",
+             "notation": "sector-publico",
+             "label": {
+                 "es": "Sector p\u00FAblico",
+                 "gl": "Sector p\u00FAblico"},
+             "description": {
+                 "es": "Incluye: Presupuestos, Organigrama institucional, Legislaci\u00F3n interna, Funci\u00F3n p\u00FAblica.",
+                 "gl": ""},
+             "dcat_ap": "http://publications.europa.eu/resource/authority/data-theme/GOVE"
+           },
+           {
+             "value": "http://datos.gob.es/kos/sector-publico/sector/seguridad",
+             "notation": "seguridad",
+             "label": {
+                 "es": "Seguridad",
+                 "gl": "Seguridade"},
+             "description": {
+                 "es": "Incluye: Protecci\u00F3n civil, Defensa.",
+                 "gl": ""},
+             "dcat_ap": "http://publications.europa.eu/resource/authority/data-theme/JUST"
+           },
+           {
+             "value": "http://datos.gob.es/kos/sector-publico/sector/sociedad-bienestar",
+             "notation": "sociedad-bienestar",
+             "label": {
+                 "es": "Sociedad y bienestar",
+                 "gl": "Sociedade e benestar"},
+             "description": {
+                 "es": "Incluye: Participaci\u00F3n ciudadana, Marginaci\u00F3n, Envejecimiento Activo, Autonom\u00EDa personal y Dependencia, Invalidez, Jubilaci\u00F3n, Seguros y Pensiones, Prestaciones y Subvenciones.",
+                 "gl": ""},
+             "dcat_ap": "http://publications.europa.eu/resource/authority/data-theme/SOCI"
+           },
+           {
+             "value": "http://datos.gob.es/kos/sector-publico/sector/transporte",
+             "notation": "transporte",
+             "label": {
+                 "es": "Transporte",
+                 "gl": "Transporte"},
+             "description": {
+                 "es": "Incluye: Comunicaciones y Tr/u00E1fico.",
+                 "gl": ""},
+             "dcat_ap": "http://publications.europa.eu/resource/authority/data-theme/TRAN"
+           },
+           {
+             "value": "http://datos.gob.es/kos/sector-publico/sector/turismo",
+             "notation": "turismo",
+             "label": {
+                 "es": "Turismo",
+                 "gl": "Turismo"},
+             "description": {
+                 "es": "Incluye: Alojamientos, Hosteler\u00EDa, Gastronom\u00EDa.",
+                 "gl": ""},
+             "dcat_ap": "http://publications.europa.eu/resource/authority/data-theme/ECON"
+           },
+           {
+             "value": "http://datos.gob.es/kos/sector-publico/sector/urbanismo-infraestructuras",
+             "notation": "urbanismo-infraestructuras",
+             "label": {
+                 "es": "Urbanismo e infraestructuras",
+                 "gl": "Urbanismo e infraestruturas"},
+             "description": {
+                 "es": "Incluye: Saneamiento p\u00FAblico, Construcci\u00F3n (infraestructuras, equipamientos p\u00FAblicos).",
+                 "gl": ""},
+             "dcat_ap": "http://publications.europa.eu/resource/authority/data-theme/REGI"
+           },
+           {
+             "value": "http://datos.gob.es/kos/sector-publico/sector/vivienda",
+             "notation": "vivienda",
+             "label": {
+                 "es": "Vivienda",
+                 "gl": "Vivenda"},
+             "description": {
+                 "es": "Incluye: Mercado inmobiliario, Construcci\u00F3n (viviendas).",
+                 "gl": ""},
+             "dcat_ap": "http://publications.europa.eu/resource/authority/data-theme/REGI"
+           }
+        ]
+      },
+      {
+        "field_name": "tag_string",
+        "label": {
+           "es": "Etiquetas",
+           "gl": "Etiquetas"},
+        "preset": "tag_string_autocomplete",
+        "form_placeholder": {
+            "es": "Ej: Presupuesto, Comunicaci\u00F3n, Formaci\u00F3n",
+            "gl": "Ej: Presupuesto, Comunicaci\u00F3n, Formaci\u00F3n"}
+      },
+      {
+        "field_name": "identifier",
+        "label": {
+           "es": "Identificador",
+           "gl": "Identificador"},
+        "preset": "csc_uri_text",
+        "form_placeholder": {
+            "es": "Ej: http://organismo.es/catalogo/dataset",
+            "gl": "Ej: http://organismo.es/catalogo/dataset"},
+        "help_text": {
+            "es": "Completar  si el conjunto de datos tiene asociado un identificador tipo URI.",
+            "gl": "Completar  si el conjunto de datos tiene asociado un identificador tipo URI."}
+      },
+      {
+        "field_name": "issued_date",
+        "label": {
+            "es": "Fecha de creaci\u00F3n",
+            "gl": "Data de creaci\u00F3n"},
+        "form_snippet": "csc_datetime.html",
+        "preset": "datetime"
+      },
+      {
+        "field_name": "modified_date",
+         "label": {
+            "es": "Fecha \u00FAltima actualizaci\u00F3n",
+            "gl": "Data da \u00FAltima actualizaci\u00F3n"},
+        "form_snippet": "csc_datetime.html",
+        "preset": "datetime"
+      },
+      {
+        "field_name": "frequency",
+        "label": {
+           "es": "Frecuencia de actualizaci\u00F3n",
+           "gl": "Frecuencia de actualizaci\u00F3n"},
+        "label_value": {
+            "es": "Valor de la frecuencia de actualizaci\u00F3n",
+            "gl": "Valor da frecuencia de actualizaci\u00F3n"},
+         "help_text": {
+            "es": "Incluir un n\u00FAmero entero.",
+            "gl": "Incluir un n\u00FAmero entero."},
+        "preset": "csc_date_frequency",
+        "form_placeholder": ""
+      },
+      {
+        "field_name": "language",
+        "label": {
+            "es": "Idiomas",
+            "gl": "Idiomas"},
+        "preset": "multiple_checkbox",
+        "choices": [
+          {
+            "value": "es",
+            "label": {
+                "gl": "Espa\u00F1ol",
+                "es": "Espa\u00F1ol"}
+          },
+          {
+            "value": "gl",
+            "label": {
+                "gl": "Galego",
+                "es": "Gallego"}
+          }
+        ]
+      },
+      {
+        "field_name": "license_id",
+        "label": {
+            "es": "Condiciones de uso",
+            "gl": "Condici\u00F3ns de uso"},
+        "preset": "csc_uri_text",
+        "required": true,
+        "is_url": true,
+        "form_placeholder": {
+            "es": "Ej: http://organismo.es/avisolegal",
+            "gl": "Ej: http://organismo.es/avisolegal"},
+        "help_text": {
+            "es": "Incluir URL a las condiciones de uso o licencia del conjunto de datos.",
+            "gl": "Incluir URL a las condiciones de uso o licencia del conjunto de datos."}
+      },
+      {
+        "field_name": "nti_spatial",
+        "label": {
+            "es": "Cobertura geogr\u00E1fica",
+            "gl": "Cobertura xeogr\u00E1fica"},
+        "help_text": {
+            "es": "\u00C1mbito geogr\u00E1fico cubierto por el conjunto de datos. Puede ser m\u00FAltiple.",
+            "gl": "\u00C1mbito geogr\u00E1fico cubierto por el conjunto de datos. Puede ser m\u00FAltiple."},
+        "preset": "multiple_select",
+        "choices": [
+           {
+              "label": {
+                  "es": "Espa\u00F1a",
+                  "gl": "Espa\u00F1a"},
+              "value": "http://datos.gob.es/recurso/sector-publico/territorio/Pais/Espa\u00F1a"
+         },
+         {
+              "label": {
+                  "es": "Galicia",
+                  "gl": "Galicia"},
+              "value": "http://datos.gob.es/recurso/sector-publico/territorio/Autonomia/Galicia"
+         },
+         {
+              "label": {
+                  "es": "A Coru\u00F1a",
+                  "gl": "A Coru\u00F1a"},
+              "value": "http://datos.gob.es/recurso/sector-publico/territorio/Provincia/A-Coruna"
+         },
+         {
+              "label": {
+                  "es": "Lugo",
+                  "gl": "Lugo"},
+              "value": "http://datos.gob.es/recurso/sector-publico/territorio/Provincia/Lugo"
+         },
+         {
+              "label": {
+                  "es": "Ourense",
+                  "gl": "Ourense"},
+              "value": "http://datos.gob.es/recurso/sector-publico/territorio/Provincia/Ourense"
+         },
+         {
+              "label": {
+                  "es": "Pontevedra",
+                  "gl": "Pontevedra"},
+              "value": "http://datos.gob.es/recurso/sector-publico/territorio/Provincia/Pontevedra"
+         }
+        ]
+      },
+      {
+       "field_name": "coverage_new",
+       "label": {
+           "es": "Cobertura temporal",
+           "gl": "Cobertura temporal"},
+        "help_text": {
+            "es": "Periodo de tiempo cubierto por el conjunto de datos.Se pueden establer m\u00E1s periodos pulsando en \u0022Agregar cobertura temporal\u0022.",
+            "gl": "Periodo de tiempo cubierto por el conjunto de datos.Se pueden establer m\u00E1s periodos pulsando en \u0022Agregar cobertura temporal\u0022."},
+       "preset": "csc_date_period"
+      },
+      {
+        "field_name": "valid",
+        "label": {
+            "es": "Vigencia del recurso",
+            "gl": "Vixencia do recurso"},
+        "help_text": {
+            "es": "Fecha l\u00EDmite de validez de un conjunto de datos.",
+            "gl": "Fecha l\u00EDmite de validez de un conjunto de datos."},
+        "preset": "datetime",
+        "form_snippet": "csc_datetime.html"
+
+      },
+      {
+        "field_name": "reference",
+        "label": {
+            "es": "Otros recursos",
+            "gl": "Outros recursos"},
+        "form_placeholder": {
+           "es": "Ej: http://organismo.es/recursorelacionado",
+           "gl": "Ej: http://organismo.es/recursorelacionado"},
+        "help_text": {
+            "es": "Enlaces a recursos relacionados con el conjunto de datos.",
+            "gl": "Enlaces a recursos relacionados con el conjunto de datos."},
+        "preset": "csc_multiple_uri_text",
+        "is_url": true
+      },
+      {
+        "field_name": "conforms_to",
+        "label": {
+            "es": "Normativa",
+            "gl": "Normativa"},
+        "form_placeholder": {
+           "es": "Ej: http://organismo.es/leyA",
+           "gl": "Ej: http://organismo.es/leyA"},
+        "help_text": {
+            "es": "Enlaces a la normativa relativa al conjunto de datos. Es un enlace a un documento legal.",
+            "gl": "Enlaces a la normativa relativa al conjunto de datos. Es un enlace a un documento legal."},
+        "preset": "csc_multiple_uri_text",
+        "is_url": true
+      },
+      {
+       "field_name": "spatial",
+       "label": {
+           "es": "Ubicaci\u00F3n geogr\u00E1fica",
+           "gl": "localizaci\u00F3n xeogr\u00E1fica"},
+       "form_placeholder": {
+          "es": "Ej: -3.14,53.07",
+          "gl": "Ej: -3.14,53.07"},
+        "help_text": {
+            "es": "Puede ser un punto, estableciendo una sola coordenada o un pol\u00EDgono de tres o cuatro lados, estableciendo tres o cuatro coordenas. El rango de valores para la latitud es [-90,90] y para la longitud: [-180,180]",
+            "gl": "Puede ser un punto, estableciendo una sola coordenada o un pol\u00EDgono de tres o cuatro lados, estableciendo tres o cuatro coordenas. El rango de valores para la latitud es [-90,90] y para la longitud: [-180,180]"},
+       "preset": "csc_spatial"
+      },
+      {
+        "field_name": "owner_org",
+        "label": {
+            "es": "Organizaci\u00F3n",
+            "gl": "Organizaci\u00F3n"},
+        "help_text": {
+            "es": "Organismo encargado de publicar y gestionar el conjunto de datos en el portal.",
+            "gl": "Organismo encargado de publicar y gestionar el conjunto de datos en el portal."},
+        "visibility_help_text": {
+            "es": "Marque privado si todav\u00EDa no desea que el conjunto de datos est\u00E9 disponible para el p\u00FAblico",
+            "gl": "Marque privado si todav\u00EDa no desea que el conjunto de datos est\u00E9 disponible para el p\u00FAblico"},
+        "required": true,
+        "preset": "dataset_organization"
+      }
+    ],
+    "resource_fields": [
+      {
+        "field_name": "url",
+        "label": "URL",
+        "required": true,
+        "upload_label": "File", 
+        "preset": "resource_url_upload",
+        "validators": "ignore_missing unicode remove_whitespace not_empty",
+        "form_placeholder": "Ej: http://organismo.es/catalogo/dataset/recurso",
+        "help_text": {
+            "es": "URL que permite el acceso o descarga del conjunto de datos.",
+            "gl": "URL que permite el acceso o descarga del conjunto de datos."}
+      },
+      {
+        "field_name": "resource_identifier",
+        "label": {
+           "es": "Identificador",
+           "gl": "Identificador"},
+        "help_text": {
+            "es": "Completar si el recurso tiene asociado un identificador tipo URI.",
+            "gl": "Completar si el recurso tiene asociado un identificador tipo URI."},
+        "preset": "csc_uri_text",
+        "form_placeholder": ""
+      },
+      {
+        "field_name": "name_translated",
+        "preset": "fluent_core_translated",
+        "form_snippet": "csc_multilanguage_text.html",
+        "label": {
+           "es": "Nombre",
+           "gl": "Nome"},
+        "validators": "csc_fluent_text fluent_text",
+        "required": false,
+        "fluent_form_placeholder": {
+            "es": {
+                "es": "Breve t\u00EDtulo o nombre dado al recurso en espa\u00F1ol.",
+                "gl": "Breve t\u00EDtulo o nombre dado al recurso en espa\u00F1ol."},
+            "gl": {
+                "es": "Breve t\u00EDtulo o nombre dado al recurso en gallego.",
+                "gl": "Breve t\u00EDtulo o nombre dado al recurso en gallego."}},
+        "fluent_help_text": {
+            "es": {
+                "es": "",
+                "gl": ""},
+            "gl": {
+                "es": "",
+                "gl": ""}}
+      },
+      {
+        "field_name": "format",
+        "label": {
+          "es": "Formato",
+          "gl": "Formato"},
+        "help_text": {
+            "es": "Formato en el que se encuentra representado el conjunto de datos en este recurso.",
+            "gl": "Formato en el que se encuentra representado el conjunto de datos en este recurso."},
+        "required": true,
+        "preset": "select",
+        "choices": [
+           {
+             "label": "API",
+             "value": "application/api"
+           },
+           {
+             "label": "ASCII",
+             "value": "text/ascii"
+           },
+           {
+             "label": "Atom",
+             "value": "application/atom+xml"
+           },
+           {
+             "label": "Calendar",
+             "value": "text/calendar"
+           },
+           {
+             "label": "CSV",
+             "value": "text/csv"
+           },
+           {
+             "label": "CSW",
+             "value": "application/csw"
+           },
+           {
+             "label": "DBF",
+             "value": "application/dbf"
+           },
+           {
+             "label": "DGN",
+             "value": "image/vnd.dgn"
+           },
+           {
+             "label": "DjVu",
+             "value": "image/vnd.djvu"
+           },
+           {
+             "label": "DOC",
+             "value": "application/msword"
+           },
+           {
+             "label": "DOCX",
+             "value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+           },
+           {
+             "label": "DWG",
+             "value": "image/vnd.dwg"
+           },
+           {
+             "label": "DXF",
+             "value": "application/dxf"
+           },
+           {
+             "label": "ECW",
+             "value": "application/ecw"
+           },
+           {
+             "label": "ELP",
+             "value": "application/elp"
+           },
+           {
+             "label": "ePub",
+             "value": "application/epub+zip"
+           },
+           {
+             "label": "GBD",
+             "value": "x-lml/x-gdb"
+           },
+           {
+             "label": "GeoJSON",
+             "value": "application/vnd.geo+json"
+           },
+           {
+             "label": "GeoRSS",
+             "value": "text/xml+georss"
+           },
+           {
+             "label": "GML",
+             "value": "application/gml+xml"
+           },
+           {
+             "label": "GPX",
+             "value": "application/gpx+xml"
+           },
+           {
+             "label": "GZIP",
+             "value": "application/gzip"
+           },
+           {
+             "label": "HTML",
+             "value": "text/html"
+           },
+           {
+             "label": "IMG",
+             "value": "application/img"
+           },
+           {
+             "label": "JPG",
+             "value": "image/jpeg"
+           },
+           {
+             "label": "JSON",
+             "value": "application/json"
+           },
+           {
+             "label": "JSON-LD",
+             "value": "application/ld+json"
+           },
+           {
+             "label": "KML",
+             "value": "application/vnd.google-earth.kml+xml"
+           },
+           {
+             "label": "KMZ",
+             "value": "application/vnd.google-earth.kmz"
+           },
+           {
+             "label": "LAS",
+             "value": "application/las"
+           },
+           {
+             "label": "MDB",
+             "value": "application/msaccess"
+           },
+           {
+             "label": "MP4",
+             "value": "application/mp4"
+           },
+           {
+             "label": "MPP",
+             "value": "application/vmd.ms-project"
+           },
+           {
+             "label": "N3",
+             "value": "text/rdf+n3"
+           },
+           {
+             "label": "NetCDF",
+             "value": "application/netcdf"
+           },
+           {
+             "label": "OCTET-STREAM",
+             "value": "application/octet-stream"
+           },
+           {
+             "label": "ODP",
+             "value": "application/vnd.oasis.opendocument.presentation"
+           },
+           {
+             "label": "ODS",
+             "value": "application/vnd.oasis.opendocument.spreadsheet"
+           },
+           {
+             "label": "ODT",
+             "value": "application/vnd.oasis.opendocument.text"
+           },
+           {
+             "label": "PC-Axis",
+             "value": "text/pc-axis"
+           },
+           {
+             "label": "PDF",
+             "value": "application/pdf"
+           },
+           {
+             "label": "PGP",
+             "value": "application/pgp-signature"
+           },
+           {
+             "label": "plain",
+             "value": "text/plain"
+           },
+           {
+             "label": "PNG",
+             "value": "image/png"
+           },
+           {
+             "label": "Postscript",
+             "value": "application/postscript"
+           },
+           {
+             "label": "PPT",
+             "value": "application/vms.ms-powerpoint"
+           },
+           {
+             "label": "RASTER",
+             "value": "application/vnd.cups-raster"
+           },
+           {
+             "label": "RDF-N3",
+             "value": "text/n3"
+           },
+           {
+             "label": "RDF-Turtle",
+             "value": "text/turtle"
+           },
+           {
+             "label": "RDF-XML",
+             "value": "application/rdf+xml"
+           },
+           {
+             "label": "RSS",
+             "value": "application/rss+xml"
+           },
+           {
+             "label": "RTF",
+             "value": "text/rtf"
+           },
+           {
+             "label": "SCORM",
+             "value": "application/scorm"
+           },
+           {
+             "label": "SHP",
+             "value": "application/x-zipped-shp"
+           },
+           {
+             "label": "SMIL",
+             "value": "application/smil+xml"
+           },
+           {
+             "label": "SOAP",
+             "value": "application/soap+xml"
+           },
+           {
+             "label": "Solr",
+             "value": "application/solr"
+           },
+           {
+             "label": "SPARQL",
+             "value": "application/sparql-query"
+           },
+           {
+             "label": "SPARQL-JSON",
+             "value": "application/sparql-results+json"
+           },
+           {
+             "label": "SPARQL-XML",
+             "value": "application/sparql-results+xml"
+           },
+           {
+             "label": "SubRip",
+             "value": "application/srt"
+           },
+           {
+             "label": "TBX",
+             "value": "application/x-tbx+xml"
+           },
+           {
+             "label": "TIFF",
+             "value": "image/tiff"
+           },
+           {
+             "label": "TMX",
+             "value": "application/x-tmx+xml"
+           },
+           {
+             "label": "TSV",
+             "value": "text/tab-separated-values"
+           },
+           {
+             "label": "TURTLE",
+             "value": "application/x-turtle"
+           },
+           {
+             "label": "vCard-texto",
+             "value": "text/vcard"
+           },
+           {
+             "label": "vCard-XML",
+             "value": "application/vcard+xml"
+           },
+           {
+             "label": "Visio",
+             "value": "application/vnd.visio"
+           },
+           {
+             "label": "VoiceXML",
+             "value": "application/voicexml+xml"
+           },
+           {
+             "label": "WCS",
+             "value": "text/wcs"
+           },
+           {
+             "label": "WFS",
+             "value": "text/wfs"
+           },
+           {
+             "label": "WMS",
+             "value": "text/wms"
+           },
+           {
+             "label": "WMS-XML",
+             "value": "application/vnd.ogc.wms_xml"
+           },
+           {
+             "label": "XBRL",
+             "value": "application/xbrl"
+           },
+           {
+             "label": "XHTML",
+             "value": "application/xhtml+xml"
+           },
+           {
+             "label": "XLS",
+             "value": "application/vnd.ms-excel"
+           },
+           {
+             "label": "XLSX",
+             "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+           },
+           {
+             "label": "XML",
+             "value": "text/xml"
+           },
+           {
+             "label": "XML-APP",
+             "value": "application/xml"
+           },
+           {
+             "label": "ZIP",
+             "value": "application/zip"
+           }
+        ]
+      },
+      {
+        "field_name": "byte_size",
+        "label": {
+          "es": "Tama\u00F1o",
+          "gl": "Tama\u00F1o"},
+        "form_placeholder": {
+            "es": "Ej: 2048",
+            "gl": "Ej: 2048"},
+        "help_text": {
+            "es": "Indicar tama\u00F1o del archivo en Bytes.",
+            "gl": "Indicar tama\u00F1o del archivo en Bytes."}
+      },
+      {
+        "field_name": "resource_relation",
+        "label": {
+          "es": "Informaci\u00F3n adicional sobre el formato",
+          "gl": "Informaci\u00F3n adicional"},
+        "help_text": {
+            "es": "Enlace a documentos relacionados con el recurso donde se indique el formato, el esquema utilizado para su representaci\u00F3n y otra informaci\u00F3n t\u00E9cnica.",
+            "gl": "Enlace a documentos relacionados con el recurso donde se indique el formato, el esquema utilizado para su representaci\u00F3n y otra informaci\u00F3n t\u00E9cnica."},
+        "preset": "csc_multiple_uri_text",
+        "is_url": true,
+        "form_placeholder": ""
+      }
+    ]
+  }
+  

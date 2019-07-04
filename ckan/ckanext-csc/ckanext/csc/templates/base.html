@@ -1,0 +1,48 @@
+{% ckan_extends %}
+    
+    {% block bodytag %}{{ super() }} {% if c.userobj %} class='logged-in' {% endif %} {% endblock %} 
+    {% block links -%}
+      {{ super() }}
+      {% block seo_links %}
+        {% set default_lang = h.csc_default_locale() %}
+        {% set scheme =  request.scheme %}
+        {# TODO intentar recuperar el schema a traves de request.environ . en dge con request.environ.REQUEST_SCHEME #}
+        {% set canonical_href = scheme + "://" + request.environ.HTTP_HOST + "/" + default_lang + request.environ.PATH_INFO %}
+        <link rel="canonical" href="{{ canonical_href }}" />
+        {% for locale in h.get_available_locales() %}
+          {% if default_lang == locale %}
+        <link href="{{ canonical_href }}" rel="alternate" hreflang="x-default" />
+          {% else %}
+        <link href="{{ scheme }}://{{ request.environ.HTTP_HOST }}{% url_for request.environ.PATH_INFO, locale=locale %}" rel="alternate" hreflang="{{ locale }}" />
+          {% endif %} 
+        {% endfor %}
+      {% endblock%} 
+      {% block seo %}{% endblock %}
+    {% endblock -%}
+
+    {%- block styles %}
+      {{ super() }}
+      {% resource 'csc/css/csc_base.css' %}
+      {% resource 'csc/css/csc_dropbutton.css' %}
+      {% resource 'csc/css/csc_maintenance-page.css' %}
+      {% resource 'csc/css/csc_media.css' %}
+      {% resource 'csc/css/csc_sm-core.css' %}
+      {% resource 'csc/css/csc_style.css' %}
+      {% resource 'csc/css/csc_responsive.css' %}
+      {% resource 'csc/css/csc_back-to-top.css' %}
+    {% endblock %}
+
+    {%- block scripts %}
+     {{ super() }}
+     <script src="/catalogo/cookieconsent/cookieconsent.min.js"></script>
+     <script type="text/javascript">
+        window.cookieconsent_options = {
+          "message": "{{ _('cookieconsent.message') }}",
+          "dismiss": "{{ _('cookieconsent.dismiss') }}",
+          "learnMore": "{{ _('cookieconsent.learnMore') }}",
+          "link": "{{ h.csc_get_cookieconsent_link(request.environ.CKAN_LANG) }}",
+          "theme": "light-floating"
+        };
+      </script>
+      {% resource 'csc/js/csc_back_to_top.js' %}
+    {% endblock -%}

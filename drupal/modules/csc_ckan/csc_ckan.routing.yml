@@ -1,0 +1,16 @@
+csc_ckan.config:
+ path: 'admin/config/services/csc/ckan/config'
+ defaults:
+   _title: 'CKAN Config'
+   _form: '\Drupal\csc_ckan\Form\ConfigForm'
+ requirements:
+   _permission: 'access administration pages'
+   
+   
+csc_ckan.test:
+ path: 'admin/config/services/csc/ckan/test'
+ defaults:
+   _title: 'CKAN Test Connection'
+   _controller: '\Drupal\csc_ckan\Controller\CKANTestController::csc_ckan_page_test'
+ requirements:
+   _permission: 'access administration pages'

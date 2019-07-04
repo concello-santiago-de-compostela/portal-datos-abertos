@@ -1,0 +1,20 @@
+langcode: es
+status: true
+dependencies:
+  module:
+    - contact_storage
+third_party_settings:
+  contact_storage:
+    submit_text: Enviar
+    show_preview: false
+    disabled_form_message: 'Este formulario ha sido deshabilitado.'
+    maximum_submissions_user: 0
+    page_autoreply_format: plain_text
+id: colabora
+label: Colabora
+recipients:
+  - contacto.concello.santiago@fake.com
+reply: "Gracias por colaborar con el Portal de Datos abiertos del Concello de Santiago de Compostela.\r\n\r\nReciba un cordial saludo.\r\n"
+weight: 0
+message: 'Gracias por colaborar con nosotros.'
+redirect: ''

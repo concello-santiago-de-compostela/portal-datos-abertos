@@ -1,0 +1,17 @@
+langcode: es
+status: true
+dependencies:
+  config:
+    - node.type.preguntas_frecuentes
+id: node.preguntas_frecuentes.metatag
+field_name: metatag
+entity_type: node
+bundle: preguntas_frecuentes
+label: 'Meta etiquetas'
+description: 'The meta tags for the entity.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: map

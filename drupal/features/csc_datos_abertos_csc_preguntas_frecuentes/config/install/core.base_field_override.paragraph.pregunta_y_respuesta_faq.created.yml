@@ -1,0 +1,17 @@
+langcode: es
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.pregunta_y_respuesta_faq
+id: paragraph.pregunta_y_respuesta_faq.created
+field_name: created
+entity_type: paragraph
+bundle: pregunta_y_respuesta_faq
+label: Fecha
+description: 'The time that the Paragraph was created.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

@@ -1,0 +1,7 @@
+name: CSC CKAN
+description: A module to integrate CKAN
+package: 'CSC Datos abertos development'
+type: module
+configure: csc_ckan.config
+core: 8.x
+version: 8.x-1.0

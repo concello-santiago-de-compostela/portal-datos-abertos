@@ -1,0 +1,22 @@
+langcode: es
+status: true
+dependencies:
+  module:
+    - ctools
+    - taxonomy
+id: url_categoria_aplicacion
+label: 'URL término categoría aplicación'
+type: 'canonical_entities:taxonomy_term'
+pattern: 'app-categoria/[term:name]'
+selection_criteria:
+  a9a29524-679e-42e1-992f-58f12f1fd90c:
+    id: 'entity_bundle:taxonomy_term'
+    bundles:
+      categorias_aplicaciones: categorias_aplicaciones
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    uuid: a9a29524-679e-42e1-992f-58f12f1fd90c
+selection_logic: and
+weight: -5
+relationships: {  }

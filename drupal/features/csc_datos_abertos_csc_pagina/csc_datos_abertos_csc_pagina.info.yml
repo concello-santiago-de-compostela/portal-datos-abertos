@@ -1,0 +1,15 @@
+name: 'CSC Página'
+type: module
+core: 8.x
+dependencies:
+  - content_translation
+  - field
+  - language
+  - menu_ui
+  - node
+  - path
+  - rdf
+  - text
+  - user
+version: 8.x-1.0-beta1
+package: 'CSC Datos abertos'

@@ -1,0 +1,292 @@
+# Translations template for ckanext-csc_scheming.
+# Copyright 2018 Ayuntamiento de Santiago de Compostela, Entidad Pública Empresarial Red.es
+# 
+# This file is part of the "Open Data Portal of Santiago de Compostela", developed within the "Ciudades Abiertas" project.
+# 
+# Licensed under the EUPL, Version 1.2 or - as soon they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence");
+# You may not use this work except in compliance with the Licence.
+# You may obtain a copy of the Licence at:
+# 
+# https://joinup.ec.europa.eu/software/page/eupl
+# 
+# Unless required by applicable law or agreed to in writing, software distributed under the Licence is distributed on an "AS IS" basis,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the Licence for the specific language governing permissions and limitations under the Licence.
+msgid ""
+msgstr ""
+"Project-Id-Version: ckanext-csc_scheming 0.0.1\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2019-02-07 04:41+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ckanext/csc_scheming/templates/scheming/display_snippets/csc_date_frequency.html:3
+#, python-format
+msgid " Every %(value)s %(type)s "
+msgstr ""
+
+#: ckanext/csc_scheming/templates/scheming/display_snippets/csc_date_period.html:8
+#, python-format
+msgid " From %(date)s "
+msgstr ""
+
+#: ckanext/csc_scheming/templates/scheming/display_snippets/csc_date_period.html:18
+#, python-format
+msgid " To %(date)s "
+msgstr ""
+
+#: ckanext/csc_scheming/templates/scheming/display_snippets/csc_date_period.html:12
+#, python-format
+msgid " to %(date)s "
+msgstr ""
+
+#: ckanext/csc_scheming/templates/scheming/form_snippets/csc_date_period.html:149
+#: ckanext/csc_scheming/templates/scheming/form_snippets/csc_multiple_uri_text.html:65
+msgid "Add new"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:745
+msgid "Coordinate "
+msgstr ""
+
+#: ckanext/csc_scheming/templates/scheming/form_snippets/csc_spatial.html:90
+msgid "Coordinate 1"
+msgstr ""
+
+#: ckanext/csc_scheming/templates/scheming/form_snippets/csc_spatial.html:96
+msgid "Coordinate 2"
+msgstr ""
+
+#: ckanext/csc_scheming/templates/scheming/form_snippets/csc_spatial.html:102
+msgid "Coordinate 3"
+msgstr ""
+
+#: ckanext/csc_scheming/templates/scheming/form_snippets/csc_spatial.html:108
+msgid "Coordinate 4"
+msgstr ""
+
+#: ckanext/csc_scheming/templates/scheming/display_snippets/csc_spatial.html:10
+msgid "Dataset extent"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:300
+msgid "Date period without from and to"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:337
+msgid "Date time format incorrect"
+msgstr ""
+
+#: ckanext/csc_scheming/templates/scheming/form_snippets/csc_date_frequency.html:45
+msgid "Days"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:160
+msgid "Expecting JSON object"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:434
+msgid "Expecting list of strings"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:806
+msgid "Expecting one, three or four coordinates"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:275 ckanext/csc_scheming/validators.py:683
+msgid "Expecting valid JSON value"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:157 ckanext/csc_scheming/validators.py:568
+msgid "Failed to decode JSON string"
+msgstr ""
+
+#: ckanext/csc_scheming/templates/scheming/form_snippets/csc_date_period.html:25
+#: ckanext/csc_scheming/templates/scheming/form_snippets/csc_date_period.html:85
+#: ckanext/csc_scheming/templates/scheming/form_snippets/csc_date_period.html:119
+msgid "From"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:288
+msgid "From value: Date format incorrect"
+msgstr ""
+
+#: ckanext/csc_scheming/templates/scheming/form_snippets/csc_date_frequency.html:41
+msgid "Hours"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:453
+msgid "Invalid encoding for \"{l}\" value"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:154 ckanext/csc_scheming/validators.py:565
+msgid "Invalid encoding for JSON string"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:272 ckanext/csc_scheming/validators.py:680
+msgid "Invalid field structure, it is not a valid JSON"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:691
+msgid "Invalid spatial type"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:440
+msgid "Invalid type for repeating url text: {el}"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:696 ckanext/csc_scheming/validators.py:699
+msgid "It is not a valid Point"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:715
+msgid "It is not a valid Polygon"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:706
+msgid "It is not a valid spatial Polygon"
+msgstr ""
+
+#: ckanext/csc_scheming/templates/scheming/form_snippets/csc_date_frequency.html:37
+msgid "Minutes"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:622
+msgid "Missing value"
+msgstr ""
+
+#: ckanext/csc_scheming/templates/scheming/form_snippets/csc_date_frequency.html:53
+msgid "Months"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:775
+msgid "Point incorrect"
+msgstr ""
+
+#: ckanext/csc_scheming/templates/scheming/form_snippets/csc_organization.html:28
+msgid "Private"
+msgstr ""
+
+#: ckanext/csc_scheming/templates/scheming/form_snippets/csc_organization.html:28
+msgid "Public"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:595
+msgid "Required language \"{l}\" missing"
+msgstr ""
+
+#: ckanext/csc_scheming/templates/scheming/form_snippets/csc_date_frequency.html:33
+msgid "Seconds"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:164
+msgid "The JSON object must contain type and value keys"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:483
+msgid "The URI format for \"{t}\" is not valid"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:450
+msgid "The URI format is not valid"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:478
+msgid "The URL format for \"{t}\" is not valid"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:447
+msgid "The URL format is not valid"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:181 ckanext/csc_scheming/validators.py:213
+msgid "The frequency type is mandatory"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:172 ckanext/csc_scheming/validators.py:204
+msgid "The frequency type is no allowed"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:179 ckanext/csc_scheming/validators.py:211
+msgid "The frequency value is mandatory"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:176 ckanext/csc_scheming/validators.py:208
+msgid "The frequency value is not an integer"
+msgstr ""
+
+#: ckanext/csc_scheming/templates/scheming/form_snippets/csc_date_period.html:39
+#: ckanext/csc_scheming/templates/scheming/form_snippets/csc_date_period.html:99
+#: ckanext/csc_scheming/templates/scheming/form_snippets/csc_date_period.html:133
+msgid "To"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:296
+msgid "To value: Date format incorrect"
+msgstr ""
+
+#: ckanext/csc_scheming/templates/scheming/form_snippets/csc_organization.html:25
+msgid "Visibility"
+msgstr ""
+
+#: ckanext/csc_scheming/templates/scheming/form_snippets/csc_date_frequency.html:49
+msgid "Weeks"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:802
+msgid "Wrong coordinates"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:760
+msgid "Wrong latitude {l}"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:763
+msgid "Wrong longitude {l}"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:751
+msgid "Wrong point {p}"
+msgstr ""
+
+#: ckanext/csc_scheming/templates/scheming/form_snippets/csc_date_frequency.html:57
+msgid "Years"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:571
+msgid "expecting JSON object"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:591
+msgid "invalid encoding for \"{l}\" value"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:582 ckanext/csc_scheming/validators.py:612
+msgid "invalid language code: \"{l}\""
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:585
+msgid "invalid type for \"{l}\" value"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:579
+msgid "invalid type for language code: {l}"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:785
+msgid "required"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:109 ckanext/csc_scheming/validators.py:121
+msgid "the URI format is not valid"
+msgstr ""
+
+#: ckanext/csc_scheming/validators.py:106 ckanext/csc_scheming/validators.py:118
+msgid "the URL format is not valid"
+msgstr ""
+

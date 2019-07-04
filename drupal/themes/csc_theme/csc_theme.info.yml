@@ -1,0 +1,29 @@
+name: CSC Theme
+type: theme
+base theme: bootstrap_mint
+description: Tema personalizado para el Portal de datos abiertos de Santiago de Compostela.
+core: 8.x
+
+#Libraries
+libraries:
+  - csc_theme/global-styling
+  - csc_theme/fonts
+
+#Regions
+regions:
+  header: 'Header'
+  social: 'Social'
+  language: 'Language'
+  primary_menu: 'Primary Menu'
+  search: 'Search'
+  highlighted: 'Highlighted'
+  breadcrumb: 'Breadcrumbs'
+  content: 'Content'
+  content_front: 'Content HOME'
+  filter_apps: 'Filtros de apps'
+  logos: 'Logos'
+  footer_contact: 'Footer contact'
+  footer_menu: 'Footer Menu'
+  optional_blocks: 'Optional Blocks'
+  page_top: 'Page Top'
+  page_bottom: 'Page Bottom'

@@ -1,0 +1,22 @@
+langcode: es
+status: true
+dependencies:
+  module:
+    - ctools
+    - taxonomy
+id: url_plataforma_aplicacion
+label: 'URL término plataforma aplicación'
+type: 'canonical_entities:taxonomy_term'
+pattern: 'app-plataforma/[term:name]'
+selection_criteria:
+  c2e14f0d-9daf-4df9-8af2-573bba830100:
+    id: 'entity_bundle:taxonomy_term'
+    bundles:
+      plataformas_aplicaciones: plataformas_aplicaciones
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    uuid: c2e14f0d-9daf-4df9-8af2-573bba830100
+selection_logic: and
+weight: -5
+relationships: {  }

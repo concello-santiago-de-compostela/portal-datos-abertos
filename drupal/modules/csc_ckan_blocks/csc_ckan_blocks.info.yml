@@ -1,0 +1,10 @@
+name: CSC Ckan Blocks
+description: CKAN Blocks And Content
+package: 'CSC Datos abertos development'
+type: module
+core: 8.x
+version: 8.x-1.0
+
+dependencies:
+
+ - csc_ckan

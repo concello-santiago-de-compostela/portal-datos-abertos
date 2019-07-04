@@ -1,0 +1,14 @@
+minified: 1
+headline_text: 'Utilizamos cookies propias y de terceros para ofrecer nuestros servicios y recoger información estadística. Si continúa navegando, acepta la instalación y el uso.'
+accept_button_text: ¡Entendido!
+read_more_button_text: 'Más información.'
+theme: light-floating
+path: /
+domain: ''
+expiry: '365'
+target: _self
+langcode: es
+theme_path: ''
+customise: 1
+cookie_policy: null
+container: ''

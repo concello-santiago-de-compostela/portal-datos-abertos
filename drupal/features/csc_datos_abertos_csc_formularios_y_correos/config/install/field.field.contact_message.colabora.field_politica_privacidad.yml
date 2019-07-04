@@ -1,0 +1,22 @@
+langcode: es
+status: true
+dependencies:
+  config:
+    - contact.form.colabora
+    - field.storage.contact_message.field_politica_privacidad
+id: contact_message.colabora.field_politica_privacidad
+field_name: field_politica_privacidad
+entity_type: contact_message
+bundle: colabora
+label: 'Aceptar política de privacidad'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

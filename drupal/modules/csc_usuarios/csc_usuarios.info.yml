@@ -1,0 +1,6 @@
+name: CSC Usuarios
+description: Alter users behavior
+package: 'CSC Datos abertos development'
+type: module
+core: 8.x
+version: 8.x-1.0

@@ -1,0 +1,21 @@
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+id: url_aplicaciones
+label: 'URL contenido aplicaciones'
+type: 'canonical_entities:node'
+pattern: 'aplicaciones/[node:title]'
+selection_criteria:
+  e83c3cd6-1842-4b6e-add9-7c4b67b5662f:
+    id: node_type
+    bundles:
+      aplicacion: aplicacion
+    negate: false
+    context_mapping:
+      node: node
+    uuid: e83c3cd6-1842-4b6e-add9-7c4b67b5662f
+selection_logic: and
+weight: -5
+relationships: {  }

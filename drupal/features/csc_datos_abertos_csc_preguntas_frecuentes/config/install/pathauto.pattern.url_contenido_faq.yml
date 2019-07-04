@@ -1,0 +1,21 @@
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+id: url_contenido_faq
+label: 'URL contenido FAQ'
+type: 'canonical_entities:node'
+pattern: '[node:title]'
+selection_criteria:
+  b1780e3b-7799-4fd3-a4e8-0825220591b1:
+    id: node_type
+    bundles:
+      preguntas_frecuentes: preguntas_frecuentes
+    negate: false
+    context_mapping:
+      node: node
+    uuid: b1780e3b-7799-4fd3-a4e8-0825220591b1
+selection_logic: and
+weight: -5
+relationships: {  }

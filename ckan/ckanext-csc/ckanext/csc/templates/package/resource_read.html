@@ -1,0 +1,204 @@
+{% ckan_extends %}
+
+
+{%- set schema = h.scheming_get_dataset_schema(dataset_type) -%}
+
+{% set dataset_title_language, dataset_title = h.csc_dataset_field_value(c.package.title_translated) %}
+{% set dataset_language, dataset_description = h.csc_dataset_field_value(c.package.description) %}
+{% set res = c.resource %}
+{% set res_title = h.csc_resource_display_name(res) %}
+
+{% set resource_relation = 'resource_relation' %}
+{% set byte_size  = 'byte_size' %}
+{% set format  = 'format' %}
+{% set resource_identifier  = 'resource_identifier' %}
+
+
+{% set include_fields = [
+  resource_relation,
+  byte_size,
+  format,
+  resource_identifier
+   ] %}
+
+{% set dict_fields = h.csc_dataset_display_fields(include_fields, schema.resource_fields) %}
+
+{% block seo %}
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement":
+    [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "item":
+          {
+            "@id": "{{ g.site_url }}",
+            "name": "{{ _('Home') }}"
+          }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item":
+          {
+            "@id": "{{ g.site_url }}{{ h.url_for(controller='package', action='search') }}",
+            "name": "{{ _('Data Catalog') }}"
+          }
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "item":
+          {
+            "@id": "{{ g.site_url }}{{ h.url_for(controller='package', action='search') }}",
+            "name": "{{ _('Catalog') }}"
+          }
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "item":
+          {
+            "@id": "{{ g.site_url }}{{ h.url_for(controller='package', action='read', id=c.package.name)}}",
+            "name": "{{ dataset_title|truncate(30) }}"
+          }
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "item":
+          {
+            "@id": "{{ res.url}}",
+            "name": "{{ res_title|truncate(30) }}"
+          }
+      }
+    ]
+  }
+  </script>
+{% endblock %}
+
+{% block head_extras -%}
+  {{ super() }}
+  <meta property="og:title" content="{{ res_title }} - {{ dataset_title }} - {{ g.site_title }}">  
+{% endblock -%}
+
+{% block subtitle %}{{ dataset_title }} - {{ res_title }}{% endblock %}
+
+{% block breadcrumb_content %}
+  {% snippet 'package/snippets/csc_breadcrumb_content.html', pkg=c.package, res=res, bc_selected=self.breadcrumb_content_selected() %}
+{% endblock %}
+
+
+{% block resource_content %}
+  {% block resource_read_title %}<h1 class="page-heading">{{ res_title | truncate(50) }}</h1>{% endblock %}
+  {%- block csc_resource_last_updated -%}
+    {% if res.last_modified or res.revision_timestamp or res.created %}
+      <section class="last_update">
+        <div class="resource-metadata">
+          <strong>{{ _('Last updated') }}:</strong>&nbsp;
+          {% snippet 'package/snippets/csc_local_friendly_datetime.html', datetime_obj=res.last_modified or res.revision_timestamp or res.created %}
+        </div>
+      </section>
+    {% endif %}
+    {%- endblock -%}
+    {%- block csc_resource_created -%}
+      {% if res.created %}
+        <section class="created">
+          <div class="resource-metadata">
+            <strong>{{ _('Created') }}:</strong>&nbsp;
+            {% snippet 'package/snippets/csc_local_friendly_datetime.html', datetime_obj=res.created %}
+          </div>
+        </section>
+      {% endif %}
+    {%- endblock -%}
+    {%- block csc_resource_format -%}
+      {% if res.format and dict_fields[format] %}
+        <section class="format">
+          <div class="resource-metadata">
+            <strong>{{ _('Format') }}:</strong>&nbsp;
+            <span>
+              {% snippet 'scheming/display_snippets/multiple_choice.html', field=dict_fields[format], data=res %}&nbsp;
+              ({{ res.format}})
+            </span>
+          </div>
+        </section>
+      {% endif %}
+    {%- endblock -%}
+    {%- block csc_resource_identifier -%}
+      {% if res.resource_identifier %}
+        <section class="resource_identifier">
+          <div class="resource-metadata">
+            <strong>{{ _('Resource identifier') }}:</strong>&nbsp;
+            <span><a href="{{ res.resource_identifier }}" title="{{ res.resource_identifier }}" target="_blank">{{ res.resource_identifier }}</a></span>
+          </div>
+        </section>
+      {% endif %}
+    {%- endblock -%}
+    {%- block csc_resource_byte_size -%}
+      {% if res.byte_size %}
+        <section class="byte_size">
+          <div class="resource-metadata">
+            <strong>{{ _('Byte size') }}:</strong>&nbsp;
+            <span>{{ res.byte_size }} {{ _('bytes') }}</span>
+          </div>
+        </section>
+      {% endif %}
+    {%- endblock -%}
+    {%- block csc_resource_relation -%}
+      {% if res.resource_relation and dict_fields[resource_relation] %}
+        <section class="resource_relation">
+          <div class="resource-metadata">
+            <strong>{{ _('Resource relation') }}:</strong>&nbsp;
+            <span>
+              {% snippet 'scheming/display_snippets/csc_multiple_uri_text.html', data=res, field=dict_fields[resource_relation] %}
+            </span>
+          </div>
+        </section>
+      {% endif %}
+    {%- endblock -%} 
+    {%- block csc_pkg_license -%}
+      {% if c.package.license %}
+        <section class="license">
+          <div class="resource-metadata">
+            <strong>{{ _('License') }}:</strong>&nbsp;
+            <span>
+                <a href="{{ c.package.license }}" title="{{ c.package.license }}" target="_blank">{{ c.package.license }}</a>
+            </span>
+          </div>
+        </section>
+      {% endif %}
+    {%- endblock -%}
+    {% block resource_read_url %}
+      {% if res.url %}
+        <section class="url">
+          <div class="resource-metadata">
+            <strong>{{ _('URL') }}:</strong>&nbsp;
+            <span>
+              {% if h.is_url(res.url) %}
+                <a class="resource-url-analytics" href="{{ res.url }}" title="{{ res.url }}">{{ res.url }}</a>
+              {% else %}
+                {{ res.url }}
+              {% endif %}
+            </span>
+          </div>
+        </section>
+      {% endif %}
+    {% endblock %}
+  {% endblock %}
+
+{% block primary_content %}
+  {% block share %}
+    <div>
+        <section class="share">
+        {% snippet 'package/snippets/csc_social.html' %}
+        </section>
+    </div>
+  {% endblock %}
+  {% block resource_additional_information %}{% endblock %}
+{% endblock %}
+
+{% block secondary_content %}{% endblock %}
+

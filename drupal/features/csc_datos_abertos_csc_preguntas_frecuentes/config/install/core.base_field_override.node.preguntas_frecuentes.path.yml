@@ -1,0 +1,19 @@
+langcode: es
+status: true
+dependencies:
+  config:
+    - node.type.preguntas_frecuentes
+  module:
+    - path
+id: node.preguntas_frecuentes.path
+field_name: path
+entity_type: node
+bundle: preguntas_frecuentes
+label: 'Alias de URL'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

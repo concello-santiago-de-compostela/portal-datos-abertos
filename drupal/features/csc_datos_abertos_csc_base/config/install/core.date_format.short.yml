@@ -1,0 +1,7 @@
+langcode: es
+status: true
+dependencies: {  }
+id: short
+label: 'Fecha corta por defecto'
+locked: false
+pattern: 'd/m/Y - H:i'

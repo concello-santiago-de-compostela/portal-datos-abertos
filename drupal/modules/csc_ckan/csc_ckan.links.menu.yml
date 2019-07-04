@@ -1,0 +1,12 @@
+csc_ckan.config:
+  title: CSC CKAN Config
+  parent: system.admin_config_services
+  description: 'CSC CKAN configurations.'
+  route_name: csc_ckan.config
+  
+  
+csc_ckan.test:
+  title: CSC CKAN Connection Test
+  parent: system.admin_config_services
+  description: 'CSC CKAN connection testing page.'
+  route_name: csc_ckan.test

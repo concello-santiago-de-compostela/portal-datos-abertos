@@ -1,0 +1,14 @@
+{% if pkg_dict.organization %}
+  {% set org = h.get_organization(pkg_dict.organization.name) %}
+  {% if (org) %}
+    {% set org_name = org.get('display_name') %}
+    {% if org_name %}
+      <section class="publisher">
+        <div class="dataset-metadata">
+          <strong>{{ _("Publisher") }}:</strong>&nbsp;
+          <span> {{ org_name}} </span>
+        </div>
+      </section>
+    {% endif %}
+  {% endif %}
+{% endif %}

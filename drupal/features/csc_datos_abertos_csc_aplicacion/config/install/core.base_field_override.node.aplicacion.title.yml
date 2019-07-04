@@ -1,0 +1,17 @@
+langcode: es
+status: true
+dependencies:
+  config:
+    - node.type.aplicacion
+id: node.aplicacion.title
+field_name: title
+entity_type: node
+bundle: aplicacion
+label: Nombre
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

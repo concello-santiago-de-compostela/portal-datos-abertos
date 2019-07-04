@@ -1,0 +1,17 @@
+langcode: es
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.categoria_faq
+id: paragraph.categoria_faq.created
+field_name: created
+entity_type: paragraph
+bundle: categoria_faq
+label: Fecha
+description: 'The time that the Paragraph was created.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

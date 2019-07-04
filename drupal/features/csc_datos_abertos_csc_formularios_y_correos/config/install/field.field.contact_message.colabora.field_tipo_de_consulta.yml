@@ -1,0 +1,20 @@
+langcode: es
+status: true
+dependencies:
+  config:
+    - contact.form.colabora
+    - field.storage.contact_message.field_tipo_de_consulta
+  module:
+    - options
+id: contact_message.colabora.field_tipo_de_consulta
+field_name: field_tipo_de_consulta
+entity_type: contact_message
+bundle: colabora
+label: 'Tipo de consulta'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

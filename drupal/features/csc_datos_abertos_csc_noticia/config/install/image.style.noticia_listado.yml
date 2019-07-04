@@ -1,0 +1,14 @@
+langcode: es
+status: true
+dependencies: {  }
+name: noticia_listado
+label: 'Noticia listado'
+effects:
+  deaa66b0-f541-4b60-bb25-5ce4fe43cd8b:
+    uuid: deaa66b0-f541-4b60-bb25-5ce4fe43cd8b
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 250
+      height: 150
+      anchor: center-center

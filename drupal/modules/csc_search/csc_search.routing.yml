@@ -1,0 +1,7 @@
+csc_complexsearch.page:
+ path: '/busqueda'
+ defaults:
+   _title: 'Búsqueda'
+   _controller: '\Drupal\csc_search\Controller\SearchPageController::content'
+ requirements:
+   _permission: 'access content'

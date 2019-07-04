@@ -1,0 +1,22 @@
+langcode: es
+status: true
+dependencies:
+  module:
+    - ctools
+    - taxonomy
+id: url_etiquetas
+label: 'URL término etiquetas'
+type: 'canonical_entities:taxonomy_term'
+pattern: 'etiqueta/[term:name]'
+selection_criteria:
+  7e4e266a-8bca-4af1-ad71-38f24721abd6:
+    id: 'entity_bundle:taxonomy_term'
+    bundles:
+      tags: tags
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    uuid: 7e4e266a-8bca-4af1-ad71-38f24721abd6
+selection_logic: and
+weight: -5
+relationships: {  }

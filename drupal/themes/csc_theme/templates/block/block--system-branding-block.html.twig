@@ -1,0 +1,45 @@
+{% extends "block.html.twig" %}
+{#
+/**
+* Copyright 2018 Ayuntamiento de Santiago de Compostela, Entidad Pública Empresarial Red.es
+*
+* This file is part of the "Open Data Portal of Santiago de Compostela", developed within the "Ciudades Abiertas" project.
+*
+* Licensed under the EUPL, Version 1.2 or - as soon they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence");
+* You may not use this work except in compliance with the Licence.
+* You may obtain a copy of the Licence at:
+*
+* https://joinup.ec.europa.eu/software/page/eupl
+*
+* Unless required by applicable law or agreed to in writing, software distributed under the Licence is distributed on an "AS IS" basis,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the Licence for the specific language governing permissions and limitations under the Licence.
+*/
+
+/**
+ * @file
+ * Theme override for a branding block.
+ *
+ * Each branding element variable (logo, name, slogan) is only available if
+ * enabled in the block configuration.
+ *
+ * Available variables:
+ * - site_logo: Logo for site as defined in Appearance or theme settings.
+ * - site_name: Name for site as defined in Site information settings.
+ * - site_slogan: Slogan for site as defined in Site information settings.
+ */
+#}
+{% block content %}
+  <h1 role="banner" class="site-header__banner">
+  {% if (site_logo or site_name) %}
+    <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home" class="site-header__link">
+    {% if site_logo %}
+        <img src="{{ site_logo }}" alt="{{ site_name }}. {% if site_slogan %}{{ site_slogan }}. {% endif %}{{ 'Go home'|t }}" class="site-header__logo" />
+    {% elseif site_name %}
+      {{ site_name }}
+    {% endif %}
+    </a>
+  </h1>
+  {% endif %}
+  {{ site_slogan }}
+{% endblock %}

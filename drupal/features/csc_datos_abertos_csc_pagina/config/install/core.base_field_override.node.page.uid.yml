@@ -1,0 +1,19 @@
+langcode: es
+status: true
+dependencies:
+  config:
+    - node.type.page
+id: node.page.uid
+field_name: uid
+entity_type: node
+bundle: page
+label: 'Escrito por'
+description: 'El nombre de usuario del autor del contenido.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: 'Drupal\node\Entity\Node::getCurrentUserId'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

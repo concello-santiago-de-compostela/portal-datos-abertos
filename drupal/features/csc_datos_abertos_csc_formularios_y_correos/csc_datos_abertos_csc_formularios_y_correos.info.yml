@@ -1,0 +1,14 @@
+name: 'CSC Formularios Y Correos'
+type: module
+core: 8.x
+package: 'CSC Datos abertos'
+dependencies:
+  - captcha
+  - contact
+  - contact_storage
+  - field
+  - language
+  - options
+  - recaptcha
+  - smtp
+version: 8.x-1.0-beta8

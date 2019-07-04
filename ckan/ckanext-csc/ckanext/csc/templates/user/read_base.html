@@ -1,0 +1,19 @@
+{% ckan_extends %}
+
+{% set user = user_dict %}
+      
+      
+      {% block user_nums %}
+      <div class="nums">
+        <dl>
+          <dt>{{ _('Datasets') }}</dt>
+          <dd>{{ h.SI_number_span(user.number_created_packages) }}</dd>
+        </dl>
+        <dl>
+          <dt>{{ _('Edits') }}</dt>
+          <dd>{{ h.SI_number_span(user.number_of_edits) }}</dd>
+        </dl>
+      </div>
+      {% endblock %}
+      {% block user_follow %}{% endblock %}
+      

@@ -1,0 +1,10 @@
+abs_urls: false
+admin_theme: false
+roles_profiles:
+  authenticated:
+    public: member
+  editor:
+    public: admin
+  administrator:
+    public: admin
+langcode: es

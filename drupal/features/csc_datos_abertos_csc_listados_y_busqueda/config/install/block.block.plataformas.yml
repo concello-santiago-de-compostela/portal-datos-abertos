@@ -1,0 +1,28 @@
+langcode: es
+status: true
+dependencies:
+  config:
+    - facets.facet.plataformas
+  module:
+    - facets
+    - system
+  theme:
+    - bartik
+id: plataformas
+theme: bartik
+region: sidebar_first
+weight: -6
+provider: null
+plugin: 'facet_block:plataformas'
+settings:
+  id: 'facet_block:plataformas'
+  label: Plataformas
+  provider: facets
+  label_display: visible
+  block_id: plataformas
+visibility:
+  request_path:
+    id: request_path
+    pages: /aplicaciones
+    negate: false
+    context_mapping: {  }

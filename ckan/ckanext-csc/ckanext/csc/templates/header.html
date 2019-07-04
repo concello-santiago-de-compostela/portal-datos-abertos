@@ -1,0 +1,164 @@
+{% set current_lang = request.environ.CKAN_LANG %}
+{% set header_menu_items = h.csc_main_menu_items() %}
+
+{% block header_wrapper %} {% block header_account %}{% if c.userobj %}
+<header class="account-masthead">
+  <div class="container">
+    {% block header_account_container_content %} 
+    <div class="account avatar authed" data-module="me" data-me="{{ c.userobj.id }}">
+      <ul class="list-unstyled">
+        {% block header_account_logged %} {% if c.userobj.sysadmin %}
+        <li>
+          <a href="{{ h.url_for(controller='admin', action='index') }}" title="{{ _('Sysadmin settings') }}">
+            <i class="fa fa-gavel" aria-hidden="true"></i>
+            <span class="text">{{ _('Admin') }}</span>
+          </a>
+        </li>
+        {% endif %}
+        <li>
+          <a href="{{ h.url_for('user.read', id=c.userobj.name) }}" class="image" title="{{ _('View profile') }}">
+                  {{ h.gravatar((c.userobj.email_hash if c and c.userobj else ''), size=22) }}
+                  <span class="username">{{ c.userobj.display_name }}</span>
+                </a>
+        </li>
+        {% set new_activities = h.new_activities() %}
+        <li class="notifications {% if new_activities > 0 %}notifications-important{% endif %}">
+          {% set notifications_tooltip = ngettext('Dashboard (%(num)d new item)', 'Dashboard (%(num)d new items)', new_activities)
+          %}
+          <a href="{{ h.url_for('dashboard.index') }}" title="{{ notifications_tooltip }}">
+            <i class="fa fa-tachometer" aria-hidden="true"></i>
+            <span class="text">{{ _('Dashboard') }}</span>
+            <span class="badge">{{ new_activities }}</span>
+          </a>
+        </li>
+        {% block header_account_settings_link %}
+        <li>
+          <a href="{{ h.url_for('user.edit', id=c.userobj.name) }}" title="{{ _('Edit settings') }}">
+            <i class="fa fa-cog" aria-hidden="true"></i>
+            <span class="text">{{ _('Settings') }}</span>
+          </a>
+        </li>
+        {% endblock %} {% block header_account_log_out_link %}
+        <li>
+          <a href="{{ h.url_for('/user/_logout') }}" title="{{ _('Log out') }}">
+            <i class="fa fa-sign-out" aria-hidden="true"></i>
+            <span class="text">{{ _('Log out') }}</span>
+          </a>
+        </li>
+        {% endblock %} {% endblock %}
+      </ul>
+    </div>
+    {% endblock %}
+  </div>
+</header>
+{% endif %} {% endblock %}
+{% block header_catalog %}{% if c.userobj %}
+<header class="navbar navbar-static-top masthead">
+  
+    <div class="container">
+      <div class="navbar-right">
+        <button data-target="#main-navigation-toggle" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+          <span class="fa fa-bars"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="main-navigation-toggle">
+        {% block header_site_navigation %}
+        <nav class="section navigation">
+          <ul class="nav nav-pills">
+            {% block header_site_navigation_tabs %} {{ h.build_nav_main( ('search', _('Catalog')), ('organizations_index', _('Organizations')),
+            ('group_index', _('Groups')), ('home.about', _('About')) ) }} {% endblock %}
+          </ul>
+        </nav>
+        {% endblock %}
+      </div>
+    </div>
+  </header>
+{% endif %} {% endblock %}
+<header class="main-header">
+    <nav class="navbar topnav navbar-default" role="navigation">
+      <div class="container">
+        <div class="row">
+          {% block header_social %}
+          <div class="navbar-header col-md-11">
+            <div class="social-media">
+              {% snippet 'snippets/csc_social_list_header.html' %}
+            </div>
+          </div>
+          {% endblock %}
+          {% block header_language %}
+          <div class="col-md-1">
+            <div class="region region-language">
+              <div id="block-dropdownlanguage" class="block block-dropdown-language block-dropdown-languagelanguage-interface">
+                <div class="content">
+                  {% snippet 'snippets/csc_language_selector_header.html' %}
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endblock %}
+        </div>
+        <div class="row">        
+          <div class="navbar-header col-md-3">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navigation">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <div class="region region-header">
+              <div id="block-csc-theme-branding" class="site-branding block block-system block-system-branding-block">
+                {% block header_logo %} 
+                  {% if g.site_logo %}
+                    <h1 role="banner" class="site-header__banner">
+                      <a href="/{{ current_lang }}" title="{{ g.site_title }}" rel="home" class="site-header__link">
+                        <img src="{{ h.url_for_static_or_external(g.site_logo) }}" alt="{{ g.site_title }}" class="site-header__logo">
+                      </a>{{ logo_item }}
+                    </h1>
+                  {% else %}
+                    <h1>
+                      <a href="/{{ current_lang }}" title="{{ g.site_title }}" rel="home" class="site-header__link">
+                        {{ g.site_title }}
+                      </a>
+                    </h1>
+                      {% if g.site_description %}<h2>{{ g.site_description }}</h2>{% endif %}
+                  {% endif %} 
+                {% endblock %}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-9">{% block main_menu %}
+            <div class="region region-primary-menu">
+              <nav role="navigation" aria-labelledby="block-csc-theme-main-menu-menu" id="block-csc-theme-main-menu" class="block block-menu navigation menu--main">
+                <h2 class="visually-hidden" id="block-csc-theme-main-menu-menu">{{ _("Main navigation") }}</h2>
+                {% if header_menu_items %}
+                  <ul class="sm menu-base-theme" id="main-menu"  class="menu nav navbar-nav">                 
+                  {% for item in header_menu_items %}
+                      {% if item.get('name') and item.get('link') %}
+                        <li class="menu-item menu-item--expanded">
+                          <a href="{{ item.get('link') }}" title="{{ item.get('name') }}" data-toggle="dropdown">{{ item.get('name') }}</a>
+                          {% if item.get('sub') %}
+                            <ul>
+                            {% for subitem in item.get('sub') %}
+                              {% if subitem.get('name') and subitem.get('link') %}
+                                <li class="menu-item">
+                                  <a href="{{ subitem.get('link') }}" title="{{ subitem.get('name') }}" data-drupal-link-system-path="">{{ subitem.get('name') }}</a>
+                                </li>
+                              {% endif %}
+                            {% endfor %}
+                            </ul>
+                          {% endif %}
+                        </li>
+                      {% endif %}
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </nav>
+            </div>
+          {% endblock %}</div>
+        </div>
+      </div>
+    </nav>
+</header>
+{% resource 'csc/smartmenus/jquery.smartmenus_min.js' %} 
+{% resource 'csc/js/csc_menu.js' %}
+{% endblock %}

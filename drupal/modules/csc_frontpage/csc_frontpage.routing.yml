@@ -1,0 +1,7 @@
+csc_frontpage.homepage:
+ path: '/inicio'
+ defaults:
+   _title: 'Concello de Santiago de Compostela Open Data Portal'
+   _controller: '\Drupal\csc_frontpage\Controller\FrontpageController::content'
+ requirements:
+   _permission: 'access content'

@@ -1,0 +1,7 @@
+langcode: und
+status: true
+dependencies: {  }
+id: solo_fecha_corta
+label: 'Solo fecha corta'
+locked: false
+pattern: d/m/Y

@@ -1,0 +1,105 @@
+{% ckan_extends %}
+{% if pkg %}
+
+{% set dataset_title_language, dataset_title = h.csc_dataset_field_value(pkg.title_translated) %}
+{% set dataset_language, dataset_description = h.csc_dataset_field_value(pkg.description) %}
+
+
+{% block seo %}
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement":
+    [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "item":
+          {
+            "@id": "{{ g.site_url }}",
+            "name": "{{ _('Home') }}"
+          }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item":
+          {
+            "@id": "{{ g.site_url }}{{ h.url_for(controller='package', action='search') }}",
+            "name": "{{ _('Data Catalog') }}"
+          }
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "item":
+          {
+            "@id": "{{ g.site_url }}{{ h.url_for(controller='package', action='search') }}",
+            "name": "{{ _('Catalog') }}"
+          }
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "item":
+          {
+            "@id": "{{ g.site_url }}{{ h.url_for(controller='package', action='read', id=pkg.name)}}",
+            "name": "{{ dataset_title|truncate(30) if dataset_title else pkg.name}}"
+          }
+      }
+    ]
+  }
+  </script>
+
+  {% set tag_name_list = h.csc_dataset_tag_list_display_names(pkg.tags) %}
+  {% set publisher_name = pkg.organization.title %}
+	
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Dataset",
+    "url": "{{ g.site_url }}{{ h.url_for(controller='package', action='read', id=pkg.name)}}",
+    "name": "{{ dataset_title }}",
+    "description": "{{ dataset_description }}",
+    "keywords": "{{ tag_name_list }}",
+    "license": "{{ pkg.license_title }}",
+    "creator": 
+    {
+      "@type": "Organization",
+      "name": "{{ publisher_name }}"
+    },
+    "dateCreated": "{{ h.csc_render_datetime(pkg.get('issued_date'), date_format='%Y-%m-%dT%T%z') }}",
+    "dateModified": "{{ h.csc_render_datetime(pkg.get('modified_date'), date_format='%Y-%m-%dT%T%z') }}",
+    "includedInDataCatalog":
+    {
+      "@type": "DataCatalog",
+      "name": "{{ h.csc_get_portal_name() }}",
+      "url": "{{ g.site_url }}"
+      }
+    }
+  }
+  </script>
+
+{% endblock %}
+
+
+{% block subtitle %}{{ dataset_title }} - {{ _('Catalog') }}{% endblock %}
+
+{% block head_extras -%}
+  {{ super() }}
+  <meta property="og:title" content="{{ dataset_title }} - {{ g.site_title }}">
+  <meta property="og:description" content="{{ dataset_description|truncate(200)|forceescape|trim  if dataset_description}}">
+{% endblock -%}
+
+{% endif %}
+
+{% block content_action %} {{ super() }} {% endblock %}
+
+{% block page_header %}
+  {% if c.userobj %} {{ super() }} {% else %} {% endif %} 
+{% endblock %}
+
+{% block primary_content_inner %} {{ super() }}{% endblock %}
+
+{% block secondary %}{% endblock %}

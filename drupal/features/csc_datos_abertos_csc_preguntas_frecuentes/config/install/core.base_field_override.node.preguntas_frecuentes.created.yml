@@ -1,0 +1,17 @@
+langcode: es
+status: true
+dependencies:
+  config:
+    - node.type.preguntas_frecuentes
+id: node.preguntas_frecuentes.created
+field_name: created
+entity_type: node
+bundle: preguntas_frecuentes
+label: Fecha
+description: 'La fecha en que el nodo fue creado.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

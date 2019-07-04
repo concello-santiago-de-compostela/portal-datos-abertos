@@ -1,0 +1,23 @@
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_noticia_comentarios
+    - node.type.noticia
+  module:
+    - disqus
+id: node.noticia.field_noticia_comentarios
+field_name: field_noticia_comentarios
+entity_type: node
+bundle: noticia
+label: Comentarios
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    status: 1
+    identifier: ''
+default_value_callback: ''
+settings: {  }
+field_type: disqus_comment

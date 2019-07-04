@@ -1,0 +1,18 @@
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_fuente
+    - node.type.noticia
+id: node.noticia.field_fuente
+field_name: field_fuente
+entity_type: node
+bundle: noticia
+label: Fuente
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

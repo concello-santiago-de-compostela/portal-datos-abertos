@@ -1,0 +1,8 @@
+langcode: es
+status: true
+dependencies: {  }
+name: 'Categorías Aplicaciones'
+vid: categorias_aplicaciones
+description: 'Categorías de las aplicaciones del portal'
+hierarchy: 0
+weight: 0

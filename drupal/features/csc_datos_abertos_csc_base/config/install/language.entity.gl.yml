@@ -1,0 +1,8 @@
+langcode: gl
+status: true
+dependencies: {  }
+id: gl
+label: Galego
+direction: ltr
+weight: 1
+locked: false

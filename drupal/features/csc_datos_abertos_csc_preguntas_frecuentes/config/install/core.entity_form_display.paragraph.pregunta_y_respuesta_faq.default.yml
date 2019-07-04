@@ -1,0 +1,34 @@
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.pregunta_y_respuesta_faq.field_respuesta_pregunta
+    - field.field.paragraph.pregunta_y_respuesta_faq.field_titulo_pregunta
+    - paragraphs.paragraphs_type.pregunta_y_respuesta_faq
+  module:
+    - text
+id: paragraph.pregunta_y_respuesta_faq.default
+targetEntityType: paragraph
+bundle: pregunta_y_respuesta_faq
+mode: default
+content:
+  field_respuesta_pregunta:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_titulo_pregunta:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

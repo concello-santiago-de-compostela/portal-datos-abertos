@@ -1,0 +1,7 @@
+csc_menu_export.config:
+ path: 'admin/config/services/csc/menu_export/config'
+ defaults:
+   _title: 'CSC Menu Export Config'
+   _form: '\Drupal\csc_menu_export\Form\MenuExportConfigForm'
+ requirements:
+   _permission: 'access administration pages'

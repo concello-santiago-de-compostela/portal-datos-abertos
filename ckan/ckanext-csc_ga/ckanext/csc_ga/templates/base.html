@@ -1,0 +1,20 @@
+{% ckan_extends %}
+
+{% block links %}
+  {{ super() }}
+  {% block googleanalytics_header %}
+    {{ h.csc_ga_googleanalytics_header() }}
+  {% endblock %}
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  {% block googleanalytics_event_tracking %}
+    {% if h.csc_ga_send_stats() == True %}
+      {% resource 'csc_ga/googleanalytics_event_tracking.js' %}
+      <div class="js-hide" data-module="google-analytics"
+        data-module-googleanalytics_resource_prefix="{{ g.googleanalytics_resource_prefix }}">
+      </div>
+    {% endif %}
+  {% endblock %}
+{% endblock %}

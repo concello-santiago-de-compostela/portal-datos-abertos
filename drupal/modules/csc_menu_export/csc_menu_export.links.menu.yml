@@ -1,0 +1,5 @@
+csc_menu_export.config:
+  title: CSC Menu Export Config
+  parent: system.admin_config_services
+  description: 'CSC Menu Export configurations.'
+  route_name: csc_menu_export.config

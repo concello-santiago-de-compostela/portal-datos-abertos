@@ -1,0 +1,38 @@
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.categoria_faq.field_preguntas_categoria
+    - field.field.paragraph.categoria_faq.field_titulo_categoria
+    - paragraphs.paragraphs_type.categoria_faq
+  module:
+    - paragraphs
+id: paragraph.categoria_faq.default
+targetEntityType: paragraph
+bundle: categoria_faq
+mode: default
+content:
+  field_preguntas_categoria:
+    type: entity_reference_paragraphs
+    weight: 1
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+    region: content
+  field_titulo_categoria:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

@@ -1,0 +1,289 @@
+{#
+/**
+* Copyright 2018 Ayuntamiento de Santiago de Compostela, Entidad Pública Empresarial Red.es
+*
+* This file is part of the "Open Data Portal of Santiago de Compostela", developed within the "Ciudades Abiertas" project.
+*
+* Licensed under the EUPL, Version 1.2 or - as soon they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence");
+* You may not use this work except in compliance with the Licence.
+* You may obtain a copy of the Licence at:
+*
+* https://joinup.ec.europa.eu/software/page/eupl
+*
+* Unless required by applicable law or agreed to in writing, software distributed under the Licence is distributed on an "AS IS" basis,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the Licence for the specific language governing permissions and limitations under the Licence.
+*/
+
+/**
+ * @file
+ * Bootstrap Mint's theme implementation to display a single page.
+ *
+ * The doctype, html, head and body tags are not in this template. Instead they
+ * can be found in the html.html.twig template in this directory.
+ *
+ * Available variables:
+ *
+ * General utility variables:
+ * - base_path: The base URL path of the Drupal installation. Will usually be
+ *   "/" unless you have installed Drupal in a sub-directory.
+ * - is_front: A flag indicating if the current page is the front page.
+ * - logged_in: A flag indicating if the user is registered and signed in.
+ * - is_admin: A flag indicating if the user has permission to access
+ *   administration pages.
+ *
+ * Site identity:
+ * - front_page: The URL of the front page. Use this instead of base_path when
+ *   linking to the front page. This includes the language domain or prefix.
+ * - logo: The url of the logo image, as defined in theme settings.
+ * - site_name: The name of the site. This is empty when displaying the site
+ *   name has been disabled in the theme settings.
+ * - site_slogan: The slogan of the site. This is empty when displaying the site
+ *   slogan has been disabled in theme settings.
+ *
+ * Page content (in order of occurrence in the default page.html.twig):
+ * - messages: Status and error messages. Should be displayed prominently.
+ * - node: Fully loaded node, if there is an automatically-loaded node
+ *   associated with the page and the node ID is the second argument in the
+ *   page's path (e.g. node/12345 and node/12345/revisions, but not
+ *   comment/reply/12345).
+ *
+ * Regions:
+ * - page.header: Items for the Header region.
+ * - page.primary_menu: Items for the Primary Menu navigation region.
+ * - page.highlighted: Items for the Highlighted region.
+ * - page.help: Items for the Help region.
+ * - page.breadcrumb: Items for the Breadcrumb region.
+ * - page.content: Main content of the current page.
+ * - page.footer_top_one: Items for the Footer Top Widget - One region.
+ * - page.footer_top_two: Items for the Footer Top Widget - Two region.
+ * - page.footer_top_three: Items for the Footer Top Widget - Three region.
+ * - page.footer_top_four: Items for the Footer Top Widget - Four region.
+ * - page.footer: Items for the Footer region.
+ * - page.footer_menu: Items for the Footer Menu region.
+ *
+ * @see template_preprocess_page()
+ * @see html.html.twig
+ *
+ * @ingroup themeable
+ */
+#}
+
+<!-- Header and Navbar -->
+<header class="main-header">
+
+  <nav class="navbar topnav navbar-default" role="navigation">
+    <div class="container">
+      <div class="row">
+        <!-- Social & Language -->
+      {% if show_social_icon %}
+        <div class="navbar-header col-md-11">
+          <div class="social-media">
+            {% if facebook_url %}
+              <a href="{{ facebook_url }}" class="icon-facebook" data-placement="bottom" title="Facebook">Facebook</a>
+            {% endif %}
+            {% if twitter_url %}
+              <a href="{{ twitter_url }}" class="icon-twitter" data-placement="bottom" title="Twitter">Twitter</a>
+            {% endif %}
+            {% if ytube_url %}
+              <a href="{{ ytube_url }}" class="icon-youtube" data-placement="bottom" title="YouTube">Youtube</a>
+            {% endif %}
+            {% if otempo_url and language.getId() == 'gl'%}
+            {% set otempo_url_gl = '?lg=gal' %}
+              <a href="{{ otempo_url }}{{ otempo_url_gl }}" class="icon-otempo" data-placement="bottom" title="oTempo">{{ 'The weather'|t}}</a>
+            {% endif %}
+            {% if otempo_url and language.getId() == 'es' %}
+            {% set otempo_url_cas = '?lg=cas' %}
+              <a href="{{ otempo_url }}{{ otempo_url_cas }}" class="icon-otempo" data-placement="bottom" title="oTempo">{{ 'The weather'|t}}</a>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+      <div class="col-md-1">
+        {% if page.language %}
+          {{ page.language }}
+        {% endif %}    
+      </div>
+      <!--End Language -->
+      </div>
+      <div class="row">
+      <div class="navbar-header col-md-3">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navigation">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        {% if page.header %}
+          {{ page.header }}
+        {% endif %}
+      </div>
+
+      <!-- Navigation -->
+      <div class="col-md-9">
+        {% if page.primary_menu %}
+          {{ page.primary_menu }}
+        {% endif %}      
+      </div>
+      <!--End Navigation -->
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- Banner -->
+  {% if is_front and page.slideshow %}  
+    <div class="container slideshow">
+      <div class="row">
+        <div class="col-md-12">
+            {{ page.slideshow }}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+  <!-- End Banner -->
+
+</header>
+<!--End Header & Navbar -->
+
+
+<!--Search-->
+  {% if is_front and page.search %}
+    {{ page.search }}
+  {% endif %}
+<!--End Search-->
+
+<!--Highlighted-->
+  {% if page.highlighted %}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          {{ page.highlighted }}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+<!--End Highlighted-->
+
+<!-- layout -->
+<div id="wrapper">
+  <!-- start: Container -->
+  <div class="container-fluid">
+
+    
+    <!--start:Breadcrumbs -->
+	{%  if not is_front %}
+    <div class="row">
+      <div class="col-md-12">{{ page.breadcrumb }}</div>
+    </div>
+	{% endif %}
+    <!--End Breadcrumbs-->
+	
+    <div class="row layout">
+
+      <!--- Start content -->
+       {% if page.content or page.content_front %}
+    <div class="content-main">
+        <div class="row">
+            {% if not is_front and page.content %}
+                <div class="col-md-12">
+                    {{ page.content }}
+                        <!-- Filtros Region-->
+    <div class="csc-filter-apps">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+          {% if page.filter_apps %}
+            {{ page.filter_apps }}
+            {% endif %}
+          </div>
+      </div>
+      </div>
+	</div>
+  <!-- End Filtros Region-->
+                </div>
+            {% elseif is_front and page.content_front %} 
+                <div class="col-md-12">
+                    {{ page.content_front }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+      <!---End content -->
+      
+    </div>
+    <!--End Content -->
+
+  </div>
+</div>
+<!-- End layout -->
+
+
+
+<!-- Start Logos -->
+  {% if page.logos %}
+  <div class="logos">
+    <div class="row">
+      <div class="col-md-12">
+        {{ page.logos }}
+      </div>
+    </div>
+  </div>
+  {% endif %}
+<!-- End Logos -->
+
+
+  <!-- Footer Region-->
+  
+    <div class="footer-space">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+          {% if page.footer_contact %}
+            {{ page.footer_contact }}
+            {% endif %}
+          </div>
+      </div>
+      </div>
+	</div>
+  
+  <!-- End Footer Region-->
+<!--End Footer -->
+
+<!-- Start Footer Ribbon -->
+{% if page.footer_menu %}
+  <div class="footer-ribbon">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          {{ page.footer_menu }}
+        </div>
+        
+      </div>
+    </div>
+  </div>
+{% endif %}
+<!-- End Footer Ribbon -->
+
+
+<!-- #footer-bottom -->
+<div id="footer-bottom">
+    <div class="container">
+         <div class="row">
+		 <hr class="style-mint">
+         <div id="toTop" class="col-md-12">
+          <a class="scrollUp"><i class="fa fa-angle-up"></i></a>
+         </div>
+        </div>
+        <div class="row">
+        <div class="col-md-12 copy_credit">
+        <p class="copyright">Copyright &copy; {{ "now"|date("Y") }}. All rights reserved</p>
+        {% if show_credit_link %}
+          <p class="credit">Theme for <a href="https://www.drupal.org/8" target="_blank">Drupal 8</a></p>
+        {% endif %}
+        </div>
+		</div>
+    </div>
+</div>
+<!-- #footer-bottom ends here -->

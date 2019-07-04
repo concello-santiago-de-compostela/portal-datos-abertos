@@ -1,0 +1,10 @@
+langcode: es
+status: true
+dependencies:
+  config:
+    - contact.form.colabora
+id: contact_message.colabora
+target_entity_type_id: contact_message
+target_bundle: colabora
+default_langcode: site_default
+language_alterable: false

@@ -1,0 +1,14 @@
+langcode: es
+status: true
+dependencies: {  }
+name: aplicacion_listado
+label: 'Aplicación listado'
+effects:
+  6f1b9a94-2410-4b39-938d-c6251171a87b:
+    uuid: 6f1b9a94-2410-4b39-938d-c6251171a87b
+    id: image_scale
+    weight: 1
+    data:
+      width: 110
+      height: null
+      upscale: false

@@ -1,0 +1,6 @@
+langcode: es
+status: true
+dependencies: {  }
+formId: contact_message_colabora_form
+captchaType: recaptcha/reCAPTCHA
+label: contact-message-colabora-form

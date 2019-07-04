@@ -1,0 +1,5 @@
+csc_socialsharing.config:
+  title: CSC Social Sharing Block Config
+  parent: system.admin_config_services
+  description: 'Social Sharing Block Configurations'
+  route_name: csc_socialsharing.config

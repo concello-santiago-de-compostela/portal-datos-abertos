@@ -1,0 +1,11 @@
+{% if pkg and pkg.spatial %}
+  {%- set dataset_extent = h.dump_json(pkg.spatial) | replace("'", "\"") -%}
+  {% if dataset_extent %}
+  <section class="dataset-map">
+    <h2 class="section-title">{{ _('Geographic location') }}</h2>
+    <div class="module module-narrow">
+        {% snippet "spatial/snippets/dataset_map_base.html", extent=dataset_extent %}
+    </section>
+  </section>
+  {% endif %}    
+{% endif %}

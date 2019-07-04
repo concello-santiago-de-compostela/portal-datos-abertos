@@ -1,0 +1,18 @@
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_titulo_pregunta
+    - paragraphs.paragraphs_type.pregunta_y_respuesta_faq
+id: paragraph.pregunta_y_respuesta_faq.field_titulo_pregunta
+field_name: field_titulo_pregunta
+entity_type: paragraph
+bundle: pregunta_y_respuesta_faq
+label: 'Título Pregunta'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,19 @@
+langcode: es
+status: true
+dependencies:
+  config:
+    - node.type.preguntas_frecuentes
+id: node.preguntas_frecuentes.menu_link
+field_name: menu_link
+entity_type: node
+bundle: preguntas_frecuentes
+label: 'Enlace del menu'
+description: 'Computed menu link for the node (only available during node saving).'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

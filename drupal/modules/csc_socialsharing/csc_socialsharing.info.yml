@@ -1,0 +1,7 @@
+name: CSC Social Sharing
+description: CSC Social Sharing Block
+package: 'CSC Datos abertos development'
+configure: csc_socialsharing.config
+type: module
+core: 8.x
+version: 8.x-1.0

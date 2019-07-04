@@ -1,0 +1,18 @@
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_titulo_categoria
+    - paragraphs.paragraphs_type.categoria_faq
+id: paragraph.categoria_faq.field_titulo_categoria
+field_name: field_titulo_categoria
+entity_type: paragraph
+bundle: categoria_faq
+label: 'Título Categoría'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,8 @@
+{% ckan_extends %}
+
+{% block breadcrumb %}
+<ul>
+  {% snippet 'snippets/csc_home_breadcrumb_item.html' %}
+  {% block breadcrumb_content %}<li class="active"><a href="">{{ gettext('Error %(error_code)s', error_code=code[0]) }}</a></li>{% endblock %}
+</ul>
+{% endblock breadcrumb %}

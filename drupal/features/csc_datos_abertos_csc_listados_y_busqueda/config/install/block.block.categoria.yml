@@ -1,0 +1,28 @@
+langcode: es
+status: true
+dependencies:
+  config:
+    - facets.facet.categoria
+  module:
+    - facets
+    - system
+  theme:
+    - bartik
+id: categoria
+theme: bartik
+region: sidebar_first
+weight: -7
+provider: null
+plugin: 'facet_block:categoria'
+settings:
+  id: 'facet_block:categoria'
+  label: Categoría
+  provider: facets
+  label_display: visible
+  block_id: categoria
+visibility:
+  request_path:
+    id: request_path
+    pages: /aplicaciones
+    negate: false
+    context_mapping: {  }

@@ -1,0 +1,5 @@
+bundle: csc_datos_abertos
+excluded:
+  - metatag.metatag_defaults.403
+  - metatag.metatag_defaults.404
+required: true

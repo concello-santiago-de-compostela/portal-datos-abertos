@@ -1,0 +1,55 @@
+/**
+ * Copyright 2018 Ayuntamiento de Santiago de Compostela, Entidad Pública Empresarial Red.es
+ *
+ * This file is part of the "Open Data Portal of Santiago de Compostela", developed within the "Ciudades Abiertas" project.
+ *
+ * Licensed under the EUPL, Version 1.2 or - as soon they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence");
+ * You may not use this work except in compliance with the Licence.
+ * You may obtain a copy of the Licence at:
+ *
+ * https://joinup.ec.europa.eu/software/page/eupl
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under the Licence is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the Licence for the specific language governing permissions and limitations under the Licence.
+ */
+
+.maintenance-page {
+    background: url(../images/maintenance.png) #1abc9c center 45px no-repeat;
+    color: #fff;
+    text-align: center;
+    padding-top: 220px;
+    padding-bottom: 100px;
+    font-size: 18px;
+    color: #000;
+  }
+  
+  .maintenance-msg {
+    margin: 150px 0 20px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px 30px;
+    display: inline-block;
+    color: #fff;
+    border: 1px solid #fff;
+    box-shadow: 5px 5px 10px #fff;
+    font-size: 14px;
+  }
+  
+  .maintenance-msg h1 {
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-style: italic;
+    margin: 10px 0 2px;
+  }
+  
+  .maintenance-page .brand,
+  .maintenance-page .name-and-slogan {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  .maintenance-page .name-and-slogan {
+    display: none;
+  }
+  

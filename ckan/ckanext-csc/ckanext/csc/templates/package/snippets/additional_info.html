@@ -1,0 +1,125 @@
+{% set issued_date = 'issued_date' %}
+{% set modified_date  = 'modified_date' %}
+{% set frequency  = 'frequency' %}
+{% set coverage_new  = 'coverage_new' %}
+{% set nti_spatial  = 'nti_patial' %}
+{% set nti_spatial_detail  = 'nti_spatial_detail' %}
+{% set language  = 'language' %}
+{% set valid = 'valid' %}
+{% set conforms_to  = 'conforms_to' %}
+{% set reference  = 'reference' %}
+
+{% set include_fields = [
+    issued_date,
+    modified_date,
+    frequency,
+    coverage_new,
+    nti_spatial,
+    nti_spatial_detail,
+    language,
+    valid,
+    conforms_to,
+    reference
+    ] %}
+    
+{% set dict_fields = h.csc_dataset_display_fields(include_fields, schema.dataset_fields) %}
+{% if (pkg_dict.issued_date and dict_fields[issued_date])  or
+  (pkg_dict.modified_date and dict_fields[modified_date]) or
+  (pkg_dict.frequency  and dict_fields[frequency]) or
+  (pkg_dict.coverage_new and dict_fields[coverage_new]) or
+  (pkg_dict.nti_spatial and dict_fields[nti_spatial]) or
+  (pkg_dict.language and dict_fields[language]) or
+  (pkg_dict.valid and dict_fields[valid]) or
+  (pkg_dict.conforms_to and dict_fields[conforms_to]) or
+  (pkg_dict.reference and dict_fields[reference])
+  %}
+<section class="additional-info">
+  <h2 class="section-title">{{ _('Additional Info') }}</h2>
+  <div class="additional-info__content">
+    <table class="table">
+      <tbody>
+        {% block package_additional_info %}
+        {% if pkg_dict.issued_date and dict_fields[issued_date] %}
+          <tr>
+            <th scope="row" class="dataset-label">{{ h.scheming_language_text(dict_fields[issued_date].label) }}</th>
+            <td class="dataset-details">
+                {% snippet 'package/snippets/csc_local_friendly_datetime.html', datetime_obj=pkg_dict.issued_date %}
+            </td>
+          </tr>
+         {% endif %}
+         {% if pkg_dict.modified_date and dict_fields[modified_date] %}
+          <tr>
+            <th scope="row" class="dataset-label">{{ h.scheming_language_text(dict_fields[modified_date].label) }}</th>
+            <td class="dataset-details">
+                {% snippet 'package/snippets/csc_local_friendly_datetime.html', datetime_obj=pkg_dict.modified_date %}
+            </td>
+          </tr>
+          {% endif %}
+          {% if pkg_dict.frequency  and dict_fields[frequency] %}
+            {%- set values = pkg_dict[dict_fields[frequency].field_name] -%}
+            {% if values.type and values.value %}
+              {%- set freq = h.csc_dataset_display_frequency(values.value, values.type) %}
+          <tr>
+            <th scope="row" class="dataset-label">{{ h.scheming_language_text(dict_fields[frequency].label) }}</th>
+            <td class="dataset-details">
+                <p>{{ _(freq) }}</p>
+            </td>
+          </tr>
+            {% endif %}
+          {% endif %}
+          {% if pkg_dict.coverage_new and dict_fields[coverage_new] %}
+          <tr>
+            <th scope="row" class="dataset-label">{{ h.scheming_language_text(dict_fields[coverage_new].label) }}</th>
+            <td class="dataset-details">
+              {% snippet 'scheming/display_snippets/csc_date_period.html', data=pkg_dict, field=dict_fields[coverage_new] %}
+            </td>
+          </tr>
+          {% endif %}
+          {% if pkg_dict.nti_spatial and dict_fields[nti_spatial] %}
+          <tr>
+            <th scope="row" class="dataset-label">{{ h.scheming_language_text(dict_fields[nti_spatial].label) }}</th>
+            <td class="dataset-details inline">
+              {% snippet 'scheming/display_snippets/multiple_choice.html', field=dict_fields[nti_spatial], data=pkg_dict %}
+            </td>
+          </tr>
+          {% endif %}
+          {% if pkg_dict.language and dict_fields[language] %}
+          <tr>
+            <th scope="row" class="dataset-label">{{ h.scheming_language_text(dict_fields[language].label) }}</th>
+            <td class="dataset-details inline">
+              {% snippet 'scheming/display_snippets/multiple_choice.html', field=dict_fields[language], data=pkg_dict %}
+            </td>
+          </tr>
+          {% endif %}
+          {% if pkg_dict.valid and dict_fields[valid] %}
+          <tr>
+            <th scope="row" class="dataset-label">{{ h.scheming_language_text(dict_fields[valid].label) }}</th>
+            <td class="dataset-details">
+              {% snippet 'package/snippets/csc_local_friendly_datetime.html', datetime_obj=pkg_dict.valid %}
+            </td>
+          </tr>
+          {% endif %}
+          {% if pkg_dict.conforms_to and dict_fields[conforms_to] %}
+          <tr>
+            <th scope="row" class="dataset-label">{{ h.scheming_language_text(dict_fields[conforms_to].label) }}</th>
+            <td class="dataset-details">
+              {% snippet 'scheming/display_snippets/csc_multiple_uri_text.html', data=pkg_dict, field=dict_fields[conforms_to] %}
+            </td>
+          </tr>
+          {% endif %}
+          {% if pkg_dict.reference and dict_fields[reference] %}
+          <tr>
+            <th scope="row" class="dataset-label">{{ h.scheming_language_text(dict_fields[reference].label) }}</th>
+            <td class="dataset-details">
+              {% snippet 'scheming/display_snippets/csc_multiple_uri_text.html', data=pkg_dict, field=dict_fields[reference] %}
+            </td>
+          </tr>
+          {% endif %}
+        
+        {% block extras scoped %}{% endblock %}
+        {% endblock %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endif %}

@@ -1,0 +1,37 @@
+<?php
+
+/**
+* Copyright 2018 Ayuntamiento de Santiago de Compostela, Entidad Pública Empresarial Red.es
+*
+* This file is part of the "Open Data Portal of Santiago de Compostela", developed within the "Ciudades Abiertas" project.
+*
+* Licensed under the EUPL, Version 1.2 or - as soon they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence");
+* You may not use this work except in compliance with the Licence.
+* You may obtain a copy of the Licence at:
+*
+* https://joinup.ec.europa.eu/software/page/eupl
+*
+* Unless required by applicable law or agreed to in writing, software distributed under the Licence is distributed on an "AS IS" basis,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the Licence for the specific language governing permissions and limitations under the Licence.
+*/
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function csc_usuarios_form_views_form_content_page_1_alter(&$form, FormStateInterface $form_state, $form_id) {
+
+    $current_user = \Drupal::currentUser();
+    $roles = $current_user->getRoles();
+    
+    if (!empty($form['header']['node_bulk_form']['action']['#options']) && !in_array('administrator', $roles)) {
+        unset($form['header']['node_bulk_form']['action']['#options']['node_make_sticky_action']);
+        unset($form['header']['node_bulk_form']['action']['#options']['node_make_unsticky_action']);
+        unset($form['header']['node_bulk_form']['action']['#options']['node_promote_action']);
+        unset($form['header']['node_bulk_form']['action']['#options']['node_unpromote_action']);
+        unset($form['header']['node_bulk_form']['action']['#options']['pathauto_update_alias_node']);
+    }
+}
+

@@ -1,0 +1,61 @@
+langcode: es
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.aplicacion.body
+    - field.field.node.aplicacion.field_capturas_de_pantalla
+    - field.field.node.aplicacion.field_categoria
+    - field.field.node.aplicacion.field_desarrollador
+    - field.field.node.aplicacion.field_enlaces_a_la_aplicacion
+    - field.field.node.aplicacion.field_etiquetas
+    - field.field.node.aplicacion.field_logo_icono
+    - field.field.node.aplicacion.field_plataformas
+    - image.style.aplicacion_listado
+    - node.type.aplicacion
+  module:
+    - image
+    - text
+    - user
+id: node.aplicacion.teaser
+targetEntityType: node
+bundle: aplicacion
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 3
+    settings:
+      trim_length: 300
+    third_party_settings: {  }
+    region: content
+  field_desarrollador:
+    type: string
+    weight: 2
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_logo_icono:
+    type: image
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      image_style: aplicacion_listado
+      image_link: ''
+    third_party_settings: {  }
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_capturas_de_pantalla: true
+  field_categoria: true
+  field_enlaces_a_la_aplicacion: true
+  field_etiquetas: true
+  field_plataformas: true
+  langcode: true

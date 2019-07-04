@@ -1,0 +1,16 @@
+smtp_on: true
+smtp_host: 127.0.0.1
+smtp_hostbackup: ''
+smtp_port: '25'
+smtp_protocol: standard
+smtp_username: ''
+smtp_password: ''
+smtp_from: concellosantiago@fake.com
+smtp_fromname: 'Concello de Santiago de Compostela'
+smtp_client_hostname: ''
+smtp_client_helo: ''
+smtp_allowhtml: '0'
+smtp_test_address: ''
+smtp_debugging: false
+prev_mail_system: php_mail
+langcode: es

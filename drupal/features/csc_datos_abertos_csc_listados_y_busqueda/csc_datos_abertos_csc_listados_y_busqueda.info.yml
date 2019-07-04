@@ -1,0 +1,20 @@
+name: 'CSC Listados y búsqueda'
+type: module
+core: 8.x
+dependencies:
+  - block
+  - csc_datos_abertos_csc_aplicacion
+  - csc_datos_abertos_csc_busqueda_base
+  - csc_datos_abertos_csc_noticia
+  - datetime
+  - facets
+  - image
+  - node
+  - search_api
+  - search_api_solr
+  - system
+  - text
+  - user
+  - views
+version: 8.x-1.0-beta4
+package: 'CSC Datos abertos'

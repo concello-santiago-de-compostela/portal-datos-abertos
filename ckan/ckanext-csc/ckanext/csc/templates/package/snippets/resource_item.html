@@ -1,0 +1,75 @@
+{# 
+  Copy from   
+    {% snippet "package/snippets/resources_item.html"
+  
+  #}
+
+{% set url_action = 'resource_edit' if url_is_edit and can_edit else 'resource_read' %}
+{% set url = h.url_for(controller='package', action=url_action, id=pkg.name, resource_id=res.id) %}
+{% set dict_fields = h.csc_dataset_display_fields(['format'], schema.resource_fields) %}
+{% set language, value = h.csc_dataset_field_value(res.name_translated) %}
+<li class="resource-item" data-id="{{ res.id }}" id="{{res.id}}">
+  {% block resource_item_title %}
+    <div class="resource-item-csc resource-item-name">
+      {% if not value %}{% set value =  _("Unnamed resource") %}{% endif %}
+      {% if language %}
+        <div lang='{{language}}' xml:lang='{{language}}'>
+      {% endif %}
+      <a class="heading" href="{{ url }}" title="{{ value }}">
+        <strong>{{ value }}</strong>
+      </a>
+      <span class="format-label" property="dc:format" data-format="{{ res.format.lower() or 'data' }}">{{ h.get_translated(res, 'format') }}</span>
+      {% if (language) %}
+      </div>
+      {% endif %}
+    </div>
+  {% endblock %}
+  {% block resource_item_description %}{% endblock %}
+  {% block resource_item_explore %}
+  {% if not url_is_edit %}
+  <div class="dropdown btn-group">
+    <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+      <i class="fa fa-share"></i>
+      {{ _('Explore') }}
+      <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+      {% block resource_item_explore_links %}
+      <li>
+        <a href="{{ url }}">
+          {% if res.has_views %}
+            <i class="fa fa-bar-chart-o"></i>
+            {{ _('Preview') }}
+          {% else %}
+            <i class="fa fa-info-circle"></i>
+            {{ _('More information') }}
+          {% endif %}
+        </a>
+      </li>
+      {% if res.url and h.is_url(res.url) %}
+      <li>
+        <a href="{{ res.url }}" class="resource-url-analytics" target="_blank">
+          {% if res.has_views or res.url_type == 'upload' %}
+            <i class="fa fa-arrow-circle-o-down"></i>
+            {{ _('Download') }}
+          {% else %}
+            <i class="fa fa-external-link"></i>
+            {{ _('Go to resource') }}
+          {% endif %}
+        </a>
+      </li>
+      {% endif %}
+      {% if can_edit %}
+      <li>
+        <a href="{{ h.url_for(controller='package', action='resource_edit', id=pkg.name, resource_id=res.id) }}">
+          <i class="fa fa-pencil-square-o"></i>
+          {{ _('Edit') }}
+        </a>
+      </li>
+      {% endif %}
+      {% endblock %}
+    </ul>
+  </div>
+  {% endif %}
+  {% endblock %}
+</li>

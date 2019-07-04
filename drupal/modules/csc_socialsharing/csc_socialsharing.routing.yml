@@ -1,0 +1,7 @@
+csc_socialsharing.config:
+ path: 'admin/config/services/csc/socialsharing/config'
+ defaults:
+   _title: 'CSC Social Sharing Block Config'
+   _form: '\Drupal\csc_socialsharing\Form\SocialSharingConfigForm'
+ requirements:
+   _permission: 'access administration pages'

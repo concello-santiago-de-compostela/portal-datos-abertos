@@ -1,0 +1,14 @@
+langcode: es
+status: true
+dependencies: {  }
+name: noticia_plantilla
+label: 'Noticia plantilla'
+effects:
+  232ff850-e651-496b-84b1-07b5ca11d7c1:
+    uuid: 232ff850-e651-496b-84b1-07b5ca11d7c1
+    id: image_scale
+    weight: 1
+    data:
+      width: 300
+      height: null
+      upscale: false

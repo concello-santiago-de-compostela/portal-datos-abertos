@@ -1,0 +1,116 @@
+{% import 'macros/form.html' as form %}
+
+{% set coord1 = '' %}
+{% set coord2 = '' %}
+{% set coord3 = '' %}
+{% set coord4 = '' %}
+{% set placeholder =  h.scheming_language_text(field.form_placeholder) %}
+
+<div class="div-{{field.field_name}}" id="div-{{field.field_name}}">
+
+  {% set coords_in_form = False %}
+
+  {#   Si los datos vienen del formulario (tienen preferencia sobre lo almacenado)  #}
+  {% if data.get(field.field_name + '-coord-1')  
+        or data.get(field.field_name + '-coord-2')
+        or data.get(field.field_name + '-coord-3')
+        or data.get(field.field_name + '-coord-4') %}
+      
+    {% set coords_in_form = True %}
+    
+    {% if data.get(field.field_name + '-coord-1')  %}
+      {% set coord1 = data.get(field.field_name + '-coord-1') %}
+    {% endif %}
+    
+    {% if data.get(field.field_name + '-coord-2')%}
+      {% set coord2 = data.get(field.field_name + '-coord-2') %}
+    {% endif %}
+  
+    {% if  data.get(field.field_name + '-coord-3') %}
+      {% set coord3 = data.get(field.field_name + '-coord-3') %}
+    {% endif %}
+
+    {% if  data.get(field.field_name + '-coord-4') %}
+      {% set coord4 = data.get(field.field_name + '-coord-4') %}
+    {% endif %}
+
+    {% set aux_errors = [] %}
+    {% if errors[field.field_name + '-coord-1'] %}
+      {% set aux_errors = errors[field.field_name + '-coord-1'] %}
+    {% endif %}
+    {% if errors[field.field_name + '-coord-2'] %}
+      {% set aux_errors = aux_errors + errors[field.field_name + '-coord-2'] %}
+    {% endif %}
+    {% if errors[field.field_name + '-coord-3'] %}
+      {% set aux_errors = aux_errors + errors[field.field_name + '-coord-3'] %}
+    {% endif %}
+    {% if errors[field.field_name + '-coord-4'] %}
+      {% set aux_errors = aux_errors + errors[field.field_name + '-coord-4'] %}
+    {% endif %}
+  {% endif %}
+  {# Si no, se comprueba si es edicion  #}
+  {% if not coords_in_from %}
+    {% set coord1 = '' %}
+    {% set coord2 = '' %}
+    {% set coord3 = '' %}
+    {% set coord4 = '' %}
+    {% if data.get(field.field_name) 
+          and data.get(field.field_name)['coordinates'] 
+          and data.get(field.field_name)['type'] %}
+      {% if data.get(field.field_name)['type'] == 'Point'%}
+        {% set coord1 = data.get(field.field_name)['coordinates']|join(',') %}
+      {% elif data.get(field.field_name)['type'] == 'Polygon' 
+          and data.get(field.field_name)['coordinates'][0] 
+          and data.get(field.field_name)['coordinates'][0]|length  >= 4
+          and data.get(field.field_name)['coordinates'][0]|length  <= 5 %}
+        {% set coords = data.get(field.field_name)['coordinates'][0] %}
+        {% set coord1 = coords[0]|join(',') %}
+        {% set coord2 = coords[1]|join(',') %}
+        {% set coord3 = coords[2]|join(',') %}
+        {% if data.get(field.field_name)['coordinates'][0]|length  == 5 %}
+          {% set coord4 = coords[3]|join(',') %}
+        {% endif %}
+      {% endif %}
+    {% endif %}
+  {% endif %}
+
+
+  <div class="coordinates">
+      {% call form.input_block(
+          'field-' + field.field_name,
+          h.scheming_language_text(field.label),
+          aux_errors,
+          [], [], '', false
+         )
+      %}
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="input-group" >
+          <label for="{{ 'field-' + field.field_name +  '-coord-1' }}" class="input-group-addon">{{ _( 'Coordinate 1') }}</label>
+          <input id="{{ 'field-' + field.field_name +  '-coord-1' }}" type="text" name="{{ field.field_name + '-coord-1' }}" value="{{ coord1 }}" class="form-control dataset-private" placeholder="{{ placeholder }}" />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="input-group" >
+          <label for="{{ 'field-' + field.field_name +  '-coord-2' }}" class="input-group-addon">{{ _( 'Coordinate 2' ) }}</label>
+          <input id="{{ 'field-' + field.field_name +  '-coord-2' }}" type="text" name="{{ field.field_name + '-coord-2' }}" value="{{ coord2 }}" class="form-control dataset-private" placeholder="{{ placeholder }}" />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="input-group" >
+          <label for="{{ 'field-' + field.field_name +  '-coord-3' }}-value" class="input-group-addon">{{ _( 'Coordinate 3' ) }}</label>
+          <input id="{{ 'field-' + field.field_name +  '-coord-3' }}" type="text" name="{{ field.field_name + '-coord-3' }}" value="{{ coord3 }}" class="form-control dataset-private" placeholder="{{ placeholder }}" />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="input-group" >
+          <label for="{{ 'field-' + field.field_name +  '-coord-4' }}-value" class="input-group-addon">{{ _( 'Coordinate 4' ) }}</label>
+          <input id="{{ 'field-' + field.field_name +  '-coord-4' }}" type="text" name="{{ field.field_name + '-coord-4' }}" value="{{ coord4 }}" class="form-control dataset-private" placeholder="{{ placeholder }}" />
+        </div>
+      </div>
+    </div>
+    {%- snippet 'scheming/form_snippets/help_text.html', field=field -%}
+    {% endcall %}
+  </div>
+</div> 

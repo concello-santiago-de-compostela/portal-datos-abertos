@@ -1,0 +1,193 @@
+<?php
+
+/**
+* Copyright 2018 Ayuntamiento de Santiago de Compostela, Entidad Pública Empresarial Red.es
+*
+* This file is part of the "Open Data Portal of Santiago de Compostela", developed within the "Ciudades Abiertas" project.
+*
+* Licensed under the EUPL, Version 1.2 or - as soon they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence");
+* You may not use this work except in compliance with the Licence.
+* You may obtain a copy of the Licence at:
+*
+* https://joinup.ec.europa.eu/software/page/eupl
+*
+* Unless required by applicable law or agreed to in writing, software distributed under the Licence is distributed on an "AS IS" basis,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the Licence for the specific language governing permissions and limitations under the Licence.
+*/
+
+/**
+ * @file
+ * Contains Bootstrap Mint theme override and preprocess functions.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Template\Attribute;
+use Drupal\Core\Url;
+use Drupal\Core\Link;
+use Drupal\menu_link_content\Plugin\Menu\MenuLinkContent;
+
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function csc_theme_preprocess_html(&$variables) 
+{
+  // Fix theme base errors
+  $variables['page']['footer_top_one'] = null;
+  $variables['page']['footer_top_two'] = null;
+  $variables['page']['footer_top_three'] = null;
+  $variables['page']['footer_top_four'] = null;
+  $variables['page']['topwidget_left'] = null;
+  $variables['page']['topwidget_middle'] = null;
+  $variables['page']['topwidget_right'] = null;
+  $variables['page']['sliding_header_one'] = null;
+  $variables['page']['sliding_header_two'] = null;
+
+  if (\Drupal::routeMatch()->getRouteName() == 'entity.node.canonical') {
+    $node = \Drupal::routeMatch()->getParameter('node');
+    $variables['attributes']['class'][] = 'page-nid-' . $node->id();
+  }
+  
+  $current_path = \Drupal::service('path.current')->getPath();
+  $variables['current_path'] = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+  
+  if (\Drupal::routeMatch()->getRouteName() == 'entity.taxonomy_term.canonical') {
+    $variables['term_id'] = \Drupal::routeMatch()->getRawParameter('taxonomy_term');
+  }
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function csc_theme_preprocess_page(&$variables) 
+{
+  //FAQ Accordions
+  $variables['#attached']['library'][] = 'csc_theme/acordeon'; 
+  //Navbar Feature
+  $variables['#attached']['library'][] = 'csc_theme/navbar-feature'; 
+  
+  // Add information about the number of sidebars.
+  if (!empty($variables['page']['sidebar_first']) && !empty($variables['page']['sidebar_second'])) {
+    $variables['contentlayout'] = 'col-md-6';
+    $variables['sidebarfirst'] = 'col-md-3';
+    $variables['sidebarsecond'] = 'col-md-3';
+  }
+  elseif (!empty($variables['page']['sidebar_first'])) {
+    $variables['contentlayout'] = 'col-md-9 ';
+    $variables['sidebarfirst'] = 'col-md-3';
+  }
+  elseif (!empty($variables['page']['sidebar_second'])) {
+    $variables['contentlayout'] = 'col-md-9';
+    $variables['sidebarsecond'] = 'col-md-3';
+  }
+  else {
+    $variables['contentlayout'] = 'col-md-12';
+  }
+
+  // Social media global variable.
+  $variables['show_social_icon'] = theme_get_setting('show_social_icon');
+  $variables['otempo_url'] = theme_get_setting('otempo_url');
+  $variables['show_credit_link'] = theme_get_setting('show_credit_link');
+}
+
+/**
+ * Implements hook_preprocess_menu().
+ */
+function csc_theme_preprocess_menu(&$variables, $hook) 
+{
+  if ($hook == 'menu__main') {
+    $current_path = \Drupal::request()->getRequestUri();
+    $items = $variables['items'];
+    foreach ($items as $key => $item) {
+      if ($item['url']->toString() == $current_path) {
+        $variables['items'][$key]['attributes']['class'] = 'active';
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_form_system_theme_settings_alter().
+ */
+function csc_theme_form_system_theme_settings_alter(&$form, FormStateInterface $form_state) 
+{
+  // Social Icon Link.
+  $form['csc_theme_settings']['social_icon'] = [
+    '#type' => 'details',
+    '#title' => t('OTempo url'),
+    '#open' => FALSE,
+  ];
+
+  $form['csc_theme_settings']['social_icon']['show_social_icon'] = [
+    '#type' => 'checkbox',
+    '#title' => t('O Tempo url'),
+    '#default_value' => theme_get_setting('show_social_icon'),
+    '#description'   => t("Show/Hide o Tempo"),
+  ];
+
+    $form['csc_theme_settings']['social_icon']['otempo_url'] = [
+    '#type' => 'textfield',
+    '#title' => t('O Tempo Link'),
+    '#default_value' => theme_get_setting('otempo_url'),
+  ];
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for search_block_form().
+ */
+function csc_theme_form_search_block_form_alter(&$form, &$form_state) 
+{
+  $form['actions']['submit']['#value'] = '';
+  $form['actions']['submit']['#type'] = 'button';
+  $form['actions']['submit']['#markup'] = '<i class="fa fa-search"></i>';
+  $form['keys']['#attributes']['placeholder'] = t('¿Que estás buscando?');
+}
+
+/**
+ * Implements theme_sitemap_menu_link().
+ */
+function csc_theme_sitemap_menu_link(array $variables) 
+{
+  $element = $variables['element'];
+  $sub_menu = '';
+
+  if ($element['#below']) {
+    $sub_menu = \Drupal::service('renderer')->render($element['#below']);
+  }
+
+  $url = $element['#url'];
+  // Alter multilanguage links
+  if ($element['#original_link'] instanceof MenuLinkContent) {
+      list($entity_type, $uuid) = explode(':', $element['#original_link']->getPluginId(), 2);
+      $entity = \Drupal::entityManager()->loadEntityByUuid($entity_type, $uuid);
+      if (! empty($entity->link->uri) && strpos($entity->link->uri, '[lang]') !== false) {
+          $language = Drupal::languageManager()->getCurrentLanguage()->getId();
+          $url = Url::fromUri(str_replace('[lang]', $language, $entity->link->uri));
+      }
+  }
+  $url->setOption('set_active_class', TRUE);
+  $output = \Drupal::linkGenerator()->generate($element['#title'], $url);
+  return '<li' . new Attribute($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
+}
+
+/**
+ * Implements theme_preprocess_breadcrumb().
+ */
+function csc_theme_preprocess_breadcrumb(&$variables) 
+{
+  if ($variables['breadcrumb'] && sizeof($variables['breadcrumb']) == 1) {
+    $request = \Drupal::request();
+    $route_match = \Drupal::routeMatch();
+    $page_title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
+      
+    if (!empty($page_title)) {
+      $variables['breadcrumb'][] = [
+        'text' => $page_title,
+        'attributes' => new Attribute(['class' => ['active']])
+      ];
+    }
+    //Se evita que se cachee el bloque de breadcrumbs
+    $variables['#cache']['contexts'][] = 'url';
+  }
+}

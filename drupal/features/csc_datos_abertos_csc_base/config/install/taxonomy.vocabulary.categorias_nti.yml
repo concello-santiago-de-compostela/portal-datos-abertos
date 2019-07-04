@@ -1,0 +1,8 @@
+langcode: es
+status: true
+dependencies: {  }
+name: 'Categorías NTI'
+vid: categorias_nti
+description: 'Categorías definidas en la NTI'
+hierarchy: 0
+weight: 0

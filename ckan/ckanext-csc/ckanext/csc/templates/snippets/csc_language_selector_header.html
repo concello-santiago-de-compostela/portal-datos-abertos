@@ -1,0 +1,46 @@
+{% resource 'csc/js/csc_dropdown.js' %}
+
+{% set current_url = request.environ.CKAN_CURRENT_URL %}
+{% set query_string_url = request.environ.QUERY_STRING %} 
+{% set path_info = request.environ.PATH_INFO %} 
+{% set current_lang = request.environ.CKAN_LANG %}
+  <fieldset class="js-form-item form-item js-form-wrapper form-wrapper">
+      <legend><span class="fieldset-legend">{{ _('Switch Language') }}</span></legend>
+      <div class="fieldset-wrapper">
+        <div class="dropbutton-wrapper" 
+            data-module="csc_dropdown"
+            data-module-title="Idiomas">
+          <div class="dropbutton-widget">
+            <ul class="dropdown-language-item dropbutton">
+              {% for locale in h.get_available_locales() %}
+                {% if locale and locale.short_name == current_lang %}
+                  {% if locale.short_name == 'es' %}
+                    <li class="{{ locale }}">
+                      <span class="language-link active-language" hreflang="{{ locale }}">{{ _('Castilian') }}</span>
+                    </li>
+                  {% else %}
+                    <li class="{{ locale }}">
+                      <span class="language-link active-language" hreflang="{{ locale }}">{{ locale.display_name.title() or locale.english_name.title() }}</span>
+                    </li>
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+              {% for locale in h.get_available_locales() %}
+                {% if locale and locale.short_name != current_lang %}
+                  {% if locale.short_name == 'es' %}
+                    <li class="{{ locale }}">
+                        <a href="{% url_for h.current_url(), locale=locale.short_name %}?{{query_string_url}}" class="language-link" hreflang="{{ locale }}">{{ _('Castilian') }}</a>
+                    </li>
+                  {% else %}
+                    <li class="{{ locale }}">
+                      <a href="{% url_for h.current_url(), locale=locale.short_name %}?{{query_string_url}}" class="language-link" hreflang="{{ locale }}">{{ locale.display_name.title() or locale.english_name.title() }}</a>
+                    </li>
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+

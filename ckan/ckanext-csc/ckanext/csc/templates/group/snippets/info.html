@@ -1,0 +1,16 @@
+{% ckan_extends %}
+
+    {% block description %}{% endblock %}
+      {% block nums %}
+      <div class="nums">
+        <p class="dataset-number">
+          {{ h.SI_number_span(group.package_count) }} 
+          {% if group.package_count == 1 %}
+            {{ _('Dataset') }}
+          {% else %}
+            {{ _('Datasets') }}
+          {% endif %}
+        </p>
+      </div>
+      {% endblock %}
+      {% block follow %}{% endblock %}

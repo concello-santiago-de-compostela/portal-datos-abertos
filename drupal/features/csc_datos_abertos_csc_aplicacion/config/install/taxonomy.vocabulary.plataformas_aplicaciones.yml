@@ -1,0 +1,8 @@
+langcode: es
+status: true
+dependencies: {  }
+name: 'Plataformas Aplicaciones'
+vid: plataformas_aplicaciones
+description: 'Plataformas en las que está disponible una aplicación'
+hierarchy: 0
+weight: 0

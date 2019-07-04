@@ -1,0 +1,17 @@
+langcode: es
+status: true
+dependencies:
+  config:
+    - node.type.preguntas_frecuentes
+id: node.preguntas_frecuentes.changed
+field_name: changed
+entity_type: node
+bundle: preguntas_frecuentes
+label: Modificado
+description: 'La fecha en que el nodo fue editado por última vez.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

@@ -1,0 +1,14 @@
+{% ckan_extends %}
+
+
+{% block breadcrumb_content %}
+  <li>{% link_for _('Organizations'), controller='organization', action='index', named_route=group_type + '_index' %}</li>
+  <li class="active">{% link_for c.group_dict.display_name|truncate(35), controller='organization', action='read', id=c.group_dict.name, named_route=group_type + '_read' %}</li>
+{% endblock %}
+
+{% block content_primary_nav %}
+  {{ h.build_nav_icon(group_type + '_read', _('Datasets'), id=c.group_dict.name) }}
+  {% if h.check_access('organization_update', {'id': c.group_dict.id}) %}
+    {{ h.build_nav_icon(group_type + '_activity', _('Activity Stream'), id=c.group_dict.name, offset=0) }}
+  {% endif %}
+{% endblock %}

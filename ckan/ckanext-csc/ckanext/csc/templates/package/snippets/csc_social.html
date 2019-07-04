@@ -1,0 +1,14 @@
+{% block social %}
+  <section class="social">
+    <div class="csc-share share-content">
+      {% block social_title %}
+        <span class="share-title">{{ _('Share') }}:</span>
+      {% endblock %}
+      {% block social_nav %}      
+        <div class="addthis_inline_share_toolbox"></div>
+      {% endblock %}
+    </div>
+    <script type="text/javascript" src="{{ h.csc_get_addthis_route() }}"></script>
+  </section>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+name: 'CSC Base'
+type: module
+core: 8.x
+dependencies:
+  - back_to_top
+  - ckeditor
+  - colorbox
+  - content_translation
+  - cookieconsent
+  - ctools
+  - disqus
+  - editor
+  - features
+  - field
+  - filter
+  - imce
+  - language
+  - locale
+  - menu_breadcrumb
+  - menu_link_content
+  - path
+  - pathauto
+  - taxonomy
+  - text
+  - user
+version: 8.x-1.0-beta8
+package: 'CSC Datos abertos'

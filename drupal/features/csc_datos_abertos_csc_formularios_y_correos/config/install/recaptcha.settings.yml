@@ -1,0 +1,9 @@
+site_key: '000000000000000000000000000000000000000'
+secret_key: '0000000000000000000000000000000000000000'
+widget:
+  theme: light
+  type: image
+  size: ''
+  tabindex: 0
+  noscript: true
+langcode: es

@@ -1,0 +1,22 @@
+global-styling:
+  css:
+    component:
+      css/style.css: {}
+fonts:
+  css:
+    theme:
+      'https://fonts.googleapis.com/css?family=Roboto:300,400,500': {type: external}
+      'https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800': {type: external}
+
+acordeon:
+  version: 1.x
+  js:
+    js/acordeon.js: {}
+  dependencies:
+    - core/jquery
+
+navbar-feature:
+  js:
+    js/navbar_feature.js: {}
+  dependencies:
+    - core/jquery

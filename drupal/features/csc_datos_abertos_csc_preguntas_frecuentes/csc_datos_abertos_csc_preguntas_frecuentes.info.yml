@@ -1,0 +1,17 @@
+name: 'CSC Preguntas Frecuentes'
+type: module
+core: 8.x
+version: 8.x-1.0-beta2
+dependencies:
+  - content_translation
+  - entity_reference_revisions
+  - field
+  - language
+  - menu_ui
+  - node
+  - paragraphs
+  - path
+  - pathauto
+  - text
+  - user
+package: 'CSC Datos abertos'

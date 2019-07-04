@@ -1,0 +1,54 @@
+{
+    "scheming_presets_version": 1,
+    "about": "scheming presets for CSC NTI",
+    "about_url": "http://datos.santiagodecompostela.gal",
+    "presets": [
+      {
+        "preset_name": "csc_uri_text",
+        "values": {
+          "form_snippet": "csc_uri_text.html",
+          "display_snippet": "csc_uri_text.html",
+          "validators": "csc_uri_text",
+          "output_validators": "csc_uri_text_output"
+        }
+      },
+      {
+        "preset_name": "csc_multiple_uri_text",
+        "values": {
+          "form_snippet": "csc_multiple_uri_text.html",
+          "display_snippet": "csc_multiple_uri_text.html",
+          "error_snippet": "csc_multiple_uri_text.html",
+          "validators": "csc_multiple_uri_text",
+          "output_validators": "csc_multiple_uri_text_output"
+        }
+      },
+      {
+        "preset_name": "csc_date_frequency",
+        "values": {
+          "form_snippet": "csc_date_frequency.html",
+          "display_snippet": "csc_date_frequency.html",
+          "validators": "csc_date_frequency",
+          "output_validators": "csc_date_frequency_output"
+        }
+      },
+      {
+        "preset_name": "csc_date_period",
+        "values": {
+          "form_snippet": "csc_date_period.html",
+          "display_snippet": "csc_date_period.html",
+          "validators": "csc_date_period",
+          "output_validators": "csc_date_period_output"
+        }
+      },
+      {
+          "preset_name": "csc_spatial",
+          "values": {
+            "form_snippet": "csc_spatial.html",
+            "display_snippet": "csc_spatial.html",
+            "validators": "csc_spatial",
+            "output_validators": "csc_spatial_output"
+          }
+      }
+    ]
+  }
+  

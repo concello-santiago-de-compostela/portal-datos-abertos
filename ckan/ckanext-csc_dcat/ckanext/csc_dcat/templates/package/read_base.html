@@ -1,0 +1,9 @@
+{% ckan_extends %}
+
+  {% block structured_data %}
+    {% if h.helper_available('structured_data') %}
+    <script type="application/ld+json">
+    {{ h.structured_data(pkg.id, ['csc_schemaorg'])|safe }}
+    </script>
+    {% endif %}
+  {% endblock %}

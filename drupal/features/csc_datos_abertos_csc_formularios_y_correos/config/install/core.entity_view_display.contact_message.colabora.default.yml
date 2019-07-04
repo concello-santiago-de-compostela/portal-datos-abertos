@@ -1,0 +1,63 @@
+langcode: es
+status: true
+dependencies:
+  config:
+    - contact.form.colabora
+    - field.field.contact_message.colabora.field_politica_privacidad
+    - field.field.contact_message.colabora.field_tipo_de_consulta
+  module:
+    - options
+id: contact_message.colabora.default
+targetEntityType: contact_message
+bundle: colabora
+mode: default
+content:
+  field_politica_privacidad:
+    weight: 5
+    label: above
+    settings:
+      format: yes-no
+      format_custom_true: ''
+      format_custom_false: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_tipo_de_consulta:
+    weight: 3
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  mail:
+    weight: 1
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+  message:
+    type: basic_string
+    weight: 4
+    label: above
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  name:
+    weight: 0
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  subject:
+    weight: 2
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+hidden:
+  langcode: true

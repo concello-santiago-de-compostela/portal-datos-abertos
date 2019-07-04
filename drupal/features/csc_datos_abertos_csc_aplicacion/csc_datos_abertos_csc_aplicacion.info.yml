@@ -1,0 +1,28 @@
+name: 'CSC Aplicación'
+type: module
+core: 8.x
+dependencies:
+  - block
+  - colorbox
+  - content_translation
+  - csc_datos_abertos_csc_listados_y_busqueda
+  - ctools
+  - disqus
+  - facets
+  - field
+  - file
+  - image
+  - language
+  - link
+  - menu_ui
+  - node
+  - path
+  - pathauto
+  - rdf
+  - system
+  - taxonomy
+  - text
+  - user
+  - views
+version: 8.x-1.0-beta3
+package: 'CSC Datos abertos'

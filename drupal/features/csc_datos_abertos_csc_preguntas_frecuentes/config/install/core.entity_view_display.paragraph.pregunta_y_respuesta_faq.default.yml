@@ -1,0 +1,30 @@
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.pregunta_y_respuesta_faq.field_respuesta_pregunta
+    - field.field.paragraph.pregunta_y_respuesta_faq.field_titulo_pregunta
+    - paragraphs.paragraphs_type.pregunta_y_respuesta_faq
+  module:
+    - text
+id: paragraph.pregunta_y_respuesta_faq.default
+targetEntityType: paragraph
+bundle: pregunta_y_respuesta_faq
+mode: default
+content:
+  field_respuesta_pregunta:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_titulo_pregunta:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

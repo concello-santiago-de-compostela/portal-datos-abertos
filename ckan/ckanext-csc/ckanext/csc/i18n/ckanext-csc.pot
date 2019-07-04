@@ -1,0 +1,865 @@
+# Copyright 2018 Ayuntamiento de Santiago de Compostela, Entidad Pública Empresarial Red.es
+# 
+# This file is part of the "Open Data Portal of Santiago de Compostela", developed within the "Ciudades Abiertas" project.
+# 
+# Licensed under the EUPL, Version 1.2 or - as soon they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence");
+# You may not use this work except in compliance with the Licence.
+# You may obtain a copy of the Licence at:
+# 
+# https://joinup.ec.europa.eu/software/page/eupl
+# 
+# Unless required by applicable law or agreed to in writing, software distributed under the Licence is distributed on an "AS IS" basis,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the Licence for the specific language governing permissions and limitations under the Licence.
+msgid ""
+msgstr ""
+"Project-Id-Version: ckanext-csc 0.0.1\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2019-01-26 14:02+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ckanext/csc/templates/package/snippets/csc_resources.html:18
+#: ckanext/csc/templates/package/snippets/csc_resources_list.html:31
+#, python-format
+msgid ""
+" <p class=\"empty\">This dataset has no data, <a href=\"%(url)s\">why not add"
+" some?</a></p> "
+msgstr ""
+
+#: ckanext/csc/public/amcharts/amcharts.js:356
+msgid "+b+"
+msgstr ""
+
+#: ckanext/csc/public/amcharts/amcharts.js:353
+msgid "+m+"
+msgstr ""
+
+#: ckanext/csc/templates/apidata/apidata.html:34
+#: ckanext/csc/templates/apidata/apidata.html:45
+#: ckanext/csc/templates/apidata/apidata.html:48
+#: ckanext/csc/templates/apidata/apidata.html:50
+msgid "API Data"
+msgstr ""
+
+#: ckanext/csc/templates/header.html:69
+msgid "About"
+msgstr ""
+
+#: ckanext/csc/templates/group/read_base.html:14
+#: ckanext/csc/templates/organization/read_base.html:12
+msgid "Activity Stream"
+msgstr ""
+
+#: ckanext/csc/templates/package/snippets/csc_resources.html:6
+msgid "Add new resource"
+msgstr ""
+
+#: ckanext/csc/templates/package/snippets/csc_additional_info.html:27
+msgid "Additional Info"
+msgstr ""
+
+#: ckanext/csc/templates/header.html:14
+msgid "Admin"
+msgstr ""
+
+#: ckanext/csc/helpers.py:473
+msgid "All months"
+msgstr ""
+
+#: ckanext/csc/helpers.py:114
+msgid "Annual"
+msgstr ""
+
+#: ckanext/csc/helpers.py:114
+msgid "Biennial"
+msgstr ""
+
+#: ckanext/csc/helpers.py:115
+msgid "Bimonthly"
+msgstr ""
+
+#: ckanext/csc/helpers.py:116
+msgid "Biweekly"
+msgstr ""
+
+#: ckanext/csc/templates/package/resource_read.html:144
+msgid "Byte size"
+msgstr ""
+
+#: ckanext/csc/templates/snippets/csc_language_selector_header.html:19
+#: ckanext/csc/templates/snippets/csc_language_selector_header.html:32
+msgid "Castilian"
+msgstr ""
+
+#: ckanext/csc/templates/package/read_base.html:39
+#: ckanext/csc/templates/package/read_base.html:87
+#: ckanext/csc/templates/package/resource_read.html:57
+#: ckanext/csc/templates/package/search.html:45
+#: ckanext/csc/templates/package/search.html:50
+#: ckanext/csc/templates/package/snippets/csc_breadcrumb_content.html:4
+msgid "Catalog"
+msgstr ""
+
+#: ckanext/csc/plugin.py:83
+msgid "Category"
+msgstr ""
+
+#: ckanext/csc/templates/scheming/package/read.html:48
+msgid "Comments"
+msgstr ""
+
+#: ckanext/csc/helpers.py:119
+msgid "Continuous"
+msgstr ""
+
+#: ckanext/csc/templates/user/read.html:13
+msgid "Create one now?"
+msgstr ""
+
+#: ckanext/csc/templates/package/resource_read.html:111
+msgid "Created"
+msgstr ""
+
+#: ckanext/csc/helpers.py:117
+msgid "Daily"
+msgstr ""
+
+#: ckanext/csc/templates/header.html:30
+msgid "Dashboard"
+msgstr ""
+
+#: ckanext/csc/templates/header.html:26
+#, python-format
+msgid "Dashboard (%(num)d new item)"
+msgid_plural "Dashboard (%(num)d new items)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ckanext/csc/templates/dashboard/dashboard.html:34
+#: ckanext/csc/templates/dashboard/dashboard.html:45
+#: ckanext/csc/templates/dashboard/dashboard.html:48
+#: ckanext/csc/templates/dashboard/dashboard.html:50
+msgid "Dashboard CSC"
+msgstr ""
+
+#: ckanext/csc/templates/dashboard/dashboard.html:58
+msgid "Dashboard_introduction"
+msgstr ""
+
+#: ckanext/csc/templates/apidata/apidata.html:25
+#: ckanext/csc/templates/apidata/apidata.html:44
+#: ckanext/csc/templates/dashboard/dashboard.html:25
+#: ckanext/csc/templates/dashboard/dashboard.html:44
+#: ckanext/csc/templates/dashboard/dashboard.html:99
+#: ckanext/csc/templates/package/read_base.html:30
+#: ckanext/csc/templates/package/resource_read.html:48
+#: ckanext/csc/templates/package/search.html:26
+#: ckanext/csc/templates/package/search.html:44
+#: ckanext/csc/templates/package/snippets/csc_breadcrumb_content.html:2
+msgid "Data Catalog"
+msgstr ""
+
+#: ckanext/csc/controllers.py:43 ckanext/csc/helpers.py:642
+#: ckanext/csc/templates/group/snippets/csc_info.html:29
+#: ckanext/csc/templates/package/search.html:35
+#: ckanext/csc/templates/snippets/csc_organization.html:49
+msgid "Dataset"
+msgstr ""
+
+#: ckanext/csc/templates/group/read_base.html:12
+#: ckanext/csc/templates/group/snippets/csc_info.html:31
+#: ckanext/csc/templates/header.html:68
+#: ckanext/csc/templates/organization/read_base.html:10
+#: ckanext/csc/templates/package/search.html:48
+#: ckanext/csc/templates/package/snippets/csc_breadcrumb_content.html:6
+#: ckanext/csc/templates/snippets/csc_organization.html:51
+#: ckanext/csc/templates/user/read_base.html:9
+msgid "Datasets"
+msgstr ""
+
+#: ckanext/csc/helpers.py:124
+msgid "Days"
+msgstr ""
+
+#: ckanext/csc/templates/group/snippets/csc_info.html:18
+#: ckanext/csc/templates/scheming/package/read.html:14
+#: ckanext/csc/templates/snippets/csc_organization.html:38
+#: ckanext/csc/templates/snippets/csc_package_item.html:50
+msgid "Deleted"
+msgstr ""
+
+#: ckanext/csc/templates/package/snippets/csc_description.html:4
+msgid "Description"
+msgstr ""
+
+#: ckanext/csc/templates/dashboard/dashboard.html:205
+msgid "Resources format"
+msgstr ""
+
+#: ckanext/csc/templates/dashboard/dashboard.html:207
+msgid "Resources format description"
+msgstr ""
+
+#: ckanext/csc/templates/package/snippets/csc_resource_item.html:53
+msgid "Download"
+msgstr ""
+
+#: ckanext/csc/templates/dashboard/dashboard.html:188
+msgid "Download as CSV"
+msgstr ""
+
+#: ckanext/csc/templates/scheming/package/read.html:11
+#: ckanext/csc/templates/snippets/csc_package_item.html:48
+msgid "Draft"
+msgstr ""
+
+#: ckanext/csc/templates/package/snippets/csc_resource_item.html:65
+msgid "Edit"
+msgstr ""
+
+#: ckanext/csc/templates/header.html:36
+msgid "Edit settings"
+msgstr ""
+
+#: ckanext/csc/templates/user/read_base.html:13
+msgid "Edits"
+msgstr ""
+
+#: ckanext/csc/controllers.py:29
+msgid "Error loading data"
+msgstr ""
+
+#: ckanext/csc/templates/footer.html:19
+msgid "European Union logo"
+msgstr ""
+
+#: ckanext/csc/helpers.py:159
+msgid "Every"
+msgstr ""
+
+#: ckanext/csc/helpers.py:147
+msgid "Every {num} day"
+msgid_plural "Every {num} days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ckanext/csc/helpers.py:152
+msgid "Every {num} hour"
+msgid_plural "Every {num} hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ckanext/csc/helpers.py:137
+msgid "Every {num} month"
+msgid_plural "Every {num} months"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ckanext/csc/helpers.py:157
+msgid "Every {num} second"
+msgid_plural "Every {num} seconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ckanext/csc/helpers.py:142
+msgid "Every {num} week"
+msgid_plural "Every {num} weeks"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ckanext/csc/helpers.py:132
+msgid "Every {num} year"
+msgid_plural "Every {num} years"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ckanext/csc/templates/dashboard/dashboard.html:76
+msgid "Evolution of portal visits by month"
+msgstr ""
+
+#: ckanext/csc/templates/dashboard/dashboard.html:77
+msgid "Evolution of portal visits by month description"
+msgstr ""
+
+#: ckanext/csc/templates/dashboard/dashboard.html:106
+msgid "Evolution of published datasets"
+msgstr ""
+
+#: ckanext/csc/templates/dashboard/dashboard.html:107
+msgid "Evolution of published datasets description"
+msgstr ""
+
+#: ckanext/csc/templates/package/snippets/csc_resource_item.html:32
+msgid "Explore"
+msgstr ""
+
+#: ckanext/csc/templates/package/snippets/csc_export_links.html:5
+msgid "Export metadata in CSV format"
+msgstr ""
+
+#: ckanext/csc/templates/package/snippets/csc_export_links.html:4
+msgid "Export metadata in JSON format"
+msgstr ""
+
+#: ckanext/csc/templates/package/snippets/csc_export_links.html:7
+msgid "Export metadata in RDF format"
+msgstr ""
+
+#: ckanext/csc/templates/package/snippets/csc_export_links.html:6
+msgid "Export metadata in TURTLE format"
+msgstr ""
+
+#: ckanext/csc/templates/package/snippets/csc_export_links.html:3
+msgid "Export metadata in XML format"
+msgstr ""
+
+#: ckanext/csc/templates/snippets/csc_social_list_header.html:1
+msgid "Facebook"
+msgstr ""
+
+#: ckanext/csc/templates/snippets/csc_social_list_header.html:1
+msgid "Follow us on Facebook"
+msgstr ""
+
+#: ckanext/csc/templates/snippets/csc_social_list_header.html:2
+msgid "Follow us on Twitter"
+msgstr ""
+
+#: ckanext/csc/templates/snippets/csc_social_list_header.html:3
+msgid "Follow us on Youtube"
+msgstr ""
+
+#: ckanext/csc/templates/footer.html:65
+msgid "Footer"
+msgstr ""
+
+#: ckanext/csc/plugin.py:84 ckanext/csc/templates/package/resource_read.html:121
+msgid "Format"
+msgstr ""
+
+#: ckanext/csc/templates/scheming/display_snippets/csc_date_period.html:8
+msgid "From"
+msgstr ""
+
+#: ckanext/csc/templates/dashboard/dashboard.html:69
+msgid "General statistics"
+msgstr ""
+
+#: ckanext/csc/templates/package/snippets/csc_spatial.html:5
+msgid "Geographic location"
+msgstr ""
+
+#: ckanext/csc/templates/package/snippets/csc_resource_item.html:56
+msgid "Go to resource"
+msgstr ""
+
+#: ckanext/csc/templates/footer.html:16
+msgid "Government of Spain logo"
+msgstr ""
+
+#: ckanext/csc/templates/header.html:69
+msgid "Groups"
+msgstr ""
+
+#: ckanext/csc/templates/apidata/apidata.html:16
+#: ckanext/csc/templates/dashboard/dashboard.html:16
+#: ckanext/csc/templates/package/read_base.html:21
+#: ckanext/csc/templates/package/resource_read.html:39
+#: ckanext/csc/templates/package/search.html:17
+#: ckanext/csc/templates/snippets/csc_home_breadcrumb_item.html:4
+msgid "Home"
+msgstr ""
+
+#: ckanext/csc/helpers.py:124
+msgid "Hours"
+msgstr ""
+
+#: ckanext/csc/templates/footer.html:18
+msgid "Intelligent Cities and Islands portal logo"
+msgstr ""
+
+#: ckanext/csc/templates/package/resource_read.html:101
+msgid "Last updated"
+msgstr ""
+
+#: ckanext/csc/templates/package/resource_read.html:166
+#: ckanext/csc/templates/package/snippets/csc_license.html:7
+msgid "License"
+msgstr ""
+
+#: ckanext/csc/templates/header.html:43 ckanext/csc/templates/header.html:45
+msgid "Log out"
+msgstr ""
+
+#: ckanext/csc/templates/header.html:149
+msgid "Main navigation"
+msgstr ""
+
+#: ckanext/csc/templates/group/read_base.html:7
+msgid "Manage"
+msgstr ""
+
+#: ckanext/csc/helpers.py:124
+msgid "Minutes"
+msgstr ""
+
+#: ckanext/csc/templates/group/read.html:14
+#: ckanext/csc/templates/organization/read.html:20
+#: ckanext/csc/templates/package/search.html:75
+msgid "Modified Ascending"
+msgstr ""
+
+#: ckanext/csc/templates/group/read.html:13
+#: ckanext/csc/templates/organization/read.html:19
+#: ckanext/csc/templates/package/search.html:74
+msgid "Modified Descending"
+msgstr ""
+
+#: ckanext/csc/controllers.py:43 ckanext/csc/helpers.py:642
+#: ckanext/csc/templates/dashboard/dashboard.html:168
+msgid "Month"
+msgstr ""
+
+#: ckanext/csc/helpers.py:115
+msgid "Monthly"
+msgstr ""
+
+#: ckanext/csc/helpers.py:124
+msgid "Months"
+msgstr ""
+
+#: ckanext/csc/templates/package/snippets/csc_resource_item.html:44
+msgid "More information"
+msgstr ""
+
+#: ckanext/csc/templates/group/read.html:17
+#: ckanext/csc/templates/organization/read.html:23
+#: ckanext/csc/templates/package/search.html:78
+msgid "Name"
+msgstr ""
+
+#: ckanext/csc/templates/package/snippets/csc_license.html:24
+msgid "No License Provided"
+msgstr ""
+
+#: ckanext/csc/templates/footer.html:16 ckanext/csc/templates/footer.html:17
+#: ckanext/csc/templates/footer.html:18 ckanext/csc/templates/footer.html:19
+#: ckanext/csc/templates/package/snippets/csc_export_links.html:3
+#: ckanext/csc/templates/package/snippets/csc_export_links.html:4
+#: ckanext/csc/templates/package/snippets/csc_export_links.html:5
+#: ckanext/csc/templates/package/snippets/csc_export_links.html:6
+#: ckanext/csc/templates/package/snippets/csc_export_links.html:7
+#: ckanext/csc/templates/snippets/csc_catalog_downloads.html:4
+#: ckanext/csc/templates/snippets/csc_dataset_downloads.html:2
+#: ckanext/csc/templates/snippets/csc_social_list_header.html:1
+#: ckanext/csc/templates/snippets/csc_social_list_header.html:2
+#: ckanext/csc/templates/snippets/csc_social_list_header.html:3
+#: ckanext/csc/templates/snippets/csc_social_list_header.html:4
+msgid "Opens a new window"
+msgstr ""
+
+#: ckanext/csc/helpers.py:642
+msgid "Order"
+msgstr ""
+
+#: ckanext/csc/templates/snippets/csc_organization.html:24
+msgid "Organization"
+msgstr ""
+
+#: ckanext/csc/templates/header.html:68
+#: ckanext/csc/templates/organization/read_base.html:5
+msgid "Organizations"
+msgstr ""
+
+#: ckanext/csc/templates/dashboard/dashboard.html:217
+msgid "Others"
+msgstr ""
+
+#: ckanext/csc/templates/group/read.html:18
+#: ckanext/csc/templates/organization/read.html:24
+#: ckanext/csc/templates/package/search.html:79
+#: ckanext/csc/templates/snippets/csc_package_item.html:59
+msgid "Popular"
+msgstr ""
+
+#: ckanext/csc/templates/package/snippets/csc_resource_item.html:41
+msgid "Preview"
+msgstr ""
+
+#: ckanext/csc/templates/snippets/csc_package_item.html:33
+msgid "Private"
+msgstr ""
+
+#: ckanext/csc/templates/group/read.html:16
+#: ckanext/csc/templates/organization/read.html:22
+#: ckanext/csc/templates/package/search.html:77
+msgid "Published Ascending"
+msgstr ""
+
+#: ckanext/csc/templates/group/read.html:15
+#: ckanext/csc/templates/organization/read.html:21
+#: ckanext/csc/templates/package/search.html:76
+msgid "Published Descending"
+msgstr ""
+
+#: ckanext/csc/templates/dashboard/dashboard.html:133
+msgid "Published datasets by category"
+msgstr ""
+
+#: ckanext/csc/templates/dashboard/dashboard.html:135
+msgid "Published datasets by category description"
+msgstr ""
+
+#: ckanext/csc/controllers.py:43 ckanext/csc/helpers.py:642
+#: ckanext/csc/plugin.py:85 ckanext/csc/templates/package/snippets/csc_owner.html:8
+#: ckanext/csc/templates/snippets/csc_package_item.html:70
+msgid "Publisher"
+msgstr ""
+
+#: ckanext/csc/helpers.py:115
+msgid "Quarterly"
+msgstr ""
+
+#: ckanext/csc/templates/snippets/csc_catalog_downloads.html:4
+msgid "RDF Data Catalog"
+msgstr ""
+
+#: ckanext/csc/templates/snippets/csc_dataset_downloads.html:2
+msgid "RDF Data Dataset"
+msgstr ""
+
+#: ckanext/csc/templates/footer.html:17
+msgid "Red.es logo"
+msgstr ""
+
+#: ckanext/csc/templates/group/read.html:19
+#: ckanext/csc/templates/organization/read.html:25
+#: ckanext/csc/templates/package/search.html:80
+msgid "Relevance"
+msgstr ""
+
+#: ckanext/csc/templates/package/resource_read.html:134
+msgid "Resource identifier"
+msgstr ""
+
+#: ckanext/csc/templates/package/resource_read.html:154
+msgid "Resource relation"
+msgstr ""
+
+#: ckanext/csc/templates/dashboard/dashboard.html:216
+#: ckanext/csc/templates/package/snippets/csc_resources.html:3
+#: ckanext/csc/templates/package/snippets/csc_resources_list.html:17
+msgid "Resources"
+msgstr ""
+
+#: ckanext/csc/templates/group/read.html:21
+#: ckanext/csc/templates/organization/read.html:27
+msgid "Search datasets..."
+msgstr ""
+
+#: ckanext/csc/helpers.py:124
+msgid "Seconds"
+msgstr ""
+
+#: ckanext/csc/helpers.py:115
+msgid "Semiannual"
+msgstr ""
+
+#: ckanext/csc/helpers.py:117
+msgid "Semimonthly"
+msgstr ""
+
+#: ckanext/csc/helpers.py:117
+msgid "Semiweekly"
+msgstr ""
+
+#: ckanext/csc/templates/header.html:38
+msgid "Settings"
+msgstr ""
+
+#: ckanext/csc/templates/package/snippets/csc_social.html:5
+msgid "Share"
+msgstr ""
+
+#: ckanext/csc/templates/package/snippets/csc_facet_list.html:82
+#: ckanext/csc/templates/snippets/csc_facet_list.html:82
+msgid "Show More {facet_type}"
+msgstr ""
+
+#: ckanext/csc/templates/package/snippets/csc_facet_list.html:87
+#: ckanext/csc/templates/snippets/csc_facet_list.html:87
+msgid "Show Only Popular {facet_type}"
+msgstr ""
+
+#: ckanext/csc/templates/snippets/csc_social.html:5
+msgid "Social"
+msgstr ""
+
+#: ckanext/csc/templates/snippets/csc_language_selector_header.html:8
+msgid "Switch Language"
+msgstr ""
+
+#: ckanext/csc/templates/header.html:12
+msgid "Sysadmin settings"
+msgstr ""
+
+#: ckanext/csc/plugin.py:87
+msgid "Tag"
+msgstr ""
+
+#: ckanext/csc/templates/dashboard/dashboard.html:86
+#: ckanext/csc/templates/dashboard/dashboard.html:118
+#: ckanext/csc/templates/dashboard/dashboard.html:144
+#: ckanext/csc/templates/dashboard/dashboard.html:220
+msgid "The chart contains no data"
+msgstr ""
+
+#: ckanext/csc/templates/dashboard/dashboard.html:158
+msgid "The most visited datasets"
+msgstr ""
+
+#: ckanext/csc/templates/dashboard/dashboard.html:160
+msgid "The most visited datasets description"
+msgstr ""
+
+#: ckanext/csc/templates/dashboard/dashboard.html:185
+#: ckanext/csc/templates/dashboard/dashboard.html:190
+msgid "The table contains no data"
+msgstr ""
+
+#: ckanext/csc/templates/snippets/csc_social_list_header.html:4
+msgid "The weather"
+msgstr ""
+
+#: ckanext/csc/templates/package/snippets/csc_theme.html:7
+msgid "Theme"
+msgstr ""
+
+#: ckanext/csc/templates/package/snippets/csc_facet_list.html:92
+#: ckanext/csc/templates/snippets/csc_facet_list.html:91
+msgid "There are no {facet_type} that match this search"
+msgstr ""
+
+#: ckanext/csc/templates/package/snippets/csc_resources_list.html:35
+msgid "This dataset has no data"
+msgstr ""
+
+#: ckanext/csc/templates/snippets/csc_package_item.html:88
+msgid "This dataset has no description"
+msgstr ""
+
+#: ckanext/csc/templates/package/snippets/csc_license.html:14
+msgid "This dataset satisfies the Open Definition."
+msgstr ""
+
+#: ckanext/csc/helpers.py:117
+msgid "Three times a month"
+msgstr ""
+
+#: ckanext/csc/helpers.py:117
+msgid "Three times a week"
+msgstr ""
+
+#: ckanext/csc/helpers.py:115
+msgid "Three times a year"
+msgstr ""
+
+#: ckanext/csc/templates/scheming/display_snippets/csc_date_period.html:14
+msgid "To"
+msgstr ""
+
+#: ckanext/csc/helpers.py:114
+msgid "Triennial"
+msgstr ""
+
+#: ckanext/csc/helpers.py:118
+msgid "Twice a day"
+msgstr ""
+
+#: ckanext/csc/templates/snippets/csc_social_list_header.html:2
+msgid "Twitter"
+msgstr ""
+
+#: ckanext/csc/templates/package/resource_read.html:178
+msgid "URL"
+msgstr ""
+
+msgid "Unauthorized to see this content"
+msgstr ""
+
+#: ckanext/csc/helpers.py:186 ckanext/csc/helpers.py:273 ckanext/csc/helpers.py:328
+#: ckanext/csc/templates/package/snippets/csc_resource_item.html:13
+msgid "Unnamed resource"
+msgstr ""
+
+#: ckanext/csc/plugin.py:86
+msgid "Update frequency"
+msgstr ""
+
+#: ckanext/csc/templates/dashboard/dashboard.html:134
+#: ckanext/csc/templates/dashboard/dashboard.html:158
+#: ckanext/csc/templates/dashboard/dashboard.html:159
+#: ckanext/csc/templates/dashboard/dashboard.html:206
+msgid "Updated date"
+msgstr ""
+
+#: ckanext/csc/controllers.py:43
+msgid "Url"
+msgstr ""
+
+#: ckanext/csc/templates/user/read.html:18
+msgid "User hasn't created any datasets."
+msgstr ""
+
+#: ckanext/csc/templates/header.html:19
+msgid "View profile"
+msgstr ""
+
+#: ckanext/csc/controllers.py:45 ckanext/csc/helpers.py:642
+msgid "Visits"
+msgstr ""
+
+#: ckanext/csc/helpers.py:116 ckanext/csc/helpers.py:117
+msgid "Weekly"
+msgstr ""
+
+#: ckanext/csc/helpers.py:124
+msgid "Weeks"
+msgstr ""
+
+#: ckanext/csc/helpers.py:124
+msgid "Years"
+msgstr ""
+
+#: ckanext/csc/templates/user/read.html:11
+msgid "You haven't created any datasets."
+msgstr ""
+
+#: ckanext/csc/templates/snippets/csc_social_list_header.html:3
+msgid "Youtube"
+msgstr ""
+
+#: ckanext/csc/templates/package/resource_read.html:145
+msgid "bytes"
+msgstr ""
+
+#: ckanext/csc/public/amcharts/plugins/export/libs/fabric.js/fabric.js:20459
+#: ckanext/csc/public/amcharts/plugins/export/libs/fabric.js/fabric.min.js:6
+msgid "center"
+msgstr ""
+
+#: ckanext/csc/templates/base.html:41
+msgid "cookieconsent.dismiss"
+msgstr ""
+
+#: ckanext/csc/templates/base.html:42
+msgid "cookieconsent.learnMore"
+msgstr ""
+
+#: ckanext/csc/templates/base.html:40
+msgid "cookieconsent.message"
+msgstr ""
+
+#: ckanext/csc/helpers.py:122
+msgid "day"
+msgstr ""
+
+#: ckanext/csc/helpers.py:123
+msgid "days"
+msgstr ""
+
+#: ckanext/csc/helpers.py:122
+msgid "hour"
+msgstr ""
+
+#: ckanext/csc/helpers.py:123
+msgid "hours"
+msgstr ""
+
+#: ckanext/csc/helpers.py:122
+msgid "minute"
+msgstr ""
+
+#: ckanext/csc/helpers.py:123
+msgid "minutes"
+msgstr ""
+
+#: ckanext/csc/helpers.py:122
+msgid "month"
+msgstr ""
+
+#: ckanext/csc/helpers.py:123
+msgid "months"
+msgstr ""
+
+#: ckanext/csc/helpers.py:122
+msgid "second"
+msgstr ""
+
+#: ckanext/csc/helpers.py:123
+msgid "seconds"
+msgstr ""
+
+#: ckanext/csc/templates/scheming/display_snippets/csc_date_period.html:10
+msgid "to"
+msgstr ""
+
+#: ckanext/csc/helpers.py:479
+msgid "up to"
+msgstr ""
+
+#: ckanext/csc/helpers.py:122
+msgid "week"
+msgstr ""
+
+#: ckanext/csc/helpers.py:123
+msgid "weeks"
+msgstr ""
+
+#: ckanext/csc/helpers.py:122
+msgid "year"
+msgstr ""
+
+#: ckanext/csc/helpers.py:123
+msgid "years"
+msgstr ""
+
+# Traducciones sobrescritas de CKAN
+msgid "Not authorized to see this page"
+msgstr ""
+
+msgid "Organization not found"
+msgstr ""
+
+msgid "No user specified"
+msgstr ""
+
+msgid "Unauthorized to edit a user."
+msgstr ""
+
+msgid "Unauthorized to edit user %s"
+msgstr ""
+
+msgid "Unauthorized to register as a user."
+msgstr ""
+
+msgid "Unauthorized to create user %s"
+msgstr ""
+
+msgid "Unauthorized to request reset password."
+msgstr ""
+
+msgid "Unauthorized to reset password."
+msgstr ""
+
+msgid "Unauthorized to view followers %s"
+msgstr ""
+
+msgid "Invalid reset key. Please try again."
+msgstr ""

@@ -1,0 +1,21 @@
+
+  <li>{% link_for _('Data Catalog'), controller='package', action='search' %}</li>
+  {% if not pkg and not res%}
+    <li{{ bc_selected }}>{% link_for _('Catalog'), controller='package', action='search' %}</li>
+  {% else %}
+    <li>{% link_for _('Catalog'), controller='package', action='search' %}</li>
+    {% if pkg %}
+      {% set dataset = pkg.title or pkg.name %}
+      {% set dataset_title_language, dataset_title = h.csc_dataset_field_value(pkg.title_translated) %}
+      {% if not dataset_title %}
+        {% set dataset_title = pkg.name %}
+      {% endif %}
+      {% if not res %}
+        <li{{ bc_selected }}>{% link_for dataset_title|truncate(30), controller='package', action='read', id=pkg.name %}</li>
+      {% else %}
+        {% set res_title_language, res_title = h.csc_dataset_field_value(res.name_translated) %}
+        <li>{% link_for dataset_title|truncate(30), controller='package', action='read', id=pkg.name %}</li>
+        <li{{ bc_selected }}>{% link_for h.csc_resource_display_name_or_desc(res_title, None)|truncate(30), controller='package', action='resource_read', id=pkg.name, resource_id=res.id %}</li>
+      {% endif %}
+    {% endif %}
+  {% endif %}

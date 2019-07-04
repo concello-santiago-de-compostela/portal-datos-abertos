@@ -1,0 +1,8 @@
+name: 'CSC Busqueda base'
+type: module
+core: 8.x
+dependencies:
+  - search_api
+  - search_api_solr
+version: 8.x-1.0-beta1
+package: 'CSC Datos abertos'

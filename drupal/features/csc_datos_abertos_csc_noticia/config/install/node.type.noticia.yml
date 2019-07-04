@@ -1,0 +1,16 @@
+langcode: es
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Noticia
+type: noticia
+description: 'Noticias del portal de datos abiertos del Concello de Santiago de Compostela'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

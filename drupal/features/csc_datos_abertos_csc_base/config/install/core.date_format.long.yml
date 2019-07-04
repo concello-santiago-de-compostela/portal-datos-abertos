@@ -1,0 +1,7 @@
+langcode: und
+status: true
+dependencies: {  }
+id: long
+label: 'Fecha larga por defecto'
+locked: false
+pattern: 'l, j \d\e F, Y - H:i'

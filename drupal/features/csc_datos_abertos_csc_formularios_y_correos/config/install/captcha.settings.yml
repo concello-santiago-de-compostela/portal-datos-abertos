@@ -1,0 +1,10 @@
+default_challenge: recaptcha/reCAPTCHA
+description: 'Esta pregunta es para comprobar si usted es un visitante humano y prevenir envíos de spam automatizado.'
+administration_mode: false
+allow_on_admin_pages: false
+add_captcha_description: false
+default_validation: 1
+persistence: 1
+enable_stats: false
+log_wrong_responses: false
+langcode: es

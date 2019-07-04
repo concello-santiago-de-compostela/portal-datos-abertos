@@ -1,0 +1,8 @@
+langcode: es
+status: true
+dependencies: {  }
+id: pregunta_y_respuesta_faq
+label: 'Pregunta y Respuesta FAQ'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

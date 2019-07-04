@@ -1,0 +1,17 @@
+{#
+ Copy from   
+    {% snippet "package/snippets/resrouce_info.html"
+#}
+<div class="module context-info">
+    {% set res_name =  h.get_translated(res, 'format') %}
+    <div class="module-content">
+      <h1 class="heading">{{ h.resource_display_name(res) or res.id }}</h1>
+      <div class="nums">
+        <dl>
+          <dt>{{ _('Format') }}</dt>
+          <dd><span class="csc-resource-format-label">{{h.csc_resource_format_label(res_name)}}</span><br /><span class="csc-resource-format-value">({{ h.get_translated(res, 'format') }})</span></dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+  

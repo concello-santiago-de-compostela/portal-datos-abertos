@@ -1,0 +1,157 @@
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.node.aplicacion.body
+    - field.field.node.aplicacion.field_app_comentarios
+    - field.field.node.aplicacion.field_capturas_de_pantalla
+    - field.field.node.aplicacion.field_categoria
+    - field.field.node.aplicacion.field_desarrollador
+    - field.field.node.aplicacion.field_enlaces_a_la_aplicacion
+    - field.field.node.aplicacion.field_etiquetas
+    - field.field.node.aplicacion.field_logo_icono
+    - field.field.node.aplicacion.field_plataformas
+    - image.style.thumbnail
+    - node.type.aplicacion
+  module:
+    - disqus
+    - image
+    - link
+    - path
+    - text
+id: node.aplicacion.default
+targetEntityType: node
+bundle: aplicacion
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 2
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  created:
+    type: datetime_timestamp
+    weight: 11
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_app_comentarios:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: disqus_comment
+    region: content
+  field_capturas_de_pantalla:
+    weight: 8
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: content
+  field_categoria:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_desarrollador:
+    weight: 5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_enlaces_a_la_aplicacion:
+    weight: 7
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_etiquetas:
+    weight: 9
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete_tags
+    region: content
+  field_logo_icono:
+    weight: 3
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: content
+  field_plataformas:
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  langcode:
+    type: language_select
+    weight: 1
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 14
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 12
+    region: content
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 15
+    region: content
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 13
+    region: content
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  translation:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  uid:
+    type: entity_reference_autocomplete
+    weight: 10
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    region: content
+    third_party_settings: {  }
+hidden: {  }

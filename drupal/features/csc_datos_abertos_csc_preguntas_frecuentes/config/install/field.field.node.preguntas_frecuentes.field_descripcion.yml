@@ -1,0 +1,21 @@
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_descripcion
+    - node.type.preguntas_frecuentes
+  module:
+    - text
+id: node.preguntas_frecuentes.field_descripcion
+field_name: field_descripcion
+entity_type: node
+bundle: preguntas_frecuentes
+label: Descripción
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+field_type: text_with_summary

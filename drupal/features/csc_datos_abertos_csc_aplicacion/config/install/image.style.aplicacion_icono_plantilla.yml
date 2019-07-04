@@ -1,0 +1,14 @@
+langcode: es
+status: true
+dependencies: {  }
+name: aplicacion_icono_plantilla
+label: 'Aplicación icono plantilla'
+effects:
+  fcd4ffc1-209b-45ee-8875-07a42deffec2:
+    uuid: fcd4ffc1-209b-45ee-8875-07a42deffec2
+    id: image_scale
+    weight: 1
+    data:
+      width: 150
+      height: null
+      upscale: false

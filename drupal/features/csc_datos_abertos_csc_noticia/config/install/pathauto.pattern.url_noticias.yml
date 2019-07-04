@@ -1,0 +1,21 @@
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+id: url_noticias
+label: 'URL contenido noticias'
+type: 'canonical_entities:node'
+pattern: 'noticias/[node:title]'
+selection_criteria:
+  6824e679-b4b4-4504-aaaa-aa55bfa5f7a1:
+    id: node_type
+    bundles:
+      noticia: noticia
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 6824e679-b4b4-4504-aaaa-aa55bfa5f7a1
+selection_logic: and
+weight: -5
+relationships: {  }

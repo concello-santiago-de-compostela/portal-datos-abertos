@@ -1,0 +1,8 @@
+include README
+include LEEME
+include LICENSE
+include LICENSE_es
+include AUTHORS
+include AUTHORS_es
+include requirements.txt
+recursive-include ckanext/csc_ga *.html *.json *.js *.less *.css *.mo

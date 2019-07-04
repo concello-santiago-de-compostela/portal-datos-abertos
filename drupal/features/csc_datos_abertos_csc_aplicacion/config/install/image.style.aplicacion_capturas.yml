@@ -1,0 +1,14 @@
+langcode: es
+status: true
+dependencies: {  }
+name: aplicacion_capturas
+label: 'Aplicación capturas'
+effects:
+  c700d1c9-d227-4968-8022-befcf6acf8a7:
+    uuid: c700d1c9-d227-4968-8022-befcf6acf8a7
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 250
+      height: 300
+      anchor: center-top

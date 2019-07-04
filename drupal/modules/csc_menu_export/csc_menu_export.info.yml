@@ -1,0 +1,7 @@
+name: CSC Menu Export
+description: A module to export csc webpage menus
+package: 'CSC Datos abertos development'
+type: module
+configure: csc_menu_export.config
+core: 8.x
+version: 8.x-1.0

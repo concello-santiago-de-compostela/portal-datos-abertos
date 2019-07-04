@@ -1,0 +1,6 @@
+name: CSC Frontpage
+description: A module to define the frontpage of CSC website.
+package: 'CSC Datos abertos development'
+type: module
+core: 8.x
+version: 8.x-1.0

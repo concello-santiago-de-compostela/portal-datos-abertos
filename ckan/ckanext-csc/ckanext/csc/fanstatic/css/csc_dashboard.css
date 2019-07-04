@@ -1,0 +1,90 @@
+/**
+ * Copyright 2018 Ayuntamiento de Santiago de Compostela, Entidad Pública Empresarial Red.es
+ *
+ * This file is part of the "Open Data Portal of Santiago de Compostela", developed within the "Ciudades Abiertas" project.
+ *
+ * Licensed under the EUPL, Version 1.2 or - as soon they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence");
+ * You may not use this work except in compliance with the Licence.
+ * You may obtain a copy of the Licence at:
+ *
+ * https://joinup.ec.europa.eu/software/page/eupl
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under the Licence is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the Licence for the specific language governing permissions and limitations under the Licence.
+ */    
+    
+    .chartdiv
+     {
+      width: 100%;
+      height: 500px;
+      margin: auto;
+    }
+
+    .specialchartdiv
+     {
+      width: 70%;
+      height: 500px;
+      margin: auto;
+    }
+
+    .smallchartdiv
+     {
+      width: 100%;
+      height: 400px;
+    }
+    
+    .chartdiv2
+     {
+      width: 50%;
+      height: 500px;
+      float:left;
+    }
+
+	.halfwidth{
+	  width: 50%;
+      float:left;
+	}
+
+    .tablediv
+     {
+      width: 100%;
+      margin: auto;
+    }
+
+    .amcharts-pie-slice {
+      transform: scale(1);
+      transform-origin: 50% 50%;
+      transition-duration: 0.3s;
+      transition: all .3s ease-out;
+      -webkit-transition: all .3s ease-out;
+      -moz-transition: all .3s ease-out;
+      -o-transition: all .3s ease-out;
+      cursor: pointer;
+      box-shadow: 0 0 30px 0 #000;
+    }
+
+    .amcharts-pie-slice:hover {
+      transform: scale(1.1);
+      filter: url(#shadow);
+    }
+    
+    #selector {
+    font-family: Verdana;
+    background-color: #efefef;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    }
+    
+    select {
+      font-size: 15px;  
+      padding: 5px;
+    }
+
+    .selector {
+      background: #eee;
+      border-bottom: 1px solid #ddd;
+      padding: 16px;
+      margin: 0;
+    }
