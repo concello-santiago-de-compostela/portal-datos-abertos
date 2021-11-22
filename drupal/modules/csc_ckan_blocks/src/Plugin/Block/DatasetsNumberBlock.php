@@ -52,10 +52,17 @@ class DatasetsNumberBlock extends BlockBase
             'start' => 0,
             'sort' => 'metadata_created desc'
         );
+        
+        //DRUPAL - Caché.
+        /*drupal_flush_all_caches();
+        \Drupal::service('page_cache_kill_switch')->trigger();*/
+        
         $ckan = csc_ckan_init_class();
+                
         $response = $ckan->request('package_search', '', '', $settings['rows'], $settings['start'], $settings['sort']);
         $packagesNumber = $response['result']['count'];
        
+
         return array(
             '#packagesnumber' => $packagesNumber,
             '#theme' => 'packagesnumberblock_template'

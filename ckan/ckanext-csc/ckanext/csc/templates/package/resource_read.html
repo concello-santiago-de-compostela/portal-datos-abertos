@@ -5,6 +5,9 @@
 
 {% set dataset_title_language, dataset_title = h.csc_dataset_field_value(c.package.title_translated) %}
 {% set dataset_language, dataset_description = h.csc_dataset_field_value(c.package.description) %}
+
+{% set show_english = h.csc_show_english_values() %}
+
 {% set res = c.resource %}
 {% set res_title = h.csc_resource_display_name(res) %}
 
@@ -187,6 +190,17 @@
         </section>
       {% endif %}
     {% endblock %}
+    {% if show_english and h.check_access('resource_view_create', {'resource_id': c.resource.id}) %}
+      {% if res.name_en %}
+        <section class="english-values">
+          <h2 class="section-title english-title">Valores en ingl&eacute;s (Informaci&oacute;n privada para editores)</h2>
+          <div class="resource-metadata english-info">
+            <strong>{{ _('Name') }}:</strong>&nbsp;
+            <span>{{ res.name_en}}</span>
+          </div>
+        </section>
+      {% endif %}
+    {% endif %}
   {% endblock %}
 
 {% block primary_content %}

@@ -29,11 +29,11 @@
                 {% if locale and locale.short_name != current_lang %}
                   {% if locale.short_name == 'es' %}
                     <li class="{{ locale }}">
-                        <a href="{% url_for h.current_url(), locale=locale.short_name %}?{{query_string_url}}" class="language-link" hreflang="{{ locale }}">{{ _('Castilian') }}</a>
+                        <a href="{% url_for h.current_url(), locale=locale.short_name %}" class="language-link" hreflang="{{ locale }}">{{ _('Castilian') }}</a>
                     </li>
                   {% else %}
                     <li class="{{ locale }}">
-                      <a href="{% url_for h.current_url(), locale=locale.short_name %}?{{query_string_url}}" class="language-link" hreflang="{{ locale }}">{{ locale.display_name.title() or locale.english_name.title() }}</a>
+                      <a href="{% url_for h.current_url(), locale=locale.short_name %}" class="language-link" hreflang="{{ locale }}">{{ locale.display_name.title() or locale.english_name.title() }}</a>
                     </li>
                   {% endif %}
                 {% endif %}

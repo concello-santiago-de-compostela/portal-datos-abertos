@@ -66,8 +66,12 @@ CKAN_PROP_LOCALE_ORDER = u'ckan.locale_order'
 CKAN_PROP_HTTP_PROXY = u'ckanext.csc_dcat.http_proxy'
 CKAN_PROP_HTTPS_PROXY = u'ckanext.csc_dcat.https_proxy'
 
+#Keys of common data
 PUBLISHER_PREFIX = u'http://datos.gob.es/recurso/sector-publico/org/Organismo/'
 DEFAULT_TIMEZONE = 'Europe/Madrid'
+ENGLISH_LANG = u'en'
+SPANISH_LANG = u'es'
+
 #Keys of catalog dictionary
 CAT_ERRORS = u'cat_errors'
 CAT_WARNINGS = u'cat_warnings'
@@ -99,10 +103,12 @@ DS_DEFAULT_CATALOG_LANGUAGE = u'default_catalog_language'
 DS_URI = u'uri'
 DS_NAME = u'name'
 DS_TITLE = u'title'
+DS_TITLE_EN = u'title_en'
 DS_OWNER_ORG = u'owner_org'
 DS_LANGUAGE = u'language'
 DS_TITLE_TRANSLATED = u'title_translated'
 DS_DESCRIPTION = u'description'
+DS_DESCRIPTION_EN = u'description_en'
 DS_THEME = u'theme'
 DS_IDENTIFIER = u'identifier'
 DS_ISSUED_DATE = u'issued_date'
@@ -119,6 +125,7 @@ DS_REFERENCE = u'reference'
 DS_NORMATIVE = u'conforms_to'
 DS_RESOURCE_IDENTIFIER = u'resource_identifier'
 DS_RESOURCE_NAME_TRANSLATED = u'name_translated'
+DS_RESOURCE_NAME_EN = u'name_en'
 DS_RESOURCE_ACCESS_URL = u'url'
 DS_RESOURCE_MIMETYPE = u'mimetype'
 DS_RESOURCE_FORMAT = u'format'
@@ -161,6 +168,30 @@ class CscDgeProfile(RDFProfile):
             for k, v in items.items():
                 if k and v:
                     self.g.add((subject, predicate, Literal(v, lang=k)))
+
+    def _get_translated_value_from_dict(self, _dict, key, lang, fallbacks=None):
+        '''
+        Get a specific language value from a multilanguage field
+        '''
+        lang_value = ''
+
+        value = self._get_dict_value(_dict, key)
+        if not value and fallbacks:
+            for fallback in fallbacks:
+                value = self._get_dict_value(_dict, fallback)
+                if value:
+                    break
+
+        # List of values
+        lang_value = 'turururururu'
+        if isinstance(value, dict):
+            items = value
+            for k, v in items.items():
+                if k and v:
+                    if k == lang:
+                        lang_value = v
+        
+        return lang_value
 
     def _add_date_triple(self, subject, predicate, value):
         '''
@@ -278,8 +309,6 @@ class CscDgeProfile(RDFProfile):
             working with the graph.
         '''
         method_log_prefix = '[%s][graph_from_catalog]' % type(self).__name__
-        #log.debug('%s Init method. Inputs: catalog_dict=%r, catalog_ref=%r' % (
-        #   method_log_prefix, catalog_dict, catalog_ref))
         try:
             self.organizations = {}
 
@@ -297,6 +326,9 @@ class CscDgeProfile(RDFProfile):
                 for locale in locales_offered:
                     g.add((catalog_ref, DCT.language, Literal(locale)))
 
+            # Engish language
+            g.add((catalog_ref, DCT.language, Literal(ENGLISH_LANG)))
+
             # Translate fields
             default_title = config.get('ckanext.csc_dcat.catalog.title', None)
             default_description = config.get(
@@ -313,6 +345,12 @@ class CscDgeProfile(RDFProfile):
                         'ckanext.csc_dcat.catalog.title_' + locale, default_title), locale))
                     items.append(('description_' + locale, DCT.description, config.get(
                         'ckanext.csc_dcat.catalog.description_' + locale, default_description), locale))
+
+            # Engish Information
+            items.append(('title_en', DCT.title, config.get(
+                'ckanext.csc_dcat.catalog.title_en', default_title), ENGLISH_LANG))
+            items.append(('description_en', DCT.description, config.get(
+                'ckanext.csc_dcat.catalog.description_en', default_description), ENGLISH_LANG))
 
             for item in items:
                 key, predicate, fallback, locale = item
@@ -392,8 +430,6 @@ class CscDgeProfile(RDFProfile):
         '''
         method_log_prefix = '[%s][graph_from_dataset]' % type(
             self).__name__
-        #log.debug('%s Init method. Inputs dataset_dict=%r, dataset_ref=%r' % (method_log_prefix, dataset_dict, dataset_ref))
-        #log.debug('%s Init method. Inputs, dataset_ref=%r' % (method_log_prefix, dataset_ref))
         try:
             g = self.g
 
@@ -405,17 +441,30 @@ class CscDgeProfile(RDFProfile):
             # Title
             self._add_translated_triple_field_from_dict(
                 dataset_dict, dataset_ref, DCT.title, DS_TITLE_TRANSLATED, None)
+            
+            # Engish title
+            english_title = dataset_dict.get(DS_TITLE_EN)
+            #if english_title:
+            #    self.g.add((dataset_ref, DCT.title, Literal(english_title, lang=ENGLISH_LANG)))
+            if not english_title:
+                english_title = self._get_translated_value_from_dict(dataset_dict, DS_TITLE_TRANSLATED, SPANISH_LANG, fallbacks=None)
+            self.g.add((dataset_ref, DCT.title, Literal(english_title, lang=ENGLISH_LANG)))
 
             # Description
             self._add_translated_triple_field_from_dict(
                 dataset_dict, dataset_ref, DCT.description, DS_DESCRIPTION, None)
+
+            # Engish Description
+            english_description = dataset_dict.get(DS_DESCRIPTION_EN)
+            if not english_description:
+                english_description = self._get_translated_value_from_dict(dataset_dict, DS_DESCRIPTION, SPANISH_LANG, fallbacks=None)
+            self.g.add((dataset_ref, DCT.description, Literal(english_description, lang=ENGLISH_LANG)))
 
             # Theme
             value = self._get_dict_value(dataset_dict, DS_THEME)
             if value:
                 themes = dataset_dict.get(EXPORT_AVAILABLE_THEMES, {})
                 for theme in value:
-                    #self._add_resource_list_triple(dataset_ref, DCAT.theme, value)
                     theme_values = themes.get(theme, {})
                     labels = theme_values.get('label')
                     descriptions = theme_values.get('description')
@@ -574,6 +623,12 @@ class CscDgeProfile(RDFProfile):
                 # Title
                 self._add_translated_triple_field_from_dict(
                     resource_dict, distribution, DCT.title, DS_RESOURCE_NAME_TRANSLATED, None)
+
+                # Engish NAME
+                english_name = resource_dict.get(DS_RESOURCE_NAME_EN)
+                if not english_name:
+                   english_name = self._get_translated_value_from_dict(resource_dict, DS_RESOURCE_NAME_TRANSLATED, SPANISH_LANG, fallbacks=None)
+                g.add((distribution, DCT.title, Literal(english_name, lang=ENGLISH_LANG)))
 
                 # License (dataset license)
                 if dataset_dict.get(DS_LICENSE):

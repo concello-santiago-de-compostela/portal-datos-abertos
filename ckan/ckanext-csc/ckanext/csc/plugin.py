@@ -302,6 +302,7 @@ class CscPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'csc_dashboard_data_num_visits': helpers.csc_dashboard_data_num_visits,
             'csc_dashboard_data_most_visited_datasets': helpers.csc_dashboard_data_most_visited_datasets,
             'csc_get_visibility_of_public_graphs': helpers.csc_get_visibility_of_public_graphs,
+            'csc_show_english_values': helpers.csc_show_english_values,
             #'url_for' : helpers.csc_url_for,
             #'url_for_static_or_external': helpers.ckan_url_for_static_or_external,
             }

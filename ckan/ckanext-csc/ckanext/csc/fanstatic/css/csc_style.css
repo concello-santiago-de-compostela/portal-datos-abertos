@@ -2345,6 +2345,10 @@ h2.section-title {
     color: #d70c45 !important;
 }
 
+h2.section-title.english-title {
+    font-size: 20px !important;
+}
+
 .resources ul.resource-list li.resource-item {
     padding-left: 0px;
 }

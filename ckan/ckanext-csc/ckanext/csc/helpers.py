@@ -714,3 +714,11 @@ def csc_get_visibility_of_public_graphs(graph_names=None):
                     visibility[name] = asbool(
                                        config.get('ckanext.csc.dashboard.chart.resource_format.visible', False))
     return visibility
+
+def csc_show_english_values():
+    """
+    Return a boolean that enables or disables the English values for editors
+    """
+    english_config = config.get('ckanext.csc.display_english', False)
+    visible = True if (english_config and english_config == 'true') else False
+    return visible

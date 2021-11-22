@@ -29,6 +29,18 @@
                 "gl": "Require un nome en galego."}}
       },
       {
+        "field_name": "title_en",
+        "label": {
+          "es": "EN Nombre",
+          "gl": "EN Nome"},
+          "form_placeholder": {
+            "es": "Nombre o t\u00EDtulo del conjunto de datos en ingl\u00E9s.",
+            "gl": "Nome ou título do conxunto de datos en ingl\u00E9s."},
+          "help_text": {
+            "es": "Nombre en ingl\u00E9s.",
+            "gl": "Nome en ingl\u00E9s."}
+      },
+      {
         "field_name": "name",
         "label": "URL",
         "required": true,
@@ -67,6 +79,17 @@
             "gl": {
                 "es": "Requiere una descripci\u00F3n en gallego. Puede abrir o cerrar la ayuda para dar el formato al texto pulsando sobre el enlace \u0022formato Markdown\u0022.",
                 "gl": "Requiere una descripci\u00F3n en galego. Puede abrir o cerrar la ayuda para dar el formato al texto pulsando sobre el enlace \u0022formato Markdown\u0022."}}
+      },
+      {
+        "field_name": "description_en",
+        "label": {
+          "es": "EN Descripci\u00F3n",
+          "gl": "EN Descripci\u00F3n"},
+        "form_snippet": "markdown.html",
+        "form_placeholder": {
+          "es": "Descripci\u00F3n detallada del conjunto de datos en ingl\u00E9s.",
+          "gl": "Descripci\u00F3n detallada del conjunto de datos en ingl\u00E9s."
+        }
       },
       {
         "field_name": "theme",
@@ -394,6 +417,13 @@
             "label": {
                 "gl": "Galego",
                 "es": "Gallego"}
+          },
+          {
+            "value": "en",
+            "label": {
+              "gl": "Ingl\u00E9s",
+              "es": "Ingl\u00E9s"
+            }
           }
         ]
       },
@@ -585,6 +615,18 @@
             "gl": {
                 "es": "",
                 "gl": ""}}
+      },
+      {
+        "field_name": "name_en",
+        "label": {
+          "es": "EN Nombre",
+          "gl": "EN Nome"},
+          "form_placeholder": {
+            "es": "Breve t\u00EDtulo o nombre dado al recurso en ingl\u00E9s.",
+            "gl": "Breve t\u00EDtulo o nombre dado al recurso en ingl\u00E9s."},
+          "help_text": {
+            "es": "",
+            "gl": ""}
       },
       {
         "field_name": "format",

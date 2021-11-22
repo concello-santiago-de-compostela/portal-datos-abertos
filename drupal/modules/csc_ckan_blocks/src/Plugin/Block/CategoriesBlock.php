@@ -46,10 +46,14 @@ class CategoriesBlock extends BlockBase{
     {
         $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
         
-        $categories_home = '';
+        $categories_home_aux = [];
         
+        //DRUPAL Caches
+        /*drupal_flush_all_caches();
+        \Drupal::service('page_cache_kill_switch')->trigger();*/
+
         //Retrieve cached block
-        if ($cached = \Drupal::cache()->get('csc_categories_home_'.$language))  {
+        /*if ($cached = \Drupal::cache()->get('csc_categories_home_'.$language))  {
            
             if ($cached->expire > time()) {
             
@@ -61,10 +65,21 @@ class CategoriesBlock extends BlockBase{
             $categories_home = csc_ckan_blocks_categories_retrieve($language);
             //Cached every 6 hours by language
             \Drupal::cache()->set('csc_categories_home_'.$language, $categories_home, time() + 3600);
-        }
+        }*/
         
+        //Call CKAN
+        $categories_home = csc_ckan_blocks_categories_retrieve($language);
+        
+        //Se quitan de la home las categorías que tienen valor a 0 (0 cjtos datos)
+        foreach ($categories_home as $category){
+            if($category['total']!=0){
+                array_push($categories_home_aux, $category);
+            }
+
+        }
+
         return array(
-            '#categories' => $categories_home,
+            '#categories' => $categories_home_aux,
             '#theme' => 'categoriesblock_template',
             
         );

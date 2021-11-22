@@ -23,6 +23,7 @@
     ] %}
     
 {% set dict_fields = h.csc_dataset_display_fields(include_fields, schema.dataset_fields) %}
+{% set show_english = h.csc_show_english_values() %}
 {% if (pkg_dict.issued_date and dict_fields[issued_date])  or
   (pkg_dict.modified_date and dict_fields[modified_date]) or
   (pkg_dict.frequency  and dict_fields[frequency]) or
@@ -122,4 +123,23 @@
     </table>
   </div>
 </section>
+{% endif %}
+{% if  show_english and h.check_access('package_update', {'id':pkg_dict.id }) %}
+  {% if (pkg_dict.title_en or pkg_dict.description_en) %}
+  <section class="english-values">
+    <h2 class="section-title english-title">Valores en ingl&eacute;s (Informaci&oacute;n privada para editores)</h2>
+    {% if pkg_dict.title_en %}
+      <div class="resource-metadata english-info">
+        <strong>T&iacute;tulo:</strong>&nbsp;
+        <span>{{ pkg_dict.title_en }}</span>
+      </div>
+    {% endif %}
+    {% if pkg_dict.description_en %}
+      <div class="resource-metadata english-info">
+        <strong>{{ _('Description') }}:</strong>&nbsp;
+        <span>{{ pkg_dict.description_en }}</span>
+      </div>
+    {% endif %}
+  </section>
+  {% endif %}
 {% endif %}
