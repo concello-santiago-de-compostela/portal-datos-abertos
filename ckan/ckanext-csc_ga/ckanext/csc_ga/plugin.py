@@ -129,6 +129,7 @@ class CscGAPlugin(plugins.SingletonPlugin):
             log.error(msg)
             raise CscGAException(msg)
         self.googleanalytics_id = config_['googleanalytics.id']
+        self.googleanalytics_id_ga4 = config_['googleanalytics.id.ga4']
         self.googleanalytics_domain = config_.get(
                 'googleanalytics.domain', 'auto')
         self.googleanalytics_fields = ast.literal_eval(config_.get(
@@ -285,6 +286,7 @@ class CscGAPlugin(plugins.SingletonPlugin):
         '''
         data = {
             'googleanalytics_id': self.googleanalytics_id,
+            'googleanalytics_id_ga4': self.googleanalytics_id_ga4,
             'googleanalytics_domain': self.googleanalytics_domain,
             'googleanalytics_fields': str(self.googleanalytics_fields),
             'googleanalytics_linked_domains': self.googleanalytics_linked_domains

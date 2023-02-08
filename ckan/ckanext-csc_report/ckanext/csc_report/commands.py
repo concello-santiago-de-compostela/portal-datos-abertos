@@ -196,7 +196,9 @@ class CscReportLoadAnalytics(CscReportCommand):
             self.exclude_visits_url_regex = string_exclude_url.split()
 
 
-        save, time_period, calculation_date = self._validate_args(self.args, type(self).__name__)   
+        save, time_period, calculation_date = self._validate_args(self.args, type(self).__name__)
+        limit_date_ga4 = datetime(int(config.get('googleanalytics.date.ga4.year', None)), int(config.get('googleanalytics.date.ga4.month', None)), 2, 0, 0, 0)
+        self.is_ga4 = limit_date_ga4 < calculation_date
 
         from ga_auth import (init_service, get_profile_id)
         ga_credentials_file_filepath = config.get('ckanext-csc_report.credentials_file.filepath', '')
@@ -206,14 +208,18 @@ class CscReportLoadAnalytics(CscReportCommand):
             sys.exit(1)
             
         try:
-            self.service = init_service(ga_credentials_file_filepath)
+            self.service = init_service(ga_credentials_file_filepath, self.is_ga4)
         except TypeError as e:
             error_msg = 'Unable to create a service: {0} '\
                         'Have you correctly specified the correct token file in the CKAN config under ' \
                         '"ckanext-csc_report.credentials_file.filepath"?'.format(e)
             print error_msg
             sys.exit(1)
-        self.profile_id = get_profile_id(self.service)
+        
+        if self.is_ga4 :
+           self.profile_id = ""
+        else:
+           self.profile_id = get_profile_id(self.service)
 
         self.downloader = CscGaDownloadAnalytics(service=self.service,
                                            profile_id = self.profile_id,
@@ -226,7 +232,8 @@ class CscReportLoadAnalytics(CscReportCommand):
                                            dataset_url_prefixs = self.dataset_url_prefixs,
                                            dataset_complete_url = self.dataset_url_regex,
                                            dataset_exclude_url= self.exclude_dataset_url_regex,
-                                           visits_exclude_url = self.exclude_visits_url_regex)
+                                           visits_exclude_url = self.exclude_visits_url_regex,
+                                           is_ga4 = self.is_ga4)
 
         if time_period == 'latest':
             self.downloader.latest()

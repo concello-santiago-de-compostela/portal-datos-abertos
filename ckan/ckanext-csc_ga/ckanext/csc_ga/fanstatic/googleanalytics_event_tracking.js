@@ -23,7 +23,7 @@ this.ckan.module('google-analytics', function(jQuery, _) {
       jQuery('a.resource-url-analytics').on('click', function() {
           var resource_url = encodeURIComponent(jQuery(this).prop('href'));
           if (resource_url) {
-            ga('send', 'event', 'Resource', 'Download', resource_url);
+            gtag('event', 'Download', {'event_category':'Resource' ,'event_label': resource_url});
           }
       });
     }

@@ -54,7 +54,7 @@ class CscGaDownloadAnalytics(object):
                  kind_stats=None, save_stats=False, 
                  dataset_url=None, dataset_url_prefixs=None,
                  dataset_complete_url=None, dataset_exclude_url = [], 
-                 visits_exclude_url = []):
+                 visits_exclude_url = [], is_ga4=False):
         self.period = config.get('ckanext-csc_report.period', 'monthly')
         self.hostname = config.get('ckanext-csc_report.hostname', None)
         self.dataset_url = dataset_url
@@ -69,6 +69,8 @@ class CscGaDownloadAnalytics(object):
         self.print_progress = print_progress
         self.kind_stats = kind_stats
         self.save_stats = save_stats
+        self.property_id = 'properties/' + config.get('googleanalytics.property.ga4', None)
+        self.is_ga4 = is_ga4
 
     def specific_month(self, date):
         import calendar
@@ -180,32 +182,99 @@ class CscGaDownloadAnalytics(object):
             end_date = end_date.strftime('%Y-%m-%d')
             print 'Downloading analytics for stat %s, since %s, until %s with path %s' %(stat, start_date, end_date, path)
 
-            query = None
+            if self.is_ga4 :
+                query = []
+            else :
+                query = None
+            
             if stat == DATASET_STAT:
-                if path:
-                    query = 'ga:pagePath=~%s' % path
-                metrics = 'ga:pageviews'
-                sort = '-ga:pageviews'
-                dimensions = "ga:pagePath"
+                if self.is_ga4 :
+                    if path:
+                        filter = {
+                            "filter": {
+                                "fieldName": "pagePath",
+                                "stringFilter": {
+                                    "matchType": "FULL_REGEXP",
+                                    "value": path,
+                                    "caseSensitive": False
+                                }	
+                            }
+                        }
+                        query.append(filter)
+                    metrics = "screenPageViews"
+                    sort = True
+                    dimensions = "pagePath"
+                else :
+                    if path:
+                        query = 'ga:pagePath=~%s' % path
+                    metrics = 'ga:pageviews'
+                    sort = '-ga:pageviews'
+                    dimensions = "ga:pagePath"
             
             if stat == VISIT_STAT:
-                if path:
-                    query = 'ga:pagePath=~%s' % path
-                metrics = 'ga:sessions'
-                sort = '-ga:sessions'
-                dimensions = ''
+                dimensions = ""
+                if self.is_ga4 :
+                    if path:
+                        filter = {
+                            "filter": {
+                                "fieldName": "pagePath",
+                                "stringFilter": {
+                                    "matchType": "FULL_REGEXP",
+                                    "value": path,
+                                    "caseSensitive": False
+                                }	
+                            }
+                        }
+                        query.append(filter)
+                    metrics = "sessions"
+                    sort = True
+                else :
+                    if path:
+                        query = 'ga:pagePath=~%s' % path
+                    metrics = 'ga:sessions'
+                    sort = '-ga:sessions'
 
             if exludedPaths:
                 for epath in exludedPaths:
-                    if query: 
-                        query += ';ga:pagePath!~%s' % epath
-                    else:
-                        query = 'ga:pagePath!~%s' % epath
+                    if self.is_ga4 :
+                        filter = {
+                            "notExpression": {
+                                "filter": {
+                                    "fieldName": "pagePath",
+                                    "stringFilter": {
+                                        "matchType": "FULL_REGEXP",
+                                        "value": epath,
+                                        "caseSensitive": False
+                                    }	
+                                }
+                            }
+                        }
+                        query.append(filter)
+                    else :
+                        if query: 
+                            query += ';ga:pagePath!~%s' % epath
+                        else:
+                            query = 'ga:pagePath!~%s' % epath
+                    
             if self.hostname:
-                if query:
-                    query += ';ga:hostname=~%s' % self.hostname
-                else:
-                    query = 'ga:hostname=~%s' % self.hostname
+                if self.is_ga4 :
+                    filter = {
+                        "filter": {
+                            "fieldName": "hostName",
+                            "stringFilter": {
+                                "matchType": "FULL_REGEXP",
+                                "value": self.hostname,
+                                "caseSensitive": False
+                            }	
+                        }
+                    }
+                    query.append(filter)
+                else :
+                    if query:
+                        query += ';ga:hostname=~%s' % self.hostname
+                    else:
+                        query = 'ga:hostname=~%s' % self.hostname
+                
 
             # Supported query params at
             # https://developers.google.com/analytics/devguides/reporting/core/v3/reference
@@ -239,26 +308,38 @@ class CscGaDownloadAnalytics(object):
                 excluded_patterns = []
                 for regex in exludedPaths:
                     excluded_patterns.append(re.compile(regex))
-                for entry in results:
-                    (path, pageviews) = entry
-                    url = strip_off_url_prefix(path, self.dataset_url_prefixs)  # strips off prefixs 
-                    if url.startswith('/'):
-                        url = url[1:]
-                    '''if not pattern.match(self.dataset_url + url):
-                        continue
-                    for excluded_pattern in excluded_patterns:
-                        if excluded_pattern.match(self.dataset_url + url):
-                            continue'''
-                    datasets.append( (url, pageviews) ) # Temporary hack
+                
+                rows = results if results else None
+                i=0
+                if rows and len(rows) >= 1:
+                    for row in rows:
+                        if self.is_ga4 :
+                            path = row.get('dimensionValues', [])[0]['value']
+                            pageviews = row.get('metricValues', [])[0]['value']
+                            i += 1
+                        else :
+                            (path, pageviews) = row
+                        
+                        url = strip_off_url_prefix(path, self.dataset_url_prefixs)  # strips off prefixs 
+                        if url.startswith('/'):
+                            url = url[1:]
+                        '''if not pattern.match(self.dataset_url + url):
+                            continue
+                        for excluded_pattern in excluded_patterns:
+                            if excluded_pattern.match(self.dataset_url + url):
+                                continue'''
+                        datasets.append( (url, pageviews) ) # Temporary hack
                 return {stat:datasets}
             elif stat == VISIT_STAT:
                 rows = results if results else None
-                print rows
                 visits = 0
                 if rows and len(rows) >= 1:
-                    for entry in rows:
-                        if entry:
-                            visits = entry[0]
+                    for row in rows:
+                        if row:
+                            if self.is_ga4 :
+                                visits = row.get('metricValues', [])[0]['value']
+                            else :
+                                visits = row[0]
                             break
                 return {stat:visits}
         else:
@@ -310,31 +391,65 @@ class CscGaDownloadAnalytics(object):
 
         Returns a dict with the data, or raises DownloadError if unsuccessful.
         '''
+
         try: 
-            rows = []
+            results = []
             start_index = 1
             max_results = 10000
             # data retrival is chunked
             completed = False
             while not completed:
-                results = self.service.data().ga().get(ids=params['ids'],
-                                 filters=params['filters'],
-                                 dimensions=params['dimensions'],
-                                 start_date=params['start_date'],
-                                 start_index=start_index,
-                                 max_results=max_results,
-                                 metrics=params['metrics'],
-                                 sort=params['sort'],
-                                 end_date=params['end_date'], 
-                                 alt=params['alt']).execute()
-                result_count = len(results.get('rows', []))
+                if self.is_ga4 :
+                    start_index_ga4 = start_index - 1
+                    request = {
+                        "metrics": [{'name': params['metrics']}],
+                        "dateRanges": [
+                            {
+                            "startDate": params['start_date'],
+                            "endDate": params['end_date']
+                            }
+                        ],
+                        "orderBys": [
+                            {
+                            "desc": True,
+                            "metric": {
+                                "metricName": params['metrics']
+                            },
+                            }
+                        ],
+                        "limit": str(max_results),
+                        "offset": str(start_index_ga4),
+                        "dimensionFilter": {
+                            "andGroup": {
+                                "expressions": params['filters']
+                            }
+                        }
+                    }
+
+                    if params['dimensions'] != "" : 
+                        request["dimensions"] = [{'name': params['dimensions']}]
+
+                    response = self.service.properties().runReport(property=self.property_id, body=request).execute()
+                else:
+                    response = self.service.data().ga().get(ids=params['ids'],
+                                    filters=params['filters'],
+                                    dimensions=params['dimensions'],
+                                    start_date=params['start_date'],
+                                    start_index=start_index,
+                                    max_results=max_results,
+                                    metrics=params['metrics'],
+                                    sort=params['sort'],
+                                    end_date=params['end_date'], 
+                                    alt=params['alt']).execute()            
+                
+                result_count = len(response.get('rows', []))
                 if result_count < max_results:
                     completed = True
-                rows.extend(results.get('rows', []))
                 start_index += max_results
+                results.extend(response.get('rows', []))
                 # rate limiting
                 time.sleep(0.2)
-            return rows
+            return results
         except Exception, e:
             log.error("Exception getting GA data: %s" % e)
             raise DownloadError()

@@ -37,7 +37,7 @@ def _prepare_credentials(credentials_filename):
     return credentials
 
 
-def init_service(credentials_file):
+def init_service(credentials_file, is_ga4=False):
     """
     Given a file containing the user's oauth token (and another with
     credentials in case we need to generate the token) will return a
@@ -48,8 +48,10 @@ def init_service(credentials_file):
     credentials = _prepare_credentials(credentials_file)
     http = credentials.authorize(http)  # authorize the http object
     
-    return build('analytics', 'v3', http=http)
-
+    if is_ga4 :
+        return build('analyticsdata', 'v1beta', http=http)
+    else :
+        return build('analytics', 'v3', http=http)
 
 def get_profile_id(service):
     """
